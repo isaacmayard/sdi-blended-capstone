@@ -1,12 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
+
 import { useSome } from '../utilities/MainContextProvider';
 
-export const Home = () => {
+function Home() {
   // react query, add a call back function as the second param to do the query
   const { data, isLoading, isError } = useQuery(['idForQuery'], async () => {
     const res = await axios.get('https://jsonplaceholder.typicode.com/todos/1');
+    // eslint-disable-next-line no-shadow
     const data = await res.data;
     return data;
   });
@@ -21,4 +23,6 @@ export const Home = () => {
       }`}</p>
     </>
   );
-};
+}
+
+export default Home;
