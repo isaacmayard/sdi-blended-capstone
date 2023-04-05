@@ -12,6 +12,7 @@ const corsOptions = {
 app.use(express.json());
 app.use(cors(corsOptions));
 
+//ROUTES GO HERE
 
 app.listen(port, () => {
   console.log(`Express Server running on port: ${port}`);
