@@ -1,10 +1,10 @@
 FROM node:19-alpine3.17
 
 # set the directory docekr is runnin the commands
-WORKDIR /ui
+WORKDIR /front-end
 
 # copy source code
-COPY . /ui
+COPY . /front-end
 
 # update packages
 RUN apk update && \
