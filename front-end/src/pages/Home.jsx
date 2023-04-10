@@ -7,5 +7,5 @@ import { useSome } from '../utilities/MainContextProvider';
 export default function Home() {
   const { currentUser } = useSome();
 
-  return <h1>Wellcome {currentUser.username}</h1>;
+  return <h1>Welcome{currentUser.username}</h1>;
 }
