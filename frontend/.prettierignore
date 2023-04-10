@@ -1,0 +1,28 @@
+# Compiled & generated output
+/*/dist/
+/app/queries/
+*dist/*
+
+# Cache
+/.cache
+
+# Yarn
+/.yarn
+/.pnp.*
+
+# TypeScript
+/tsconfig.base.json
+
+# Misc
+/.husky
+*.hbs
+/.stylelintrc.json
+/.vscode/settings.json
+index.html
+postcss.config.js
+tailwind.config.js
+vite.config.js
+
+# package manager
+pnpm-lock.yaml
+package.json
