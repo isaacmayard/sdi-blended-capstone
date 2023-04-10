@@ -16,7 +16,7 @@
 		"**/.gitattributes": true,
 		"**/.husky": true,
 		"**/.pnp.*": true,
-		"**/.prettierignore": true,
+		"**/.prettierignore": false,
 		"**/node_modules": true,
 		"**/yarn.lock": true,
 		"**/.stylelintcache": true,

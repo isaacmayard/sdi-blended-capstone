@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "front-end",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -7,7 +7,7 @@
     "dev": "vite --host",
     "build": "vite build",
     "preview": "vite preview",
-    "prepare": "cd .. && husky install ui/.husky"
+    "prepare": "cd .. && husky install front-end/.husky"
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",
