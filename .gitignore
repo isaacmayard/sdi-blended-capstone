@@ -1,6 +1,11 @@
 # dependencies
 node_modules
 .env
+
+# pnpm package manager
+**/pnpm-lock.yaml
+
+# npm package manager
 **/package-lock.json
 
 /.pnp
