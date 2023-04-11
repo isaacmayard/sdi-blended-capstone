@@ -6,9 +6,7 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var tasksRouter = require("./routes/tasks");
 const { Sequelize } = require("sequelize");
-require("dotenv").config({ path: "./.env" });
-console.log(process.env.CONNECTION_STRING);
-const sequelize = new Sequelize(process.env.CONNECTION_STRING);
+require("dotenv").config({ path: "../.env" });
 
 var app = express();
 
