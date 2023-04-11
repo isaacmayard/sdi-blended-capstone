@@ -9,11 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.Msl, { as: "MslId" });
     }
   }
   Tag.init(
     {
+      taskId: DataTypes.INTEGER,
       name: DataTypes.STRING,
       mslId: DataTypes.INTEGER,
     },
@@ -22,5 +22,11 @@ module.exports = (sequelize, DataTypes) => {
       modelName: "Tag",
     }
   );
+  Tag.hasMany(Model.Task, {
+    foreignKey: taskID,
+  });
+  Tag.hasMany(Model.Msl, {
+    foreignKey: mslId,
+  });
   return Tag;
 };

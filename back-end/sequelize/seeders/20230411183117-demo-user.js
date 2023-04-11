@@ -7,11 +7,10 @@ module.exports = {
       "Users",
       [
         {
+          taskId: 1,
           admin: false,
           userName: "myName",
           password: "helloworld",
-          firstName: "John",
-          lastName: "Doe",
           loggedIn: true,
           createdAt: new Date(),
           updatedAt: new Date(),
