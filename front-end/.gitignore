@@ -10,10 +10,10 @@
 node_modules
 
 # pnpm package manager
-pnpm-lock.yaml
+**/pnpm-lock.yaml
 
 # npm package manager
-package-lock.json
+**/package-lock.json
 
 # Logs
 logs
@@ -34,7 +34,7 @@ coverage
 *.lcov
 
 # Compiled output
-/*/dist/
+**/dist/
 dist-ssr
 *.local
 
