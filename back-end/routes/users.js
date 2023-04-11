@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
-const db = require("../models");
+const { Task } = require("../sequelize/models");
+const db = require("../sequelize/models");
 db.sequelize
   .authenticate()
   .then(() => console.log("Database connected..."))
@@ -8,7 +9,9 @@ db.sequelize
 /* GET users listing. */
 router.get("/", function (req, res, next) {
   //FIX THE ISSUE OF SENDING DATA. FINDING BY PRIMARY KEY DOESN'T CRASH THE APP ANYMORE
-  db.User.findByPk(1).then(data => res.status(200).send("SUCCESS"));
+  Task.findAll().then((data) => {
+    res.status(200).send(data);
+  });
 });
 
 module.exports = router;
