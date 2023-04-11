@@ -1,15 +1,18 @@
+
 users {
-	id int pk
-	task_id int > tasks.id
+	id int pk > msl.msl_id
 	admin boolean
 	username varchar unique
 	password varchar
 	logged_in boolean
+	firstName varchar
+	LastName varchar
 }
 
 tasks {
 	id int pk
 	title varchar
+	userId integer null > users.id
 	description varchar
 	due_date date
 	completed boolean
@@ -28,7 +31,7 @@ msl {
 
 tags {
 	id int pk
-	task_id int > tasks.id
 	name varchar
 	msl_id int > msl.id
 }
+

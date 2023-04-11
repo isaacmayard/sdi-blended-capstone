@@ -7,6 +7,7 @@ module.exports = {
       "Tasks",
       [
         {
+          userId: 1,
           title: "test",
           dueDate: new Date(),
           description: "this is a test",
