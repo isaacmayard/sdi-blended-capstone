@@ -1,5 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
+("use strict");
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Task extends Model {
     /**
@@ -16,6 +18,20 @@ module.exports = (sequelize, DataTypes) => {
       title: DataTypes.STRING,
       dueDate: DataTypes.DATE,
       description: DataTypes.STRING,
+      completed: DataTypes.BOOLEAN,
+      significant: DataTypes.BOOLEAN,
+    },
+    {
+      sequelize,
+      modelName: "Task",
+    }
+  );
+  Task.init(
+    {
+      title: DataTypes.STRING,
+      userId: DataTypes.INTEGER,
+      description: DataTypes.STRING,
+      dueDate: DataTypes.DATE,
       completed: DataTypes.BOOLEAN,
       significant: DataTypes.BOOLEAN,
     },
