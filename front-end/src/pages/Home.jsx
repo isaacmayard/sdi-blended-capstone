@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React from 'react';
-
+import Sidebar from '../components/Sidebar';
 import MslForm from '../components/MslForm';
 import { useSome } from '../utilities/MainContextProvider';
 
@@ -20,8 +20,8 @@ export default function Home() {
 
   return (
     <>
-      <h1>Welcome{currentUser.username}</h1>
-      <MslForm items={testMsl} />
+      <Sidebar/>
+      
     </>
   );
 }
