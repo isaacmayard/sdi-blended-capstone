@@ -1,0 +1,30 @@
+hr {
+  border: none;
+  height: 2px;
+
+  /* Set the hr color */
+  background-color: #8c8c8c; /* Modern Browsers */
+}
+
+.logo {
+  margin: 20px;
+}
+
+.row {
+  background-color: black;
+  height: 100%;
+}
+
+.info-box {
+  background-color: #8c8c8c;
+}
+
+.card-box {
+  background-color: #5c5c5c !important;
+  color: white;
+}
+
+.card-box li {
+  list-style-type: circle !important;
+  list-style-position: inside;
+}
