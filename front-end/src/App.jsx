@@ -9,9 +9,15 @@ import { MainContextProvider } from './utilities/MainContextProvider';
 function App() {
   return (
     <MainContextProvider>
-      <Container>
+      <Container fluid className="p-0 vh-100">
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/home' element={<Home />} />
+          <Route path='/troops' element={<Home />} />
+          <Route path='/calendar' element={<Home />} />
+          <Route path='/tasks' element={<Home />} />
+          <Route path='/msl' element={<Home />} />
+          <Route path='/unit' element={<Home />} />
         </Routes>
       </Container>
     </MainContextProvider>
