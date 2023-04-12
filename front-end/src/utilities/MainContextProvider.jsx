@@ -15,7 +15,9 @@ const queryClient = new QueryClient();
 export function MainContextProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  // add here the states you want to pass through the context provider
+  const [tasks, setTasks] = useState([]);
+
+  // what's this state doing here? could we do something better?
   const [someState, setSomeState] = useState(
     'Hello Vite, This text is in the Context provider component',
   );
@@ -30,6 +32,8 @@ export function MainContextProvider({ children }) {
           setIsLoggedIn,
           currentUser,
           setCurrentUser,
+          tasks,
+          setTasks,
         }}
       >
         {children}
