@@ -4,9 +4,10 @@ import EventCalendar from 'react';
 import Card from 'react-bootstrap/Card';
 import { NavLink } from 'react-router-dom';
 
+// eslint-disable-next-line import/order
 import MslForm from './MslForm';
 
-import './sidebar.css';
+import '../style/sidebar.css';
 
 // eslint-disable-next-line import/order
 import {
