@@ -21,12 +21,28 @@ module.exports = {
       loggedIn: {
         type: Sequelize.BOOLEAN
       },
+      rank: {
+        type: Sequelize.STRING
+      },
       firstName: {
         type: Sequelize.STRING
       },
       lastName: {
         type: Sequelize.STRING
       },
+      supervisor: {
+        type: Sequelize.STRING
+      },
+      contact_number: {
+        type: Sequelize.STRING
+      },
+      work_section: {
+        type: Sequelize.STRING
+      },
+      unit: {
+        type: Sequelize.STRING
+      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
