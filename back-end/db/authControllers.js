@@ -25,7 +25,6 @@ const addUser = (req, hash) => {
 
 const deleteUser = async (req) => {
     let user = await getUser(req.get('username'));
-    // await controllers.deleteUserFavorites(user.id);
     return User.destroy({
         where: { username: req.get('username') },
     }).then((result) => {
