@@ -5,12 +5,9 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var authRouter = require('./routes/auth');
+var tasksRouter = require("./routes/tasks");
 const { Sequelize } = require("sequelize");
 require("dotenv").config({ path: "../.env" });
-
-const sequelize = new Sequelize(
-  process.env.CONNECTION_STRING
-);
 
 var app = express();
 
@@ -23,5 +20,6 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/auth", authRouter);
+app.use("/tasks", tasksRouter);
 
 module.exports = app;
