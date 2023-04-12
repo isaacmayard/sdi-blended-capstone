@@ -14,16 +14,13 @@ hr {
     height: 100%;
   }
 
-  .infoBox {
-    background-color: #8C8C8C;
-  }
 
-.cardBox {
+.card-box {
     background-color: #5C5C5C !important;
     color: white;
 }
 
-.cardBox li {
+.card-box li {
     list-style-type: circle !important;
     list-style-position: inside;
 }

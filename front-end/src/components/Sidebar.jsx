@@ -87,7 +87,7 @@ const Sidebar = () => {
             </div>
             <div className="col tw-flex">
                 <div className="col-sm-7">
-                    <Card className="cardBox m-3">
+                    <Card className="card-box m-3">
                         <Card.Body>
                             <Card.Text>
                                 <h4>RANK, LAST NAME, FIRST NAME</h4>
@@ -100,7 +100,7 @@ const Sidebar = () => {
                             </Card.Text>
                         </Card.Body>
                     </Card>
-                    <Card className="cardBox m-3">
+                    <Card className="card-box m-3">
                         <Card.Body>
                             <Card.Text>
                                 <p>TASKS</p>
@@ -118,7 +118,7 @@ const Sidebar = () => {
 
                 </div>
                 <div className="col-5">
-                <Card className="cardBox m-3">
+                <Card className="card-box m-3">
                         <Card.Body>
                             <Card.Text>
                                 <h4>RANK, LAST NAME, FIRST NAME</h4>
@@ -131,7 +131,7 @@ const Sidebar = () => {
                             </Card.Text>
                         </Card.Body>
                     </Card>
-                    <Card className="cardBox m-3">
+                    <Card className="card-box m-3">
                         <Card.Body>
                         <MslForm items={testMsl} />
                         </Card.Body>
