@@ -13,8 +13,8 @@ export default function RouteHandler() {
         path='/msl'
         element={
           <MslForm
-            items={['Title', 'Date', 'Tags', 'Description', 'Password']}
-            requireItems={['Title', 'Date', 'Description']}
+            items={['Title', 'date', 'tags', 'password']}
+            requireItems={['Title', 'password']}
           />
         }
       />
