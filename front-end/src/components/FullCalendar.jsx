@@ -1,7 +1,10 @@
+/* eslint-disable react/destructuring-assignment */
 import dayGridPlugin from '@fullcalendar/daygrid';
-import FullCalendar from '@fullcalendar/react';
+import interactionPlug from '@fullcalendar/interaction';
+import Calendar from '@fullcalendar/react';
+import timeGridPlugin from '@fullcalendar/timegrid';
 
-const events = [{ title: 'Meeting', start: new Date() }];
+// const task = [{title: 'Meeting', date: new Date()}];
 
 // a custom render function
 function renderEventContent(eventInfo) {
@@ -13,14 +16,20 @@ function renderEventContent(eventInfo) {
   );
 }
 
-export default function DemoApp() {
+export default function FullCalendar(tasks) {
   return (
     <div>
-      <FullCalendar
-        plugins={[dayGridPlugin]}
+      <Calendar
+        plugins={[dayGridPlugin, timeGridPlugin, interactionPlug]}
         initialView='dayGridMonth'
+        headerToolbar={{
+          start: 'today prev,next',
+          center: 'title',
+          end: 'timeGridDay,timeGridWeek,dayGridMonth',
+        }}
+        // dateClick={}
         weekends
-        events={events}
+        events={tasks}
         eventContent={renderEventContent}
       />
     </div>
