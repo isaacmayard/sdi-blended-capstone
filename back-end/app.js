@@ -8,6 +8,7 @@ var usersRouter = require("./routes/users");
 var authRouter = require("./routes/auth");
 var user_tasksRouter = require("./routes/user_tasks");
 var tasksRouter = require("./routes/tasks");
+var cors = require('cors');
 const { Sequelize } = require("sequelize");
 require("dotenv").config({ path: "../.env" });
 

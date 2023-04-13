@@ -19,6 +19,12 @@ export default function RouteHandler() {
         }
       />
       <Route path='/taskadmin' element={<TaskList />} />
+      <Route path='/home' element={<Home />} />
+      <Route path='/troops' element={<Home />} />
+      <Route path='/calendar' element={<Home />} />
+      <Route path='/tasks' element={<Home />} />
+      <Route path='/msl' element={<Home />} />
+      <Route path='/unit' element={<Home />} />
     </Routes>
   );
 }
