@@ -6,10 +6,20 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
 
-import useFetch from '../utilities/useFetch';
+import { useSome } from '../utilities/MainContextProvider';
 
-export default function MslForm({ items, requireItems }) {
+export default function MslForm({
+  items,
+  requireItems,
+  fn = ({ Title: title, Description: description }, user) =>
+    console.log('Form Submitted', { title, description }),
+}) {
+  /// //////////////////ß
+
+  // get the current url for conditional rendering
   const location = useLocation();
+
+  // use form library to handle form submission
   const form = useForm();
   const {
     register,
@@ -18,16 +28,14 @@ export default function MslForm({ items, requireItems }) {
     formState: { errors },
     watch,
   } = form;
-  const onSubmit = (data) => {
-    console.log('Form Submitted', data);
-  };
-  const test = useFetch('users');
+
+  // Component return
 
   return (
     <div className='tw-flex tw-w-1/3 tw-flex-col tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white'>
       <form
         noValidate
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(fn)}
         className=' tw-m-2  tw-flex-col tw-rounded-xl tw-border-[1px] tw-p-2'
       >
         {items.map((item, index) =>
@@ -42,7 +50,8 @@ export default function MslForm({ items, requireItems }) {
               {requireItems?.includes(item) ? (
                 <textarea
                   className={
-                    item.match(/description/i) && 'tw-border-2  tw-text-black'
+                    item.match(/description/i) &&
+                    'tw-h-40  tw-border-2  tw-text-black'
                   }
                   {...register(item, {
                     // will check if the item match a field and do validation only for that field
@@ -50,7 +59,7 @@ export default function MslForm({ items, requireItems }) {
                       validate: {
                         // create multiple validation for that item
                         shortTitle: (fieldValue) =>
-                          fieldValue.length > 6 || 'Description too short',
+                          fieldValue.length > 6 || `${item} too short`,
                         longTitle: (fieldValue) =>
                           fieldValue.length < 50 || 'Description too Long',
                       },
@@ -60,7 +69,7 @@ export default function MslForm({ items, requireItems }) {
                       validate: {
                         // create multiple validation for that item
                         shortTitle: (fieldValue) =>
-                          fieldValue.length > 10 || 'Description too short',
+                          fieldValue.length > 10 || `${item} too short`,
                         longTitle: (fieldValue) =>
                           fieldValue.length < 200 || 'Description too Long',
                       },
@@ -70,7 +79,7 @@ export default function MslForm({ items, requireItems }) {
                       validate: {
                         // create multiple validation for that item
                         shortTitle: (fieldValue) =>
-                          fieldValue.length > 16 || 'Description too short',
+                          fieldValue.length > 16 || `${item} too short`,
                         longTitle: (fieldValue) =>
                           fieldValue.length < 50 || 'Description too Long',
                         special: (fieldValue) =>
@@ -100,7 +109,8 @@ export default function MslForm({ items, requireItems }) {
               ) : (
                 <textarea
                   className={
-                    item.match(/description/i) && 'tw-border-2 tw-text-black'
+                    item.match(/description/i) &&
+                    'tw-h-40  tw-border-2 tw-text-black'
                   }
                   {...register(item)}
                   type={
@@ -135,12 +145,21 @@ export default function MslForm({ items, requireItems }) {
                       validate: {
                         // create multiple validation for that item
                         shortTitle: (fieldValue) =>
-                          fieldValue.length > 6 || 'Description too short',
+                          fieldValue.length > 6 || `${item} too short`,
                         longTitle: (fieldValue) =>
                           fieldValue.length < 50 || 'Description too Long',
                       },
                     }),
 
+                    ...(item.match(/Description/i) && {
+                      validate: {
+                        // create multiple validation for that item
+                        shortTitle: (fieldValue) =>
+                          fieldValue.length > 10 || `${item} too short`,
+                        longTitle: (fieldValue) =>
+                          fieldValue.length < 200 || 'Description too Long',
+                      },
+                    }),
                     ...(item.match(/Description/i) && {
                       validate: {
                         // create multiple validation for that item
@@ -155,12 +174,24 @@ export default function MslForm({ items, requireItems }) {
                       validate: {
                         // create multiple validation for that item
                         shortTitle: (fieldValue) =>
-                          fieldValue.length > 16 || 'Description too short',
+                          fieldValue.length > 16 || `${item} too short`,
                         longTitle: (fieldValue) =>
                           fieldValue.length < 50 || 'Description too Long',
                         special: (fieldValue) =>
                           !!fieldValue.match(/\W/g) ||
                           'Most have one special character',
+                      },
+                    }),
+                    ...(item.match(/password/i) && {
+                      validate: {
+                        // create multiple validation for that item
+                        shortTitle: (fieldValue) =>
+                          fieldValue.length > 16 || 'Description too short',
+                        longTitle: (fieldValue) =>
+                          fieldValue.length < 50 || 'Description too Long',
+                        special: (fieldValue) =>
+                          fieldValue.match(/\W/g) ||
+                          'Most use one special character',
                       },
                     }),
 
