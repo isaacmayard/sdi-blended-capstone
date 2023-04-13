@@ -5,13 +5,13 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
-var authRouter = require('./routes/auth');
+var authRouter = require("./routes/auth");
+var user_tasksRouter = require("./routes/user_tasks");
 var tasksRouter = require("./routes/tasks");
 const { Sequelize } = require("sequelize");
 require("dotenv").config({ path: "../.env" });
 
 var app = express();
-
 
 app.use(cors());
 app.use(logger("dev"));
@@ -24,5 +24,6 @@ app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/auth", authRouter);
 app.use("/tasks", tasksRouter);
+app.use("/user_tasks", user_tasksRouter);
 
 module.exports = app;
