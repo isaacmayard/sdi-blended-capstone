@@ -1,9 +1,11 @@
 var express = require("express");
+var cors = require("cors");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
+var authRouter = require('./routes/auth');
 var tasksRouter = require("./routes/tasks");
 var cors = require('cors');
 const { Sequelize } = require("sequelize");
@@ -20,6 +22,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
+app.use("/auth", authRouter);
 app.use("/tasks", tasksRouter);
 
 module.exports = app;

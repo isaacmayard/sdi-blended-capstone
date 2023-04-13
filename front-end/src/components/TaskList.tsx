@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import Draggable from 'react-draggable';
+import { Col, Container, Row } from 'react-bootstrap';
 import '../style/TaskList.css';
-import { Row, Col, Container } from 'react-bootstrap';
 
 export default function TaskList() {
   const [availableTasks, setAvailableTasks] = useState([
@@ -10,7 +10,8 @@ export default function TaskList() {
     'Task C',
   ]);
   const [tasks, setTasks] = useState<string[]>([]);
-
+  const [users, setUsers] = useState([]);
+  console.log(users);
   function handleOnDrag(e: React.DragEvent, taskType: string) {
     e.dataTransfer.setData('taskType', taskType);
   }
@@ -25,10 +26,18 @@ export default function TaskList() {
     e.preventDefault();
   }
 
+  useEffect(() => {
+    fetch('http://localhost:8085/users')
+      .then((res) => res.json())
+      .then((users) => {
+        setUsers(users);
+      })
+      .catch((err) => alert(err));
+  }, []);
+
   return (
     <Container>
       <nav className='text-center'>Task Panel</nav>
-      {/* <Row className='App'> */}
       <nav className='text-center'>Available Tasks</nav>
       <Row
         className='tasks mb-5'
@@ -47,29 +56,17 @@ export default function TaskList() {
         ))}
       </Row>
       <Row>
-        <Col className='Page' onDrop={handleOnDrop} onDragOver={handleDragOver}>
-          <span>User 1</span>
-          {tasks.map((task, i) => (
+        <Col>
+          {users.map((user, i) => (
             <div
-              className='dropped_task'
+              className='main-page'
+              onDrop={handleOnDrop}
+              onDragOver={handleDragOver}
               key={i}
               draggable
-              onDragStart={(e) => handleOnDrag(e, task)}
+              // onDragStart={(e) => handleOnDrag(e, task)}
             >
-              {task}
-            </div>
-          ))}
-        </Col>
-        <Col className='Page' onDrop={handleOnDrop} onDragOver={handleDragOver}>
-          <span>User 2</span>
-          {tasks.map((task, i) => (
-            <div
-              className='dropped_task'
-              key={i}
-              draggable
-              onDragStart={(e) => handleOnDrag(e, task)}
-            >
-              {task}
+              {/* {user.userName} */}
             </div>
           ))}
         </Col>

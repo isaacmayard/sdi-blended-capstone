@@ -1,24 +1,10 @@
 "use strict";
+const fakers = require("../../faker.js");
 
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.bulkInsert(
-      "Tasks",
-      [
-        {
-          userId: 1,
-          title: "test",
-          dueDate: new Date(),
-          description: "this is a test",
-          completed: false,
-          significant: false,
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-      ],
-      {}
-    );
+    await queryInterface.bulkInsert("Tasks", fakers.fakeTasks(), {});
   },
 
   async down(queryInterface, Sequelize) {
