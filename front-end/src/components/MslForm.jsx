@@ -4,8 +4,10 @@
 import { DevTool } from '@hookform/devtools';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { useLocation } from 'react-router-dom';
 
 export default function MslForm({ items, requireItems }) {
+  const location = useLocation();
   const form = useForm();
   const {
     register,
@@ -19,101 +21,189 @@ export default function MslForm({ items, requireItems }) {
   };
 
   return (
-    <div>
+    <div className='tw-flex tw-flex-col'>
       <form
         noValidate
         onSubmit={handleSubmit(onSubmit)}
-        className='tw-bg-gray tw-flex tw-max-w-xs tw-flex-col tw-items-center tw-rounded-xl tw-border-4 tw-text-black dark:tw-bg-slate-800'
+        className='tw-flex  tw-flex-col tw-items-center tw-rounded-xl tw-border-4 tw-text-center tw-text-black dark:tw-bg-slate-800'
       >
-        {items.map(
-          (item, index) =>
-            item === 'id' || (
-              <div key={`${index}-${item}`} className='tw-flex tw-flex-col'>
-                <label className='tw-text-white' htmlFor={item}>
-                  {item}
-                </label>
-                {requireItems?.includes(item) ? (
-                  <input
-                    {...register(item, {
-                      // will check if the item match a field and do validation only for that field
-                      ...(item.match(/Title/i) && {
-                        validate: {
-                          // create multiple validation for that item
-                          shortTitle: (fieldValue) =>
-                            fieldValue.length > 6 || 'Description too short',
-                          longTitle: (fieldValue) =>
-                            fieldValue.length < 50 || 'Description too Long',
-                        },
-                      }),
-
-                      ...(item.match(/Description/i) && {
-                        validate: {
-                          // create multiple validation for that item
-                          shortTitle: (fieldValue) =>
-                            fieldValue.length > 10 || 'Description too short',
-                          longTitle: (fieldValue) =>
-                            fieldValue.length < 200 || 'Description too Long',
-                        },
-                      }),
-
-                      ...(item.match(/password/i) && {
-                        validate: {
-                          // create multiple validation for that item
-                          shortTitle: (fieldValue) =>
-                            fieldValue.length > 16 || 'Description too short',
-                          longTitle: (fieldValue) =>
-                            fieldValue.length < 50 || 'Description too Long',
-                          special: (fieldValue) =>
-                            fieldValue.match(/\W/g) ||
-                            'Most use one special character',
-                        },
-                      }),
-
-                      required: {
-                        value: true,
-                        message: `${item} is required`,
+        {items.map((item, index) =>
+          item.match(/description/i) ? (
+            <div key={`${index}-${item}`} className='tw-flex tw-flex-col'>
+              <label
+                className={location.pathname.match(/home/i) && 'tw-text-white'}
+                htmlFor={item}
+              >
+                {item}
+              </label>
+              {requireItems?.includes(item) ? (
+                <textarea
+                  {...register(item, {
+                    // will check if the item match a field and do validation only for that field
+                    ...(item.match(/Title/i) && {
+                      validate: {
+                        // create multiple validation for that item
+                        shortTitle: (fieldValue) =>
+                          fieldValue.length > 6 || 'Description too short',
+                        longTitle: (fieldValue) =>
+                          fieldValue.length < 50 || 'Description too Long',
                       },
-                    })}
-                    // will check the name of the item and assign a input type
-                    type={
-                      item.match(/email/i)
-                        ? 'email'
-                        : item.match(/password/i)
-                        ? 'password'
-                        : item.match(/username/i)
-                        ? 'username'
-                        : item.match(/date/i)
-                        ? 'date'
-                        : 'text'
-                    }
-                    className='tw-border-2'
-                  />
-                ) : (
-                  <input
-                    {...register(item)}
-                    type={
-                      item.match(/email/i)
-                        ? 'email'
-                        : item.match(/password/i)
-                        ? 'password'
-                        : item.match(/username/i)
-                        ? 'username'
-                        : item.match(/date/i)
-                        ? 'date'
-                        : 'text'
-                    }
-                    className='tw-border-2'
-                  />
-                )}
-                <p className='tw-text-red-600'>{errors[item]?.message}</p>
-              </div>
-            ),
+                    }),
+
+                    ...(item.match(/Description/i) && {
+                      validate: {
+                        // create multiple validation for that item
+                        shortTitle: (fieldValue) =>
+                          fieldValue.length > 10 || 'Description too short',
+                        longTitle: (fieldValue) =>
+                          fieldValue.length < 200 || 'Description too Long',
+                      },
+                    }),
+
+                    ...(item.match(/password/i) && {
+                      validate: {
+                        // create multiple validation for that item
+                        shortTitle: (fieldValue) =>
+                          fieldValue.length > 16 || 'Description too short',
+                        longTitle: (fieldValue) =>
+                          fieldValue.length < 50 || 'Description too Long',
+                        special: (fieldValue) =>
+                          fieldValue.match(/\W/g) ||
+                          'Most use one special character',
+                      },
+                    }),
+
+                    required: {
+                      value: true,
+                      message: `${item} is required`,
+                    },
+                  })}
+                  // will check the name of the item and assign a input type
+                  type={
+                    item.match(/email/i)
+                      ? 'email'
+                      : item.match(/password/i)
+                      ? 'password'
+                      : item.match(/username/i)
+                      ? 'username'
+                      : item.match(/date/i)
+                      ? 'date'
+                      : 'text'
+                  }
+                  className={item.match(/description/i) && 'tw  tw-border-2'}
+                />
+              ) : (
+                <textarea
+                  {...register(item)}
+                  type={
+                    item.match(/email/i)
+                      ? 'email'
+                      : item.match(/password/i)
+                      ? 'password'
+                      : item.match(/username/i)
+                      ? 'username'
+                      : item.match(/date/i)
+                      ? 'date'
+                      : 'text'
+                  }
+                  className={item.match(/description/i) && 'tw  tw-border-2'}
+                />
+              )}
+              <p className='tw-text-red-600'>{errors[item]?.message}</p>
+            </div>
+          ) : (
+            <div key={`${index}-${item}`} className='tw-flex tw-flex-col'>
+              <label
+                className={location.pathname.match(/home/i) && 'tw-text-white'}
+                htmlFor={item}
+              >
+                {item}
+              </label>
+              {requireItems?.includes(item) ? (
+                <input
+                  {...register(item, {
+                    // will check if the item match a field and do validation only for that field
+                    ...(item.match(/Title/i) && {
+                      validate: {
+                        // create multiple validation for that item
+                        shortTitle: (fieldValue) =>
+                          fieldValue.length > 6 || 'Description too short',
+                        longTitle: (fieldValue) =>
+                          fieldValue.length < 50 || 'Description too Long',
+                      },
+                    }),
+
+                    ...(item.match(/Description/i) && {
+                      validate: {
+                        // create multiple validation for that item
+                        shortTitle: (fieldValue) =>
+                          fieldValue.length > 10 || 'Description too short',
+                        longTitle: (fieldValue) =>
+                          fieldValue.length < 200 || 'Description too Long',
+                      },
+                    }),
+
+                    ...(item.match(/password/i) && {
+                      validate: {
+                        // create multiple validation for that item
+                        shortTitle: (fieldValue) =>
+                          fieldValue.length > 16 || 'Description too short',
+                        longTitle: (fieldValue) =>
+                          fieldValue.length < 50 || 'Description too Long',
+                        special: (fieldValue) =>
+                          fieldValue.match(/\W/g) ||
+                          'Most use one special character',
+                      },
+                    }),
+
+                    required: {
+                      value: true,
+                      message: `${item} is required`,
+                    },
+                  })}
+                  // will check the name of the item and assign a input type
+                  type={
+                    item.match(/email/i)
+                      ? 'email'
+                      : item.match(/password/i)
+                      ? 'password'
+                      : item.match(/username/i)
+                      ? 'username'
+                      : item.match(/date/i)
+                      ? 'date'
+                      : 'text'
+                  }
+                  className={item.match(/description/i) && 'tw  tw-border-2'}
+                />
+              ) : (
+                <input
+                  {...register(item)}
+                  type={
+                    item.match(/email/i)
+                      ? 'email'
+                      : item.match(/password/i)
+                      ? 'password'
+                      : item.match(/username/i)
+                      ? 'username'
+                      : item.match(/date/i)
+                      ? 'date'
+                      : 'text'
+                  }
+                  className={item.match(/description/i) && 'tw  tw-border-2'}
+                />
+              )}
+              <p className='tw-text-red-600'>{errors[item]?.message}</p>
+            </div>
+          ),
         )}
         <button
-          className='tw-rounded-sm tw-border-2 tw-text-white'
+          className={
+            (location.pathname.match(/home/i) && 'tw-text-white ') ||
+            'tw-rounded-sm tw-border-2'
+          }
           type='submit'
         >
-          Submit
+          {location.pathname ? 'Submit' : 'Login'}
         </button>
       </form>
       <DevTool control={control} />

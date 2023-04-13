@@ -23,7 +23,10 @@ export default function RouteHandler() {
       <Route path='/troops' element={<Home />} />
       <Route path='/calendar' element={<Home />} />
       <Route path='/tasks' element={<Home />} />
-      <Route path='/msl' element={<Home />} />
+      <Route
+        path='/form'
+        element={<MslForm items={['Description']} requireItems='Description' />}
+      />
       <Route path='/unit' element={<Home />} />
     </Routes>
   );
