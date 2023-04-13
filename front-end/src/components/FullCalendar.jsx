@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
 
