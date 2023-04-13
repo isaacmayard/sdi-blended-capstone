@@ -1,7 +1,8 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import Home from './Home';
+// eslint-disable-next-line import/no-unresolved
 import TaskList from './TaskList.tsx';
 
 export default function RouteHandler() {
