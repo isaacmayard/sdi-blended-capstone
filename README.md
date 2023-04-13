@@ -17,3 +17,4 @@ CONNECTION_STRING=$(postgres://${DATABASEUSER}:${DATABASEPASSWORD}@localhost/${D
 ```
 
 1. Change the database variable to match the user, password and database that you want to use. default are postgres, docker, and capstone.
+1. Run docker compose up -D
