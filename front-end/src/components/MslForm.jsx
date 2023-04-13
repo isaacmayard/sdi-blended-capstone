@@ -6,6 +6,8 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
 
+import useFetch from '../utilities/useFetch';
+
 export default function MslForm({ items, requireItems }) {
   const location = useLocation();
   const form = useForm();
@@ -19,6 +21,7 @@ export default function MslForm({ items, requireItems }) {
   const onSubmit = (data) => {
     console.log('Form Submitted', data);
   };
+  const test = useFetch('users');
 
   return (
     <div className='tw-flex tw-flex-col'>
