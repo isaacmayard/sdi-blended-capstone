@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 // import Draggable from 'react-draggable';
+import { Col, Container, Row } from 'react-bootstrap';
 import '../style/TaskList.css';
-import { Row, Col, Container } from 'react-bootstrap';
 
 export default function TaskList() {
   const [availableTasks, setAvailableTasks] = useState([
