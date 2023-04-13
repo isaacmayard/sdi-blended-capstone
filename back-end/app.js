@@ -7,11 +7,11 @@ var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var authRouter = require('./routes/auth');
 var tasksRouter = require("./routes/tasks");
+var cors = require('cors');
 const { Sequelize } = require("sequelize");
 require("dotenv").config({ path: "../.env" });
 
 var app = express();
-
 
 app.use(cors());
 app.use(logger("dev"));

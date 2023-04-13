@@ -23,14 +23,16 @@ export default function MslForm({ items, requireItems }) {
       <form
         noValidate
         onSubmit={handleSubmit(onSubmit)}
-        className='tw-flex tw-max-w-xs tw-flex-col tw-items-center tw-rounded-xl tw-border-4 tw-bg-white dark:tw-bg-slate-800'
+        className='tw-bg-gray tw-flex tw-max-w-xs tw-flex-col tw-items-center tw-rounded-xl tw-border-4 tw-text-black dark:tw-bg-slate-800'
       >
         {items.map(
           (item, index) =>
             item === 'id' || (
               <div key={`${index}-${item}`} className='tw-flex tw-flex-col'>
-                <label htmlFor={item}>{item}</label>
-                {requireItems.includes(item) ? (
+                <label className='tw-text-white' htmlFor={item}>
+                  {item}
+                </label>
+                {requireItems?.includes(item) ? (
                   <input
                     {...register(item, {
                       // will check if the item match a field and do validation only for that field
@@ -107,7 +109,10 @@ export default function MslForm({ items, requireItems }) {
               </div>
             ),
         )}
-        <button className='tw-rounded-sm tw-border-2' type='submit'>
+        <button
+          className='tw-rounded-sm tw-border-2 tw-text-white'
+          type='submit'
+        >
           Submit
         </button>
       </form>
