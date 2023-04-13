@@ -62,11 +62,12 @@
   "rules": {
     "jsx-a11y/click-events-have-key-events": "warn",
     "jsx-a11y/label-has-associated-control": "warn",
+    "import/order": "warn",
     "jsx-a11y/no-noninteractive-element-interactions": "warn",
     "import/no-extraneous-dependencies": "off",
     "react/jsx-no-useless-fragment": "warn",
     "react/jsx-no-constructed-context-values": "warn",
-    "jsx-quotes": ["error", "prefer-single"],
+    "jsx-quotes": ["warn", "prefer-single"],
     "react/jsx-props-no-spreading": "warn",
     "no-unused-vars": "warn",
     "react/react-in-jsx-scope": "off",
