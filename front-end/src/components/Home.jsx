@@ -5,6 +5,8 @@
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import react, { useEffect, useState } from 'react';
+import { ListGroup } from 'react-bootstrap';
+import NavBar from './NavBar';
 
 import Card from 'react-bootstrap/Card';
 import useFetch from '../utilities/useFetch';
@@ -89,71 +91,61 @@ export default function Sidebar() {
   if (isErrorUsers) return `An error has occurred: ${isErrorUsers.message}`;
 
   return (
-    <>
-      (
-      <div className='row span'>
-        <div className='col tw-flex'>
-          <div className='col-sm-5'>
-            <Card className='card-box m-3'>
-              <Card.Body>
-                <Card.Title>
-                  USER INFORMATION
-                  <Card.Text>
-                    {users[0].rank}, {users[0].lastName}, {users[0].firstName}
-                  </Card.Text>
-                  <Card.Text>Unit: 1ST WHATEVER SQ</Card.Text>
-                  <Card.Text>Section: BOUNDARY</Card.Text>
-                  <Card.Text>Phone Number: 225-4269</Card.Text>
-                  <Card.Text>Supervisor: SGT GRIFFIN, STEWIE</Card.Text>
-                </Card.Title>
-              </Card.Body>
-            </Card>
-            <Card className='card-box m-3'>
-              <Card.Body>
-                <Card.Title>
-                  <h4>TASKS</h4>
-                  <hr />
+    <div className='tw-flex tw-grow tw-overflow-auto tw-bg-black'>
+      {/* <div className='row span'> */}
+      <div className=' tw-flex tw-w-screen'>
+        <div className=''>
+          <Card className='card-box m-3'>
+            <Card.Body>
+              <Card.Title>USER INFORMATION</Card.Title>
+              <Card.Text>
+                {users[0].rank}, {users[0].lastName}, {users[0].firstName}
+              </Card.Text>
+              <Card.Text>Unit: 1ST WHATEVER SQ</Card.Text>
+              <Card.Text>Section: BOUNDARY</Card.Text>
+              <Card.Text>Phone Number: 225-4269</Card.Text>
+              <Card.Text>Supervisor: SGT GRIFFIN, STEWIE</Card.Text>
+            </Card.Body>
+          </Card>
+          <Card className='card-box m-3'>
+            <Card.Body>
+              <Card.Title className='tw-text-center'>TASKS</Card.Title>
+              <div
+                // className='option-styles'
+                className='divide-y divide-slate-700 tw-h-[635px] tw-overflow-auto'
+                // style={{ overflow: 'auto', height: '635px' }}
+              >
+                {tasks?.map((task) => (
                   <div
-                    className='option-styles'
-                    style={{ overflow: 'auto', height: '635px' }}
+                    key={task.id}
+                    className='text-left text-light tw-border-[1px] tw-p-2'
+                    style={{ paddingLeft: '25%' }}
                   >
-                    {tasks?.map((task) => (
-                      <div
-                        key={task.id}
-                        className='text-left text-light'
-                        style={{ paddingLeft: '25%' }}
-                      >
-                        <div style={{ paddingLeft: '5.8%' }}>
-                          <strong>Title:</strong> {task.title}
-                        </div>
-                        <div style={{ paddingLeft: '5.8%' }}>
-                          <strong>Due date:</strong>{' '}
-                          {task.dueDate.split('T')[0]}
-                        </div>
-                        <div style={{ paddingLeft: '5.8%' }}>
-                          <strong>Description:</strong> {task.description}
-                        </div>
-                        <hr />
-                      </div>
-                    ))}
+                    <p style={{ paddingLeft: '5.8%' }}>
+                      <strong>Title:</strong> {task.title}
+                    </p>
+                    <div style={{ paddingLeft: '5.8%' }}>
+                      <strong>Due date:</strong> {task.dueDate.split('T')[0]}
+                    </div>
+                    <div style={{ paddingLeft: '5.8%' }}>
+                      <strong>Description:</strong> {task.description}
+                    </div>
+                    {/* <hr /> */}
                   </div>
-                </Card.Title>
-              </Card.Body>
-            </Card>
-          </div>
-          <div className='col-7'>
-            <Card className='card-box m-3'>
-              <Card.Body>
-                <Card.Title className='tw-text-center'>
-                  TASK CALENDAR
-                </Card.Title>
-                {!isLoadingTasks && <FullCalendar events={testArray} />}
-              </Card.Body>
-            </Card>
-          </div>
+                ))}
+              </div>
+            </Card.Body>
+          </Card>
+        </div>
+        <div className='col-7'>
+          <Card className='card-box m-3'>
+            <Card.Body>
+              <FullCalendar events={testArray} />
+              <Card.Title className='tw-text-center'>TASK CALENDAR</Card.Title>
+            </Card.Body>
+          </Card>
         </div>
       </div>
-      )
-    </>
+    </div>
   );
 }

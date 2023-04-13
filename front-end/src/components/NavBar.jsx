@@ -7,7 +7,7 @@ import {
 } from 'cdbreact';
 import React from 'react';
 import { NavItem } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import useFetch from '../utilities/useFetch';
 
@@ -18,12 +18,12 @@ export default function NavBar() {
   if (isError) return `An error has occurred: ${isError.message}`;
 
   return (
-    <div className='col-sm-2 tw-flex '>
+    <div className='tw-flex tw-border-[1px]'>
       <CDBSidebar textColor='#fff' backgroundColor='#000'>
         <CDBSidebarHeader prefix={<i className='fa fa-bars fa-large' />}>
           <a
             href='/'
-            className='text-decoration-none'
+            className='text-decoration-none tw-hover:ring-2'
             style={{ color: 'inherit' }}
           >
             U.S. SPACE FORCE
@@ -38,22 +38,25 @@ export default function NavBar() {
           </CDBSidebarMenuItem>
           <CDBSidebarMenu>
             <hr />
-            <NavLink exact to='/home' activeClassName='activeClicked'>
+            <NavLink to='/home'>
               <CDBSidebarMenuItem icon='home'>HOME</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to='/troops' activeClassName='activeClicked'>
+            <NavLink to='/troops'>
               <CDBSidebarMenuItem icon='users'>TROOPS</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to='/calendar' activeClassName='activeClicked'>
+            {/* <NavLink to='/troops' activeClassName='activeClicked'>
+              <CDBSidebarMenuItem icon='users'>TROOPS</CDBSidebarMenuItem>
+            </NavLink> */}
+            <NavLink to='/calendar'>
               <CDBSidebarMenuItem icon='calendar'>CALENDAR</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to='/tasks' activeClassName='activeClicked'>
+            <NavLink to='/tasks'>
               <CDBSidebarMenuItem icon='tasks'>TASKS</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to='/msl' activeClassName='activeClicked'>
+            <NavLink to='/msl'>
               <CDBSidebarMenuItem icon='th-large'>MSL</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to='/unit' activeClassName='activeClicked'>
+            <NavLink to='/unit'>
               <CDBSidebarMenuItem icon='book'>
                 UNIT DIRECTORY
               </CDBSidebarMenuItem>

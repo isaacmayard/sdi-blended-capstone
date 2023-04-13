@@ -24,23 +24,26 @@ export default function MslForm({ items, requireItems }) {
   const test = useFetch('users');
 
   return (
-    <div className='tw-flex tw-flex-col'>
+    <div className='tw-flex tw-w-1/3 tw-flex-col tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white'>
       <form
         noValidate
         onSubmit={handleSubmit(onSubmit)}
-        className='tw-flex  tw-flex-col tw-items-center tw-rounded-xl tw-border-4 tw-text-center tw-text-black dark:tw-bg-slate-800'
+        className=' tw-m-2  tw-flex-col tw-rounded-xl tw-border-[1px] tw-p-2'
       >
         {items.map((item, index) =>
           item.match(/description/i) ? (
             <div key={`${index}-${item}`} className='tw-flex tw-flex-col'>
               <label
-                className={location.pathname.match(/home/i) && 'tw-text-white'}
+                className={location.pathname.match(/home/i) && ''}
                 htmlFor={item}
               >
                 {item}
               </label>
               {requireItems?.includes(item) ? (
                 <textarea
+                  className={
+                    item.match(/description/i) && 'tw-border-2  tw-text-black'
+                  }
                   {...register(item, {
                     // will check if the item match a field and do validation only for that field
                     ...(item.match(/Title/i) && {
@@ -93,10 +96,12 @@ export default function MslForm({ items, requireItems }) {
                       ? 'date'
                       : 'text'
                   }
-                  className={item.match(/description/i) && 'tw  tw-border-2'}
                 />
               ) : (
                 <textarea
+                  className={
+                    item.match(/description/i) && 'tw-border-2 tw-text-black'
+                  }
                   {...register(item)}
                   type={
                     item.match(/email/i)
@@ -109,7 +114,6 @@ export default function MslForm({ items, requireItems }) {
                       ? 'date'
                       : 'text'
                   }
-                  className={item.match(/description/i) && 'tw  tw-border-2'}
                 />
               )}
               <p className='tw-text-red-600'>{errors[item]?.message}</p>
@@ -124,6 +128,7 @@ export default function MslForm({ items, requireItems }) {
               </label>
               {requireItems?.includes(item) ? (
                 <input
+                  className='tw-border-2  tw-text-black'
                   {...register(item, {
                     // will check if the item match a field and do validation only for that field
                     ...(item.match(/Title/i) && {
@@ -154,8 +159,8 @@ export default function MslForm({ items, requireItems }) {
                         longTitle: (fieldValue) =>
                           fieldValue.length < 50 || 'Description too Long',
                         special: (fieldValue) =>
-                          fieldValue.match(/\W/g) ||
-                          'Most use one special character',
+                          !!fieldValue.match(/\W/g) ||
+                          'Most have one special character',
                       },
                     }),
 
@@ -176,10 +181,10 @@ export default function MslForm({ items, requireItems }) {
                       ? 'date'
                       : 'text'
                   }
-                  className={item.match(/description/i) && 'tw  tw-border-2'}
                 />
               ) : (
                 <input
+                  className='tw-border-2 tw-text-black'
                   {...register(item)}
                   type={
                     item.match(/email/i)
@@ -192,20 +197,14 @@ export default function MslForm({ items, requireItems }) {
                       ? 'date'
                       : 'text'
                   }
-                  className={item.match(/description/i) && 'tw  tw-border-2'}
                 />
               )}
               <p className='tw-text-red-600'>{errors[item]?.message}</p>
             </div>
           ),
         )}
-        <button
-          className={
-            (location.pathname.match(/home/i) && 'tw-text-white ') ||
-            'tw-rounded-sm tw-border-2'
-          }
-          type='submit'
-        >
+
+        <button className='tw-m-2 tw-rounded-sm tw-border-2' type='submit'>
           {location.pathname ? 'Submit' : 'Login'}
         </button>
       </form>
