@@ -13,18 +13,21 @@ export default function MslForm({ items }) {
   const onSubmit = (data) => console.log(data);
 
   return (
-    <form className='tw-flex tw-max-w-xs tw-flex-col tw-items-center tw-rounded-xl tw-border-4 tw-bg-white dark:tw-bg-slate-800'>
+    <form className='tw-max-w-xlg tw-bg-grey tw-flex tw-flex-col tw-items-center tw-rounded-xl tw-border-2 dark:tw-bg-slate-800'>
       {items?.map((item) =>
         Object.keys(item).map(
           (key) =>
             key === 'id' || (
-              <div key={`${item.id}.${key}`} className='tw-flex tw-flex-col'>
+              <div
+                key={`${item.id}.${key}`}
+                className='w-max tw-flex tw-flex-col'
+              >
                 <label>{key}</label>
                 <input
                   type={
                     key === 'email' ? 'text' : key === 'date' ? 'date' : 'text'
                   }
-                  className='tw-border-2'
+                  className='tw-max-w-sm'
                 />
               </div>
             ),

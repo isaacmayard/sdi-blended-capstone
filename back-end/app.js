@@ -5,11 +5,13 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var tasksRouter = require("./routes/tasks");
+var cors = require('cors');
 const { Sequelize } = require("sequelize");
 require("dotenv").config({ path: "../.env" });
 
 var app = express();
 
+app.use(cors());
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
