@@ -11,7 +11,12 @@ export default function RouteHandler() {
       <Route path='/' element={<Home />} />
       <Route
         path='/msl'
-        element={<MslForm items={['title', 'date', 'tags', 'description']} />}
+        element={
+          <MslForm
+            items={['Title', 'Date', 'Tags', 'Description', 'Password']}
+            requireItems={['Title', 'Date', 'Description']}
+          />
+        }
       />
       <Route path='/taskadmin' element={<TaskList />} />
     </Routes>
