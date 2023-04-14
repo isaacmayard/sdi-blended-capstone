@@ -7,9 +7,9 @@ module.exports = {
       rows.push({
         userId: 1,
         title: faker.lorem.sentence(2),
-        description: faker.lorem.sentence(2),
-        dueDate: faker.date.future(10),
-        completed: false,
+        description: faker.lorem.sentences(3),
+        dueDate: faker.date.between('2023-01-01T00:00:00.000Z', '2023-07-01T00:00:00.000Z'),
+        completed: faker.datatype.boolean(),
         significant: false,
         createdAt: new Date(),
         updatedAt: new Date(),
