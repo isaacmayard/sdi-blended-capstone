@@ -6,8 +6,8 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import react, { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
+import Table from 'react-bootstrap/Table';
 import { NavLink } from 'react-router-dom';
-
 import FullCalendar from './FullCalendar';
 // eslint-disable-next-line import/order
 import '../style/home.css';
@@ -28,9 +28,6 @@ const testMsl = ['Title', 'Date', 'Tags', 'Description'];
 // import { useSome } from '../utilities/MainContextProvider';
 
 export default function Sidebar() {
-  // const [user, setUser] = useState({});
-  // const [tasks, setTasks] = useState([]);
-
   const {
     data: users,
     isLoading: isLoadingUsers,
@@ -52,34 +49,9 @@ export default function Sidebar() {
   });
 
   const testArray = tasks?.map((task) => {
-    const { title, dueDate: start } = task;
-    return { title, start };
+    const { title, dueDate: start, description } = task;
+    return { title, start, description };
   });
-
-  // useEffect(() => {
-  //   fetch('http://localhost:8085/users/', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-type': 'application/json; charset=UTF-8',
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => setUser(data[0]));
-  // }, []);
-
-  // useEffect(() => {
-  //   fetch('http://localhost:8085/tasks/', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-type': 'application/json; charset=UTF-8',
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => setTasks(data));
-  // }, []);
-
-  // const task = [{title: 'Meeting', date: new Date()}];
-  // console.log(tasks)
 
   return (
     <>
@@ -143,51 +115,27 @@ export default function Sidebar() {
             </CDBSidebar>
           </div>
           <div className='col tw-flex'>
-            <div className='col-sm-5'>
-              <Card className='card-box m-3'>
-                <Card.Body>
-                  <Card.Text>
-                    <h4>USER INFORMATION</h4>
-                    <hr />
-                    <p>
-                      {users[0].rank}, {users[0].lastName}, {users[0].firstName}
-                    </p>
-                    <p>Unit: 1ST WHATEVER SQ</p>
-                    <p>Section: BOUNDARY</p>
-                    <p>Phone Number: 225-4269</p>
-                    <p>Supervisor: SGT GRIFFIN, STEWIE</p>
-                  </Card.Text>
-                </Card.Body>
-              </Card>
+            <div className='col-sm-5 scroll'>
               <Card className='card-box m-3'>
                 <Card.Body>
                   <Card.Text>
                     <h4>TASKS</h4>
                     <hr />
-                    <div
-                      className='option-styles'
-                      style={{ overflow: 'auto', height: '635px' }}
-                    >
-                      {tasks?.map((task) => (
-                        <div
-                          key={task.id}
-                          className='text-left text-light'
-                          style={{ paddingLeft: '25%' }}
-                        >
-                          <p style={{ paddingLeft: '5.8%' }}>
-                            <strong>Title:</strong> {task.title}
-                          </p>
-                          <p style={{ paddingLeft: '5.8%' }}>
-                            <strong>Due date:</strong>{' '}
-                            {task.dueDate.split('T')[0]}
-                          </p>
-                          <p style={{ paddingLeft: '5.8%' }}>
-                            <strong>Description:</strong> {task.description}
-                          </p>
-                          <hr />
+                    <br />
+                    {tasks.map((task) => (
+                      <>
+                        <div className='card text-center tw-bg-gray-200 tw-text-black '>
+                          <div className='card-header'>{task.title}</div>
+                          <div className='card-body'>
+                            <p className='card-text'>{task.description}</p>
+                          </div>
+                          <div className='card-footer tw-text-black'>
+                            Due date: {task.dueDate}
+                          </div>
                         </div>
-                      ))}
-                    </div>
+                        <br />
+                      </>
+                    ))}
                   </Card.Text>
                 </Card.Body>
               </Card>
