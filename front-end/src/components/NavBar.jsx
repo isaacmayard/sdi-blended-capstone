@@ -31,6 +31,7 @@ export default function NavBar() {
         </CDBSidebarHeader>
         <CDBSidebarContent className='sidebar-content'>
           <br />
+          <br />
           <CDBSidebarMenuItem icon='user'>
             {users[0].rank} {users[0].firstName} {users[0].lastName}
             <ul>
