@@ -22,68 +22,22 @@ const testMsl = ['Title', 'Date', 'Tags', 'Description'];
 // import { useSome } from '../utilities/MainContextProvider';
 
 export default function Sidebar() {
-  // const [user, setUser] = useState({});
-  // const [tasks, setTasks] = useState([]);
-
   const {
     data: users,
     isLoading: isLoadingUsers,
     isError: isErrorUsers,
   } = useFetch('users');
-  // const {
-  //   data: users,
-  //   isLoading: isLoadingUsers,
-  //   isError: isErrorUsers,
-  // } = useQuery(['usersFetch'], async () => {
-  //   const res = await axios.get('http://localhost:8085/users/');
-  //   const { data } = res;
-  //   return data;
-  // });
 
   const {
     data: tasks,
     isLoading: isLoadingTasks,
     isError: isErrorTasks,
   } = useFetch('tasks');
-  // const {
-  //   data: tasks,
-  //   isLoading: isLoadingTasks,
-  //   isError: isErrorTasks,
-  // } = useQuery(['tasksFetch'], async () => {
-  //   const res = await axios.get('http://localhost:8085/tasks/');
-  //   const { data } = res;
-  //   return data;
-  // });
 
   const testArray = tasks?.map((task) => {
     const { title, dueDate: start } = task;
     return { title, start };
   });
-
-  // useEffect(() => {
-  //   fetch('http://localhost:8085/users/', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-type': 'application/json; charset=UTF-8',
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => setUser(data[0]));
-  // }, []);
-
-  // useEffect(() => {
-  //   fetch('http://localhost:8085/tasks/', {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-type': 'application/json; charset=UTF-8',
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => setTasks(data));
-  // }, []);
-
-  // const task = [{title: 'Meeting', date: new Date()}];
-  // console.log(tasks)
 
   if (isLoadingTasks) return 'Loading...';
   if (isErrorTasks) return `An error has occurred: ${isErrorTasks.message}`;
@@ -115,23 +69,19 @@ export default function Sidebar() {
                 className='divide-y divide-slate-700 tw-h-[635px] tw-overflow-auto'
                 // style={{ overflow: 'auto', height: '635px' }}
               >
-                {tasks?.map((task) => (
-                  <div
-                    key={task.id}
-                    className='text-left text-light tw-border-[1px] tw-p-2'
-                    style={{ paddingLeft: '25%' }}
-                  >
-                    <p style={{ paddingLeft: '5.8%' }}>
-                      <strong>Title:</strong> {task.title}
-                    </p>
-                    <div style={{ paddingLeft: '5.8%' }}>
-                      <strong>Due date:</strong> {task.dueDate.split('T')[0]}
+                {tasks.map((task) => (
+                  <>
+                    <div className='card text-center tw-bg-gray-200 tw-text-black '>
+                      <div className='card-header'>{task.title}</div>
+                      <div className='card-body'>
+                        <p className='card-text'>{task.description}</p>
+                      </div>
+                      <div className='card-footer tw-text-black'>
+                        Due date: {task.dueDate}
+                      </div>
                     </div>
-                    <div style={{ paddingLeft: '5.8%' }}>
-                      <strong>Description:</strong> {task.description}
-                    </div>
-                    {/* <hr /> */}
-                  </div>
+                    <br />
+                  </>
                 ))}
               </div>
             </Card.Body>

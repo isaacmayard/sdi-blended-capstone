@@ -29,3 +29,8 @@ hr {
 h4 {
   text-align: center;
 }
+
+.scroll {
+  max-height: 875px;
+  overflow-y: auto;
+}

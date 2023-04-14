@@ -30,14 +30,20 @@ export default function NavBar() {
           </a>
         </CDBSidebarHeader>
         <CDBSidebarContent className='sidebar-content'>
+          <br />
           <CDBSidebarMenuItem icon='user'>
             {users[0].rank} {users[0].firstName} {users[0].lastName}
-          </CDBSidebarMenuItem>
-          <CDBSidebarMenuItem icon='flag'>
-            Unit: {users[0].unit}
+            <ul>
+              <li>Userinfo </li>
+            </ul>
+            <ul>
+              <li>Userinfo </li>
+            </ul>
+            <ul>
+              <li>Userinfo </li>
+            </ul>
           </CDBSidebarMenuItem>
           <CDBSidebarMenu>
-            <hr />
             <NavLink to='/home'>
               <CDBSidebarMenuItem icon='home'>HOME</CDBSidebarMenuItem>
             </NavLink>
