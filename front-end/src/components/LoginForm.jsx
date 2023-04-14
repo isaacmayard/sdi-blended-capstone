@@ -7,7 +7,7 @@
 import Cookie from 'cookie';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 // eslint-disable-next-line import/named
 import DismissableAlert from './DismissableAlert';

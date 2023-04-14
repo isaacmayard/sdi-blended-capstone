@@ -5,8 +5,8 @@ import { useAddMslEntry } from '../utilities/usePost';
 import { useSome } from '../utilities/MainContextProvider';
 import MslForm from './MslForm';
 
-const fields = ['Title', 'Date', 'Tags', 'Description'];
-const requiredField = ['Title', 'Description'];
+const fields = ['Title', 'Date', 'Tags', 'Description', 'Password'];
+const requiredField = ['Title', 'Description', 'Password'];
 
 export default function MslPage() {
   // useContext for the current userID
