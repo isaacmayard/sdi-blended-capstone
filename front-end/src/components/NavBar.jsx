@@ -31,16 +31,19 @@ export default function NavBar() {
         </CDBSidebarHeader>
         <CDBSidebarContent className='sidebar-content'>
           <br />
+          <br />
           <CDBSidebarMenuItem icon='user'>
             {users[0].rank} {users[0].firstName} {users[0].lastName}
             <ul>
-              <li>Userinfo </li>
+              <li className='tw-flex-wrap'>Unit: {users[0].unit} </li>
             </ul>
             <ul>
-              <li>Userinfo </li>
+              <li className='tw-overflow-scroll'>
+                Section: {users[0].work_section}{' '}
+              </li>
             </ul>
             <ul>
-              <li>Userinfo </li>
+              <li className='tw-flex-wrap'>{users[0].contact_number} </li>
             </ul>
           </CDBSidebarMenuItem>
           <CDBSidebarMenu>

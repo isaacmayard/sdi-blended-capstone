@@ -51,18 +51,6 @@ export default function Sidebar() {
         <div className=''>
           <Card className='card-box m-3'>
             <Card.Body>
-              <Card.Title>USER INFORMATION</Card.Title>
-              <Card.Text>
-                {users[0].rank}, {users[0].lastName}, {users[0].firstName}
-              </Card.Text>
-              <Card.Text>Unit: 1ST WHATEVER SQ</Card.Text>
-              <Card.Text>Section: BOUNDARY</Card.Text>
-              <Card.Text>Phone Number: 225-4269</Card.Text>
-              <Card.Text>Supervisor: SGT GRIFFIN, STEWIE</Card.Text>
-            </Card.Body>
-          </Card>
-          <Card className='card-box m-3'>
-            <Card.Body>
               <Card.Title className='tw-text-center'>TASKS</Card.Title>
               <div
                 // className='option-styles'
