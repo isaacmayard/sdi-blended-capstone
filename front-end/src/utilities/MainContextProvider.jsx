@@ -14,26 +14,35 @@ const queryClient = new QueryClient();
 
 export function MainContextProvider({ children }) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({
+    id: 0,
+    admin: false,
+    userName: 'Guess',
+    password: null,
+    loggedIn: null,
+    rank: null,
+    firstName: 'Guess',
+    lastName: null,
+    supervisor: null,
+    contact_number: null,
+    work_section: null,
+    unit: null,
+  });
   const [tasks, setTasks] = useState([]);
-
-  // what's this state doing here? could we do something better?
-  const [someState, setSomeState] = useState(
-    'Hello Vite, This text is in the Context provider component',
-  );
+  const [msl, setMsl] = useState([]);
 
   return (
     <QueryClientProvider client={queryClient}>
       <SomeContext.Provider
         value={{
-          someState,
-          setSomeState,
           isLoggedIn,
           setIsLoggedIn,
           currentUser,
           setCurrentUser,
           tasks,
           setTasks,
+          msl,
+          setMsl,
         }}
       >
         {children}
