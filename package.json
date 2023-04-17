@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "notepad": "^0.0.1",
+    "npx": "^10.2.2"
+  }
+}
