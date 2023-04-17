@@ -4,7 +4,6 @@ import { GiBulletBill } from 'react-icons/gi';
 import tasks from '../../../back-end/routes/tasks';
 import '../style/TaskList.css';
 import AddTask from './AddTask';
-import AddTask from './AddTask';
 
 // These interfaces define what values User and Task require, according to TypeScript
 interface User {
