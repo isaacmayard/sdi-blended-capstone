@@ -12,5 +12,9 @@ export function usePost(query) {
 // create the post function for msl entries
 const postMsl = (data) => axios.post(`http://localhost:8085/msl`, data);
 
+// create post function for task entries
+const postTask = (data) => axios.post(`http://localhost:8085/tasks`, data);
+
 // create the custom hook to mutate (post, patch, delete) using the post function
 export const useAddMslEntry = () => useMutation(postMsl);
+export const useAddTaskEntry = () => useMutation(postTask);

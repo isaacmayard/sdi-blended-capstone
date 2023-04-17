@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import AwardsPage from './AwardsPage';
 import Home from './Home';
 import MslForm from './MslForm';
 import MslPage from './MslPage';
@@ -16,6 +17,7 @@ export default function RouteHandler() {
       <Route path='/troops' element={<Home />} />
       <Route path='/calendar' element={<Home />} />
       <Route path='/tasks' element={<Home />} />
+      <Route path='/awards' element={<AwardsPage />} />
       <Route
         path='/form'
         element={<MslForm items={['Description']} requireItems='Description' />}
