@@ -8,7 +8,10 @@ module.exports = {
         userId: 1,
         title: faker.lorem.sentence(2),
         description: faker.lorem.sentences(3),
-        dueDate: faker.date.between('2023-01-01T00:00:00.000Z', '2023-07-01T00:00:00.000Z'),
+        dueDate: faker.date.between(
+          "2023-01-01T00:00:00.000Z",
+          "2023-07-01T00:00:00.000Z"
+        ),
         completed: faker.datatype.boolean(),
         significant: false,
         createdAt: new Date(),
@@ -43,7 +46,6 @@ module.exports = {
         contact_number: faker.phone.number(),
         work_section: `${faker.company.bsAdjective()} ${faker.company.catchPhraseAdjective()} ${faker.company.bsNoun()}`,
         unit: faker.address.buildingNumber(),
-        loggedIn: true,
         createdAt: new Date(),
         updatedAt: new Date(),
       });

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npm run migrate && nodemon ./bin/www",
+    "start": "nodemon ./bin/www",
     "migrate": "cd sequelize && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "migrate:undo": "cd sequelize && npx sequelize-cli db:migrate:undo:all"
   },
