@@ -208,6 +208,12 @@ export default function MslForm({
                       ? 'password'
                       : item.match(/username/i)
                       ? 'username'
+                      : item.match(/significant/i)
+                      ? 'boolean'
+                      : item.match(/completed/i)
+                      ? 'boolean'
+                      : item.match(/dueDate/i)
+                      ? 'date'
                       : item.match(/date/i)
                       ? 'date'
                       : 'text'
@@ -224,6 +230,12 @@ export default function MslForm({
                       ? 'password'
                       : item.match(/username/i)
                       ? 'username'
+                      : item.match(/significant/i)
+                      ? 'boolean'
+                      : item.match(/completed/i)
+                      ? 'boolean'
+                      : item.match(/dueDate/i)
+                      ? 'date'
                       : item.match(/date/i)
                       ? 'date'
                       : 'text'
