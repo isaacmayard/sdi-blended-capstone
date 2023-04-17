@@ -58,16 +58,13 @@ export default function NavBar() {
             <NavLink to='/home'>
               <CDBSidebarMenuItem icon='home'>HOME</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink to='/login'>
-              {!isLoggedIn && (
-                <CDBSidebarMenuItem icon='user'>Login</CDBSidebarMenuItem>
-              )}
-            </NavLink>
             <NavLink to='/troops'>
               <CDBSidebarMenuItem icon='users'>TROOPS</CDBSidebarMenuItem>
             </NavLink>
             <NavLink to='/login'>
-              <CDBSidebarMenuItem icon='login'>LOGIN</CDBSidebarMenuItem>
+              {!isLoggedIn && (
+                <CDBSidebarMenuItem icon='user'>LOGIN</CDBSidebarMenuItem>
+              )}
             </NavLink>
             {/* <NavLink to='/troops' activeClassName='activeClicked'>
               <CDBSidebarMenuItem icon='users'>TROOPS</CDBSidebarMenuItem>
