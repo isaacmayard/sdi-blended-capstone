@@ -18,16 +18,10 @@ export default function MslPage() {
   const onSubmit = ({ Title: title, Description: description }) => {
     const userId = currentUser.id;
     const data = { title, description, userId };
-    console.log(data);
     mutate(data);
   };
 
   // onSubmit();
   // component return
-  return (
-    <>
-      <MslForm items={fields} requireItems={requiredField} fn={onSubmit} />
-      <div className='tw-text-stone-50'>TEST</div>
-    </>
-  );
+  return <MslForm items={fields} requireItems={requiredField} fn={onSubmit} />;
 }
