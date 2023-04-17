@@ -16,7 +16,6 @@ export default function NavBar() {
   const { data: users, isLoading, isError } = useFetch('users');
   const { currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn } = useSome();
 
-
   if (isLoading) return 'Loading...';
   if (isError) return `An error has occurred: ${isError.message}`;
 
