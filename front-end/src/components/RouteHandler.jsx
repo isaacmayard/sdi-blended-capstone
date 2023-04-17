@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import FullCalendar from './FullCalendar';
 import Home from './Home';
 import MslForm from './MslForm';
 import MslPage from './MslPage';
@@ -14,7 +15,7 @@ export default function RouteHandler() {
       <Route path='/taskadmin' element={<TaskList />} />
       <Route path='/home' element={<Home />} />
       <Route path='/troops' element={<Home />} />
-      <Route path='/calendar' element={<Home />} />
+      <Route path='/calendar' element={<FullCalendar />} />
       <Route path='/tasks' element={<Home />} />
       <Route
         path='/form'

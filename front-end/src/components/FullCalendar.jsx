@@ -3,10 +3,10 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlug from '@fullcalendar/interaction';
 import Calendar from '@fullcalendar/react';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import Card from 'react-bootstrap/Card';
 
-// const task = [{title: 'Meeting', date: new Date()}];
+import useFetch from '../utilities/useFetch';
 
-// a custom render function
 function renderEventContent(eventInfo) {
   return (
     <>
@@ -16,22 +16,49 @@ function renderEventContent(eventInfo) {
   );
 }
 
-export default function FullCalendar(tasks) {
+export default function FullCalendar() {
+  const {
+    data: users,
+    isLoading: isLoadingUsers,
+    isError: isErrorUsers,
+  } = useFetch('users');
+
+  const {
+    data: tasks,
+    isLoading: isLoadingTasks,
+    isError: isErrorTasks,
+  } = useFetch('tasks');
+
+  const testArray = tasks?.map((task) => {
+    const { title, dueDate: start } = task;
+    return { title, start };
+  });
+
+  if (isLoadingTasks) return 'Loading...';
+  if (isErrorTasks) return `An error has occurred: ${isErrorTasks.message}`;
+  if (isLoadingUsers) return 'Loading...';
+  if (isErrorUsers) return `An error has occurred: ${isErrorUsers.message}`;
+
   return (
     <div>
-      <Calendar
-        plugins={[dayGridPlugin, timeGridPlugin, interactionPlug]}
-        initialView='dayGridMonth'
-        headerToolbar={{
-          start: 'today prev,next',
-          center: 'title',
-          end: 'timeGridDay,timeGridWeek,dayGridMonth',
-        }}
-        // dateClick={}
-        weekends
-        events={tasks}
-        eventContent={renderEventContent}
-      />
+      <Card className='card-box m-3'>
+        <Card.Body>
+          <Card.Title className='tw-text-center'>TASK CALENDAR</Card.Title>
+          <Calendar
+            plugins={[dayGridPlugin, timeGridPlugin, interactionPlug]}
+            initialView='dayGridMonth'
+            headerToolbar={{
+              start: 'today prev,next',
+              center: 'title',
+              end: 'timeGridDay,timeGridWeek,dayGridMonth',
+            }}
+            // dateClick={}
+            weekends
+            events={testArray}
+            eventContent={renderEventContent}
+          />
+        </Card.Body>
+      </Card>
     </div>
   );
 }

@@ -59,6 +59,11 @@ export default function NavBar() {
             <NavLink to='/calendar'>
               <CDBSidebarMenuItem icon='calendar'>CALENDAR</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink to='/taskadmin'>
+              <CDBSidebarMenuItem icon='key'>
+                TASK MANAGEMENT
+              </CDBSidebarMenuItem>
+            </NavLink>
             <NavLink to='/tasks'>
               <CDBSidebarMenuItem icon='tasks'>TASKS</CDBSidebarMenuItem>
             </NavLink>
