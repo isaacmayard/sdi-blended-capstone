@@ -1,13 +1,30 @@
 var express = require("express");
 
 var router = express.Router();
-const { user_tasks } = require("../sequelize/models");
+const { Task, User, user_tasks } = require("../sequelize/models");
 
 /* GET list of users and correlated tasks */
 router.get("/", function (req, res, next) {
   user_tasks.findAll().then((data) => {
     res.status(200).send(data);
   });
+});
+
+// Get list of tasks of logged in user
+
+router.get("/:userId", function (req, res) {
+  // Replace with session key/cookies
+  if (true) {
+    Task.findAll({
+      where: {
+        userId: req.params.userId,
+      },
+    }).then((data) => {
+      res.status(200).send(data);
+    });
+  } else {
+    res.sendStatus(404);
+  }
 });
 
 // Post a new task/user relationship
