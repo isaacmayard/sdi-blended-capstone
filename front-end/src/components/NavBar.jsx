@@ -53,6 +53,9 @@ export default function NavBar() {
             <NavLink to='/troops'>
               <CDBSidebarMenuItem icon='users'>TROOPS</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink to='/login'>
+              <CDBSidebarMenuItem icon='login'>LOGIN</CDBSidebarMenuItem>
+            </NavLink>
             {/* <NavLink to='/troops' activeClassName='activeClicked'>
               <CDBSidebarMenuItem icon='users'>TROOPS</CDBSidebarMenuItem>
             </NavLink> */}

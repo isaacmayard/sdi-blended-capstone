@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Home from './Home';
+import LoginForm from './LoginForm';
 import MslForm from './MslForm';
 import MslPage from './MslPage';
 import TaskList from './TaskList.tsx';
@@ -13,6 +14,15 @@ export default function RouteHandler() {
       <Route path='/msl' element={<MslPage />} />
       <Route path='/taskadmin' element={<TaskList />} />
       <Route path='/home' element={<Home />} />
+      <Route
+        path='/login'
+        element={
+          <LoginForm
+            items={['username', 'password']}
+            requireItems={['username', 'password']}
+          />
+        }
+      />
       <Route path='/troops' element={<Home />} />
       <Route path='/calendar' element={<Home />} />
       <Route path='/tasks' element={<Home />} />
