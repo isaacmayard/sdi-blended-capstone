@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { GiBulletBill } from 'react-icons/gi';
 import tasks from '../../../back-end/routes/tasks';
 import '../style/TaskList.css';
 import AddTask from './AddTask';
@@ -159,9 +158,7 @@ export default function TaskList() {
       <Row>
         <Col></Col>
         <AddTask />
-        <Col>
-          <GiBulletBill style={{ color: 'white' }} />
-        </Col>
+        <Col></Col>
       </Row>
     </Container>
   );
