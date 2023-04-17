@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { GiBulletBill } from 'react-icons/gi';
 import tasks from '../../../back-end/routes/tasks';
 import '../style/TaskList.css';
+import AddTask from './AddTask';
 
 // These interfaces define what values User and Task require, according to TypeScript
 interface User {
@@ -66,7 +68,7 @@ export default function TaskList() {
         headers: {
           'Content-type': 'application/json; charset=UTF-8',
         },
-      });
+      }).then((res) => alert('Tasks Assigned!'));
     }
   }
   useEffect(() => {
@@ -88,10 +90,11 @@ export default function TaskList() {
   );
   return (
     <Container>
-      <nav className='text-center'>Task Panel</nav>
-      <nav className='text-center'>Available Tasks</nav>
+      <Row className='task-nav mb-3'>
+        <nav className='text-center text-light'>Task Assignment</nav>
+      </Row>
       <Row
-        className='tasks mb-5'
+        className='assignable mb-5'
         onDrop={handleOnDrop}
         onDragOver={handleDragOver}
       >
@@ -108,41 +111,56 @@ export default function TaskList() {
       </Row>
       <Row>
         <Col>
-          {users.map((user, index) => (
-            <div key={index}>
-              <button onClick={() => handleUserClick(user)}>
-                {user.userName}
-              </button>
-            </div>
-          ))}
+          <div className='user-column'>
+            {users.map((user, index) => (
+              <div key={index} className='available-users'>
+                <button onClick={() => handleUserClick(user)}>
+                  {user.userName}
+                </button>
+              </div>
+            ))}
+          </div>
         </Col>
         <Col>
           {selectedUser && (
-            <form
-              className='main-page'
-              onDrop={handleOnDrop}
-              onDragOver={handleDragOver}
-            >
-              <span>{selectedUser.userName}</span>
-              {userTasks.map((task, i) => (
-                <div
-                  className='dropped_task'
-                  key={i}
-                  draggable
-                  onDragStart={(e) => handleOnDrag(e, task.title)}
-                >
-                  {task.title}
-                </div>
-              ))}
-            </form>
+            <>
+              <span className='selected-user'>{selectedUser.userName}</span>
+              <form
+                className='assigned-tasks'
+                onDrop={handleOnDrop}
+                onDragOver={handleDragOver}
+              >
+                {userTasks.map((task, i) => (
+                  <div
+                    className='dropped-task'
+                    key={i}
+                    draggable
+                    onDragStart={(e) => handleOnDrag(e, task.title)}
+                  >
+                    {task.title}
+                  </div>
+                ))}
+              </form>
+            </>
           )}
           {selectedUser ? (
-            <button type='submit' onClick={handleSubmit}>
+            <button
+              type='submit'
+              onClick={handleSubmit}
+              className='btn btn-outline-light'
+            >
               Assign Tasks
             </button>
           ) : (
             <></>
           )}
+        </Col>
+      </Row>
+      <Row>
+        <Col></Col>
+        <AddTask />
+        <Col>
+          <GiBulletBill style={{ color: 'white' }} />
         </Col>
       </Row>
     </Container>

@@ -68,6 +68,11 @@ export default function NavBar() {
             <NavLink to='/msl'>
               <CDBSidebarMenuItem icon='th-large'>MSL</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink to='/awards'>
+              <CDBSidebarMenuItem icon='award'>
+                BULLET SHAPER
+              </CDBSidebarMenuItem>
+            </NavLink>
             <NavLink to='/unit'>
               <CDBSidebarMenuItem icon='book'>
                 UNIT DIRECTORY
