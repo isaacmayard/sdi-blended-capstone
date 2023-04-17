@@ -89,10 +89,9 @@ export default function TaskList() {
   );
   return (
     <Container>
-      <Row className='task-nav'>
+      <Row className='task-nav mb-3'>
         <nav className='text-center text-light'>Task Assignment</nav>
       </Row>
-      <AddTask />
       <Row
         className='assignable mb-5'
         onDrop={handleOnDrop}
@@ -113,7 +112,7 @@ export default function TaskList() {
         <Col>
           <div className='user-column'>
             {users.map((user, index) => (
-              <div key={index} className='available-users text-light'>
+              <div key={index} className='available-users'>
                 <button onClick={() => handleUserClick(user)}>
                   {user.userName}
                 </button>
@@ -155,6 +154,11 @@ export default function TaskList() {
             <></>
           )}
         </Col>
+      </Row>
+      <Row>
+        <Col></Col>
+        <AddTask />
+        <Col></Col>
       </Row>
     </Container>
   );

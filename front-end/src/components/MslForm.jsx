@@ -9,6 +9,7 @@ import { useLocation } from 'react-router-dom';
 import { useSome } from '../utilities/MainContextProvider';
 
 export default function MslForm({
+  className,
   items,
   requireItems,
   fn = ({ Title: title, Description: description }, user) =>
@@ -50,7 +51,7 @@ export default function MslForm({
               {requireItems?.includes(item) ? (
                 <textarea
                   className={
-                    item.match(/description/i) &&
+                    (item.match(/description/i) && className) ||
                     'tw-h-40  tw-border-2  tw-text-black'
                   }
                   {...register(item, {

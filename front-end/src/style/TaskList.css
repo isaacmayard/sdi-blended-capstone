@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
   margin-top: 3%;
-  background-color: gray;
+  background-color: #8c8c8c;
   padding-top: 1%;
   border-radius: 8px;
 }
@@ -32,7 +32,6 @@
 }
 
 .task:hover {
-  /* background-color: rgba(20, 20, 20, 0.575); */
   background-color: white;
   color: black;
 }
@@ -43,6 +42,7 @@
   border-radius: 8px;
   text-align: center;
   width: 25%;
+  color: white;
 }
 
 .selected-user {

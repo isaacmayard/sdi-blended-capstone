@@ -1,3 +1,5 @@
+import { propTypes } from 'react-bootstrap/esm/Image';
+
 import { useAddTaskEntry } from '../utilities/usePost';
 // eslint-disable-next-line import/order
 import MslForm from './MslForm';
@@ -21,6 +23,7 @@ export default function AddTask() {
   return (
     <MslForm
       items={fields}
+      className='tw-h-6 tw-border-2 tw-text-black'
       requireItems={requiredField}
       fn={taskCreateSubmit}
     />

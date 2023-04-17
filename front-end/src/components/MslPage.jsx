@@ -27,7 +27,7 @@ export default function MslPage() {
   return (
     <>
       <MslForm items={fields} requireItems={requiredField} fn={onSubmit} />
-      <div>s</div>
+      <div className='tw-text-stone-50'>TEST</div>
     </>
   );
 }
