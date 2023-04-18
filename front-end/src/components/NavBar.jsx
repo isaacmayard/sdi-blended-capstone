@@ -9,6 +9,7 @@ import React from 'react';
 import { NavItem } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 
+import '../style/home.css';
 import useFetch from '../utilities/useFetch';
 
 export default function NavBar() {
@@ -35,16 +36,15 @@ export default function NavBar() {
           <CDBSidebarMenuItem icon='user'>
             {users[0].rank} {users[0].firstName} {users[0].lastName}
             <ul>
-              <li className='tw-flex-wrap'>Unit: {users[0].unit} </li>
-            </ul>
-            <ul>
-              <li className='tw-overflow-scroll'>
-                Section: {users[0].work_section}{' '}
+              <li className='userInfo tw-flex-wrap'>Unit: {users[0].unit} </li>
+              <li className='userInfo tw-break-words'>
+                Section: {users[0].work_section}
+              </li>
+              <li className='userInfo tw-flex-wrap'>
+                Ph: {users[0].contact_number}
               </li>
             </ul>
-            <ul>
-              <li className='tw-flex-wrap'>{users[0].contact_number} </li>
-            </ul>
+            <br />
           </CDBSidebarMenuItem>
           <CDBSidebarMenu>
             <NavLink to='/home'>

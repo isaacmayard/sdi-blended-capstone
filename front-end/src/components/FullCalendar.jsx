@@ -40,24 +40,26 @@ export default function FullCalendar() {
   if (isErrorUsers) return `An error has occurred: ${isErrorUsers.message}`;
 
   return (
-    <div>
-      <Card className='card-box m-3'>
-        <Card.Body>
-          <Card.Title className='tw-text-center'>TASK CALENDAR</Card.Title>
-          <Calendar
-            plugins={[dayGridPlugin, timeGridPlugin, interactionPlug]}
-            initialView='dayGridMonth'
-            headerToolbar={{
-              start: 'today prev,next',
-              center: 'title',
-              end: 'timeGridDay,timeGridWeek,dayGridMonth',
-            }}
-            // dateClick={}
-            weekends
-            events={testArray}
-            eventContent={renderEventContent}
-          />
-        </Card.Body>
+    <div className='tw-flex tw-h-screen tw-w-screen'>
+      <Card className='card-box m-3 tw-flex tw-grow tw-overflow-auto tw-bg-black'>
+        <div className='divide-y divide-slate-700 tw-h-full tw-w-full tw-overflow-auto'>
+          <Card.Body>
+            <Card.Title className='tw-text-center'>TASK CALENDAR</Card.Title>
+            <Calendar
+              plugins={[dayGridPlugin, timeGridPlugin, interactionPlug]}
+              initialView='dayGridMonth'
+              headerToolbar={{
+                start: 'today prev,next',
+                center: 'title',
+                end: 'timeGridDay,timeGridWeek,dayGridMonth',
+              }}
+              // dateClick={}
+              weekends
+              events={testArray}
+              eventContent={renderEventContent}
+            />
+          </Card.Body>
+        </div>
       </Card>
     </div>
   );
