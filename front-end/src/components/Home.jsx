@@ -10,8 +10,8 @@ import NavBar from './NavBar';
 
 import Card from 'react-bootstrap/Card';
 import useFetch from '../utilities/useFetch';
-
 import FullCalendar from './FullCalendar';
+import Metrics from './Metrics';
 // eslint-disable-next-line import/order
 import '../style/home.css';
 
@@ -46,17 +46,75 @@ export default function Sidebar() {
 
   return (
     <div className='tw-flex tw-grow tw-overflow-auto tw-bg-black'>
-      {/* <div className='row span'> */}
       <div className=' tw-flex tw-w-screen'>
         <div className=''>
           <Card className='card-box m-3'>
+            <Card.Header>
+              <ul
+                className='nav nav-tabs card-header-tabs'
+                id='task-list'
+                role='tablist'
+              >
+                <li className='nav-item'>
+                  <a
+                    className='nav-link active'
+                    href='#description'
+                    role='tab'
+                    aria-controls='description'
+                    aria-selected='true'
+                  >
+                    Total
+                  </a>
+                </li>
+                <li className='nav-item'>
+                  <a
+                    className='nav-link'
+                    href='#history'
+                    role='tab'
+                    aria-controls='history'
+                    aria-selected='false'
+                  >
+                    Completed
+                  </a>
+                </li>
+                <li className='nav-item'>
+                  <a
+                    className='nav-link'
+                    href='#deals'
+                    role='tab'
+                    aria-controls='deals'
+                    aria-selected='false'
+                  >
+                    Completed Late
+                  </a>
+                </li>
+                <li className='nav-item'>
+                  <a
+                    className='nav-link'
+                    href='#deals'
+                    role='tab'
+                    aria-controls='deals'
+                    aria-selected='false'
+                  >
+                    Overdue
+                  </a>
+                </li>
+                <li className='nav-item'>
+                  <a
+                    className='nav-link'
+                    href='#deals'
+                    role='tab'
+                    aria-controls='deals'
+                    aria-selected='false'
+                  >
+                    Pending
+                  </a>
+                </li>
+              </ul>
+            </Card.Header>
             <Card.Body>
               <Card.Title className='tw-text-center'>TASKS</Card.Title>
-              <div
-                // className='option-styles'
-                className='divide-y divide-slate-700 tw-h-[635px] tw-overflow-auto'
-                // style={{ overflow: 'auto', height: '635px' }}
-              >
+              <div className='divide-y divide-slate-700 tw-h-[835px] tw-overflow-auto'>
                 {tasks.map((task) => (
                   <>
                     <div className='card text-center tw-bg-gray-200 tw-text-black '>
@@ -77,10 +135,11 @@ export default function Sidebar() {
         </div>
         <div className='col-7'>
           <Card className='card-box m-3'>
-            <Card.Body>
-              <FullCalendar events={testArray} />
-              <Card.Title className='tw-text-center'>TASK CALENDAR</Card.Title>
-            </Card.Body>
+            <div className='divide-y divide-slate-700 tw-h-[900px] tw-overflow-auto'>
+              <Card.Body>
+                <Metrics />
+              </Card.Body>
+            </div>
           </Card>
         </div>
       </div>

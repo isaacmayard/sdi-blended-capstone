@@ -1,11 +1,9 @@
 /* eslint-disable import/order */
 
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useFetch from '../utilities/useFetch';
-import React, { useState, useEffect } from 'react';
 import { useAddMslEntry } from '../utilities/usePost';
-import Card from 'react-bootstrap/Card';
-
 
 import { useSome } from '../utilities/MainContextProvider';
 import MslForm from './MslForm';
@@ -37,13 +35,9 @@ export default function MslPage() {
   return (
     <div className='tw-flex tw-grow tw-flex-col'>
       (
-    <>
-        <MslForm items={fields} requireItems={requiredField} fn={onSubmit} />
-        <MslListing />
-    </>
-    
-  );
- 
+      <MslForm items={fields} requireItems={requiredField} fn={onSubmit} />
+      <MslListing />
+      );
     </div>
   );
 }

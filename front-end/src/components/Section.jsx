@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
+
 import ussfLogo from '../../public/ussf_logo.png';
 import useFetch from '../utilities/useFetch';
 
@@ -32,7 +34,10 @@ export default function Section() {
             >
               <Card.Body>
                 <Card.Title>{`${user.rank} ${user.firstName} ${user.lastName}`}</Card.Title>
-                <Card.Subtitle className='mb-2 text-muted'> <strong>Supervisor:</strong> {user.supervisor}</Card.Subtitle>
+                <Card.Subtitle className='mb-2 text-muted'>
+                  {' '}
+                  <strong>Supervisor:</strong> {user.supervisor}
+                </Card.Subtitle>
                 <Card.Text>
                   <strong>Contact Number:</strong> {user.contact_number}
                 </Card.Text>
