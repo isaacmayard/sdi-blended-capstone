@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card';
 
 import { useSome } from '../utilities/MainContextProvider';
 import MslForm from './MslForm';
+import MslListing from './MslListing';
 
 const fields = ['Title', 'Date', 'Tags', 'Description'];
 const requiredField = ['Title', 'Description'];
@@ -33,11 +34,15 @@ export default function MslPage() {
     navigate('/home');
   };
 
-  // onSubmit();
-  // component return
   return (
     <div className='tw-flex tw-grow tw-flex-col'>
-      <MslForm items={fields} requireItems={requiredField} fn={onSubmit} />;
+      (
+    <>
+        <MslForm items={fields} requireItems={requiredField} fn={onSubmit} />
+        <MslListing />
+    </>
+    
+  );
  
     </div>
   );
