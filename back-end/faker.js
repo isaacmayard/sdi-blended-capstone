@@ -12,6 +12,10 @@ module.exports = {
           "2023-01-01T00:00:00.000Z",
           "2023-07-01T00:00:00.000Z"
         ),
+        dueDate: faker.date.between(
+          "2023-01-01T00:00:00.000Z",
+          "2023-07-01T00:00:00.000Z"
+        ),
         completed: faker.datatype.boolean(),
         significant: false,
         createdAt: new Date(),
@@ -42,6 +46,8 @@ module.exports = {
         admin: false,
         userName: faker.internet.userName(),
         password: faker.internet.password(),
+        userName: faker.internet.userName(),
+        password: faker.internet.password(),
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         rank: faker.name.prefix(),
@@ -49,7 +55,6 @@ module.exports = {
         contact_number: faker.phone.number(),
         work_section: `${faker.company.bsNoun()}`,
         unit: faker.address.buildingNumber(),
-        loggedIn: true,
         createdAt: new Date(),
         updatedAt: new Date(),
       });

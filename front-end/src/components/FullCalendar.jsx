@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable react/destructuring-assignment */
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlug from '@fullcalendar/interaction';
