@@ -1,6 +1,19 @@
+import {
+  CDBSidebar,
+  CDBSidebarContent,
+  CDBSidebarHeader,
+  CDBSidebarMenu,
+  CDBSidebarMenuItem,
+} from 'cdbreact';
+import React, { useState } from 'react';
+
 import useFetch from '../utilities/useFetch';
 
 export default function Metrics() {
+  const [rightOpen, setRightOpen] = useState(true);
+  const [rightCollapse1, setRightCollapse1] = useState(true);
+  const [rightCollapse2, setRightCollapse2] = useState(false);
+
   const {
     data: tasks,
     isLoading: isLoadingTasks,
@@ -120,209 +133,224 @@ export default function Metrics() {
       />
       <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js' />
       <script src='//code.jquery.com/jquery-1.11.1.min.js' />
-
-      <div className='container-fluid'>
-        <div className='col col-md-3'>
-          <div className='panel-group' id='accordion'>
-            <div className='panel panel-default'>
-              <div className='panel-heading'>
-                <h4 className='panel-title'>
-                  <a
-                    data-toggle='collapse'
-                    data-parent='#accordion'
-                    href='#collapse1'
-                  >
-                    Total Tasks
-                  </a>
-                </h4>
+      <CDBSidebarHeader prefix={<i className='fa fa-bars fa-large' />}>
+        <a
+          href='/'
+          className='text-decoration-none tw-hover:ring-2'
+          style={{ color: 'inherit' }}
+        >
+          TASK METRICS
+        </a>
+      </CDBSidebarHeader>
+      <CDBSidebar textColor='#fff' backgroundColor='#000'>
+        <CDBSidebarContent className='sidebar-content'>
+          <div className='container-fluid'>
+            <div className='row row-md-12'>
+              <div className='panel-group' id='accordion'>
+                <div className='panel panel-default'>
+                  <div className='panel-heading'>
+                    <h4 className='panel-title'>
+                      <a
+                        data-toggle='collapse'
+                        data-parent='#accordion'
+                        href='#collapse1'
+                      >
+                        Total Tasks
+                      </a>
+                    </h4>
+                  </div>
+                  <div id='collapse1' className='panel-collapse collapse in'>
+                    <ul className='list-group'>
+                      <li className='list-group-item'>
+                        <span className='badge'>{totalTasks}</span> Total
+                      </li>
+                      <li className='list-group-item'>
+                        <span className='badge'>{completedTasks}</span>{' '}
+                        Completed
+                      </li>
+                      <li className='list-group-item'>
+                        <span className='badge'>{completedLateTasks}</span>
+                        Completed Late
+                      </li>
+                      <li className='list-group-item'>
+                        <span className='badge'>{overdueTasks}</span> Overdue
+                      </li>
+                      <li className='list-group-item'>
+                        <span className='badge'>{pendingTasks}</span> Pending
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
-              <div id='collapse1' className='panel-collapse collapse in'>
-                <ul className='list-group'>
-                  <li className='list-group-item'>
-                    <span className='badge'>{totalTasks}</span> Total
-                  </li>
-                  <li className='list-group-item'>
-                    <span className='badge'>{completedTasks}</span> Completed
-                  </li>
-                  <li className='list-group-item'>
-                    <span className='badge'>{completedLateTasks}</span>
-                    Completed Late
-                  </li>
-                  <li className='list-group-item'>
-                    <span className='badge'>{overdueTasks}</span> Overdue
-                  </li>
-                  <li className='list-group-item'>
-                    <span className='badge'>{pendingTasks}</span> Pending
-                  </li>
-                  last month
-                </ul>
+            </div>
+            <div className='col col-md-13'>
+              <div className='row'>
+                <div className='row row-md-12'>
+                  <h4>{monthNames[currentDate.getMonth()]} Task Rates</h4>
+
+                  <span className='pull-right strong'>{`Incomplete Rate: ${Math.round(
+                    (currentOverdueTasks /
+                      (currentTotalTasks - currentPendingTasks)) *
+                      100,
+                    2,
+                  )}%`}</span>
+                  <div className='progress'>
+                    <div
+                      className='progress-bar progress-bar-danger'
+                      role='progressbar'
+                      style={{
+                        width:
+                          (currentOverdueTasks /
+                            (currentTotalTasks - currentPendingTasks)) *
+                          250,
+                      }}
+                    >
+                      {currentOverdueTasks}
+                    </div>
+                  </div>
+                  <span className='pull-right strong'>{`On-Time Rate: ${Math.round(
+                    (currentCompletedTasks /
+                      (currentTotalTasks - currentPendingTasks)) *
+                      100,
+                    2,
+                  )}%`}</span>
+                  <div className='progress'>
+                    <div
+                      className='progress-bar progress-bar-success'
+                      role='progressbar'
+                      style={{
+                        width:
+                          (currentCompletedTasks /
+                            (currentTotalTasks - currentPendingTasks)) *
+                          250,
+                      }}
+                    >
+                      {currentCompletedTasks}
+                    </div>
+                  </div>
+                  <span className='pull-right strong'>{`Overdue Completion Rate: ${Math.round(
+                    (currentCompletedLateTasks /
+                      (currentTotalTasks - currentPendingTasks)) *
+                      100,
+                    2,
+                  )}%`}</span>
+                  <div className='progress'>
+                    <div
+                      className='progress-bar progress-bar-warning'
+                      role='progressbar'
+                      style={{
+                        width:
+                          (currentCompletedLateTasks /
+                            (currentTotalTasks - currentPendingTasks)) *
+                          250,
+                      }}
+                    >
+                      {currentCompletedLateTasks}
+                    </div>
+                  </div>
+
+                  <span className='pull-right strong'>{`Pending Task Rate: ${Math.round(
+                    (currentPendingTasks / currentTotalTasks) * 100,
+                    2,
+                  )}%`}</span>
+                  <div className='progress'>
+                    <div
+                      className='progress-bar'
+                      role='progressbar'
+                      style={{
+                        width: (currentPendingTasks / currentTotalTasks) * 250,
+                      }}
+                    >
+                      {currentPendingTasks}
+                    </div>
+                  </div>
+                </div>
+
+                <div className='row row-md-12'>
+                  <h4>{monthNames[currentDate.getMonth() - 1]} Task Rates</h4>
+
+                  <span className='pull-right strong'>{`Incomplete Rate: ${Math.round(
+                    (prevOverdueTasks / (prevTotalTasks - prevPendingTasks)) *
+                      100,
+                    2,
+                  )}%`}</span>
+                  <div className='progress'>
+                    <div
+                      className='progress-bar progress-bar-danger'
+                      role='progressbar'
+                      style={{
+                        width:
+                          (prevOverdueTasks /
+                            (prevTotalTasks - prevPendingTasks)) *
+                          250,
+                      }}
+                    >
+                      {prevOverdueTasks}
+                    </div>
+                  </div>
+
+                  <span className='pull-right strong'>{`On-Time Rate: ${Math.round(
+                    (prevCompletedTasks / (prevTotalTasks - prevPendingTasks)) *
+                      100,
+                    2,
+                  )}%`}</span>
+                  <div className='progress'>
+                    <div
+                      className='progress-bar progress-bar-success'
+                      role='progressbar'
+                      style={{
+                        width:
+                          (prevCompletedTasks /
+                            (prevTotalTasks - prevPendingTasks)) *
+                          250,
+                      }}
+                    >
+                      {prevCompletedTasks}
+                    </div>
+                  </div>
+
+                  <span className='pull-right strong'>{`Overdue Completion Rate: ${Math.round(
+                    (prevCompletedLateTasks /
+                      (prevTotalTasks - prevPendingTasks)) *
+                      100,
+                    2,
+                  )}%`}</span>
+                  <div className='progress'>
+                    <div
+                      className='progress-bar progress-bar-warning'
+                      role='progressbar'
+                      style={{
+                        width:
+                          (prevCompletedLateTasks /
+                            (prevTotalTasks - prevPendingTasks)) *
+                          250,
+                      }}
+                    >
+                      {prevCompletedLateTasks}
+                    </div>
+                  </div>
+
+                  <span className='pull-right strong'>{`Pending Task Rate: ${Math.round(
+                    (prevPendingTasks / prevTotalTasks) * 100,
+                    2,
+                  )}%`}</span>
+                  <div className='progress'>
+                    <div
+                      className='progress-bar'
+                      role='progressbar'
+                      style={{
+                        width: (prevPendingTasks / prevTotalTasks) * 250,
+                      }}
+                    >
+                      {prevPendingTasks}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div className='col col-md-9'>
-          <div className='row'>
-            <div className='col col-md-5'>
-              <h4>{monthNames[currentDate.getMonth()]} Task Rates</h4>
-              Incomplete Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (currentOverdueTasks /
-                  (currentTotalTasks - currentPendingTasks)) *
-                  100,
-                2,
-              )}%`}</span>
-              <div className='progress'>
-                <div
-                  className='progress-bar progress-bar-danger'
-                  role='progressbar'
-                  style={{
-                    width:
-                      (currentOverdueTasks /
-                        (currentTotalTasks - currentPendingTasks)) *
-                      250,
-                  }}
-                >
-                  {currentOverdueTasks}
-                </div>
-              </div>
-              On-Time Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (currentCompletedTasks /
-                  (currentTotalTasks - currentPendingTasks)) *
-                  100,
-                2,
-              )}%`}</span>
-              <div className='progress'>
-                <div
-                  className='progress-bar progress-bar-success'
-                  role='progressbar'
-                  style={{
-                    width:
-                      (currentCompletedTasks /
-                        (currentTotalTasks - currentPendingTasks)) *
-                      250,
-                  }}
-                >
-                  {currentCompletedTasks}
-                </div>
-              </div>
-              Overdue Completion Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (currentCompletedLateTasks /
-                  (currentTotalTasks - currentPendingTasks)) *
-                  100,
-                2,
-              )}%`}</span>
-              <div className='progress'>
-                <div
-                  className='progress-bar progress-bar-warning'
-                  role='progressbar'
-                  style={{
-                    width:
-                      (currentCompletedLateTasks /
-                        (currentTotalTasks - currentPendingTasks)) *
-                      250,
-                  }}
-                >
-                  {currentCompletedLateTasks}
-                </div>
-              </div>
-              Pending Task Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (currentPendingTasks / currentTotalTasks) * 100,
-                2,
-              )}%`}</span>
-              <div className='progress'>
-                <div
-                  className='progress-bar'
-                  role='progressbar'
-                  style={{
-                    width: (currentPendingTasks / currentTotalTasks) * 250,
-                  }}
-                >
-                  {currentPendingTasks}
-                </div>
-              </div>
-            </div>
-
-            <div className='col col-md-5'>
-              <h4>{monthNames[currentDate.getMonth() - 1]} Task Rates</h4>
-              Incomplete Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (prevOverdueTasks / (prevTotalTasks - prevPendingTasks)) * 100,
-                2,
-              )}%`}</span>
-              <div className='progress'>
-                <div
-                  className='progress-bar progress-bar-danger'
-                  role='progressbar'
-                  style={{
-                    width:
-                      (prevOverdueTasks / (prevTotalTasks - prevPendingTasks)) *
-                      250,
-                  }}
-                >
-                  {prevOverdueTasks}
-                </div>
-              </div>
-              On-Time Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (prevCompletedTasks / (prevTotalTasks - prevPendingTasks)) *
-                  100,
-                2,
-              )}%`}</span>
-              <div className='progress'>
-                <div
-                  className='progress-bar progress-bar-success'
-                  role='progressbar'
-                  style={{
-                    width:
-                      (prevCompletedTasks /
-                        (prevTotalTasks - prevPendingTasks)) *
-                      250,
-                  }}
-                >
-                  {prevCompletedTasks}
-                </div>
-              </div>
-              Overdue Completion Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (prevCompletedLateTasks / (prevTotalTasks - prevPendingTasks)) *
-                  100,
-                2,
-              )}%`}</span>
-              <div className='progress'>
-                <div
-                  className='progress-bar progress-bar-warning'
-                  role='progressbar'
-                  style={{
-                    width:
-                      (prevCompletedLateTasks /
-                        (prevTotalTasks - prevPendingTasks)) *
-                      250,
-                  }}
-                >
-                  {prevCompletedLateTasks}
-                </div>
-              </div>
-              Pending Task Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (prevPendingTasks / prevTotalTasks) * 100,
-                2,
-              )}%`}</span>
-              <div className='progress'>
-                <div
-                  className='progress-bar'
-                  role='progressbar'
-                  style={{ width: (prevPendingTasks / prevTotalTasks) * 250 }}
-                >
-                  {prevPendingTasks}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        </CDBSidebarContent>
+      </CDBSidebar>
     </>
   );
 }
