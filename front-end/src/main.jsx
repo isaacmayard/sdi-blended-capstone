@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import App from './App';
-
 import './style/tailwind.css';
 // This will ensure that the necessary CSS styles are loaded for all icons
 // icons.loadFont();
