@@ -5,13 +5,12 @@
     "node": true,
     "es2021": true
   },
-  "plugins": ["react", "jsx-a11y", "jest", "import", "unused-imports"],
+  "plugins": ["react", "jsx-a11y", "jest"],
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:react/jsx-runtime",
     "plugin:jsx-a11y/recommended",
-    "plugin:import/recommended",
     "airbnb",
     "airbnb/hooks",
     "prettier"
