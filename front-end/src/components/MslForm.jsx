@@ -12,8 +12,7 @@ export default function MslForm({
   className,
   items,
   requireItems,
-  fn = ({ Title: title, Description: description }, user) =>
-    console.log('Form Submitted', { title, description }),
+  fn = (data) => console.log('Form Submitted', data),
 }) {
   /// //////////////////ß
 
@@ -40,12 +39,10 @@ export default function MslForm({
         className=' tw-m-2  tw-flex-col tw-rounded-xl tw-border-[1px] tw-p-2'
       >
         {items.map((item, index) =>
+          // will check the name of the item and assign a input type
           item.match(/description/i) ? (
             <div key={`${index}-${item}`} className='tw-flex tw-flex-col'>
-              <label
-                className={location.pathname.match(/home/i) && ''}
-                htmlFor={item}
-              >
+              <label className='' htmlFor={item}>
                 {item}
               </label>
               {requireItems?.includes(item) ? (
@@ -55,17 +52,6 @@ export default function MslForm({
                     'tw-h-40  tw-border-2  tw-text-black'
                   }
                   {...register(item, {
-                    // will check if the item match a field and do validation only for that field
-                    ...(item.match(/Title/i) && {
-                      validate: {
-                        // create multiple validation for that item
-                        shortTitle: (fieldValue) =>
-                          fieldValue.length > 6 || `${item} too short`,
-                        longTitle: (fieldValue) =>
-                          fieldValue.length < 50 || 'Description too Long',
-                      },
-                    }),
-
                     ...(item.match(/Description/i) && {
                       validate: {
                         // create multiple validation for that item
@@ -76,65 +62,31 @@ export default function MslForm({
                       },
                     }),
 
-                    ...(item.match(/password/i) && {
-                      validate: {
-                        // create multiple validation for that item
-                        shortTitle: (fieldValue) =>
-                          fieldValue.length > 16 || `${item} too short`,
-                        longTitle: (fieldValue) =>
-                          fieldValue.length < 50 || 'Description too Long',
-                        special: (fieldValue) =>
-                          fieldValue.match(/\W/g) ||
-                          'Most use one special character',
-                      },
-                    }),
-
                     required: {
                       value: true,
                       message: `${item} is required`,
                     },
                   })}
                   // will check the name of the item and assign a input type
-                  type={
-                    item.match(/email/i)
-                      ? 'email'
-                      : item.match(/password/i)
-                      ? 'password'
-                      : item.match(/username/i)
-                      ? 'username'
-                      : item.match(/date/i)
-                      ? 'date'
-                      : 'text'
-                  }
+                  type='text'
                 />
               ) : (
+                // render all the input field that are not description and are not required
                 <textarea
                   className={
                     item.match(/description/i) &&
                     'tw-h-40  tw-border-2 tw-text-black'
                   }
                   {...register(item)}
-                  type={
-                    item.match(/email/i)
-                      ? 'email'
-                      : item.match(/password/i)
-                      ? 'password'
-                      : item.match(/username/i)
-                      ? 'username'
-                      : item.match(/date/i)
-                      ? 'date'
-                      : 'text'
-                  }
+                  type='text'
                 />
               )}
               <p className='tw-text-red-600'>{errors[item]?.message}</p>
             </div>
           ) : (
+            // render all the input field that are not description and are required
             <div key={`${index}-${item}`} className='tw-flex tw-flex-col'>
-              <label
-                className={location.pathname.match(/home/i) && 'tw-text-white'}
-                htmlFor={item}
-              >
+              <label className='tw-text-white' htmlFor={item}>
                 {item}
               </label>
               {requireItems?.includes(item) ? (
@@ -151,23 +103,13 @@ export default function MslForm({
                           fieldValue.length < 50 || 'Description too Long',
                       },
                     }),
-
-                    ...(item.match(/Description/i) && {
+                    ...(item.match(/Username/i) && {
                       validate: {
                         // create multiple validation for that item
                         shortTitle: (fieldValue) =>
-                          fieldValue.length > 10 || `${item} too short`,
+                          fieldValue.length > 6 || `${item} too short`,
                         longTitle: (fieldValue) =>
-                          fieldValue.length < 200 || 'Description too Long',
-                      },
-                    }),
-                    ...(item.match(/Description/i) && {
-                      validate: {
-                        // create multiple validation for that item
-                        shortTitle: (fieldValue) =>
-                          fieldValue.length > 10 || 'Description too short',
-                        longTitle: (fieldValue) =>
-                          fieldValue.length < 200 || 'Description too Long',
+                          fieldValue.length < 50 || 'Description too Long',
                       },
                     }),
 
@@ -175,24 +117,12 @@ export default function MslForm({
                       validate: {
                         // create multiple validation for that item
                         shortTitle: (fieldValue) =>
-                          fieldValue.length > 16 || `${item} too short`,
+                          fieldValue.length > 8 || `${item} too short`,
                         longTitle: (fieldValue) =>
                           fieldValue.length < 50 || 'Description too Long',
-                        special: (fieldValue) =>
-                          !!fieldValue.match(/\W/g) ||
-                          'Most have one special character',
-                      },
-                    }),
-                    ...(item.match(/password/i) && {
-                      validate: {
-                        // create multiple validation for that item
-                        shortTitle: (fieldValue) =>
-                          fieldValue.length > 16 || 'Description too short',
-                        longTitle: (fieldValue) =>
-                          fieldValue.length < 50 || 'Description too Long',
-                        special: (fieldValue) =>
-                          fieldValue.match(/\W/g) ||
-                          'Most use one special character',
+                        // special: (fieldValue) =>
+                        //   !!fieldValue.match(/\W/g) ||
+                        //   'Most have one special character',
                       },
                     }),
 
@@ -221,6 +151,7 @@ export default function MslForm({
                   }
                 />
               ) : (
+                // render all the input field that are not description and are not required
                 <input
                   className='tw-border-2 tw-text-black'
                   {...register(item)}

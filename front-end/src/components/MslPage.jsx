@@ -1,4 +1,7 @@
 /* eslint-disable import/order */
+
+import { useNavigate } from 'react-router-dom';
+import useFetch from '../utilities/useFetch';
 import React, { useState, useEffect } from 'react';
 import { useAddMslEntry } from '../utilities/usePost';
 import Card from 'react-bootstrap/Card';
@@ -11,6 +14,9 @@ const fields = ['Title', 'Date', 'Tags', 'Description'];
 const requiredField = ['Title', 'Description'];
 
 export default function MslPage() {
+  // navigate
+  const navigate = useNavigate();
+
   // useContext for the current userID
   const { currentUser } = useSome();
 
@@ -24,45 +30,15 @@ export default function MslPage() {
     const data = { title, description, userId };
     console.log(data);
     mutate(data);
+    navigate('/home');
   };
 
-  useEffect(() => {
-    fetch('http://localhost:8085/msl')
-      .then((res) => res.json())
-      .then((data) => setEntries(data));
-  }, []);
-
-  if (!entries) return 'Loading...';
-
+  // onSubmit();
+  // component return
   return (
-    <div className='tw-flex tw-grow tw-overflow-auto tw-bg-black'>
-        <MslForm items={fields} requireItems={requiredField} fn={onSubmit} />
-
-      <div className='tw-flex tw-w-screen'>
-        <div className=''>
-          <Card className='card-box m-3'>
-            <Card.Body>
-              <Card.Title className='tw-text-center'>MSL</Card.Title>
-              <div className='divide-y divide-slate-700 tw-h-[635px] tw-overflow-auto'>
-                {entries.map((entry) => (
-                  <React.Fragment key={entry.id}>
-                    <div className='card text-center tw-bg-gray-200 tw-text-black'>
-                      <div className='card-header'>{entry.title}</div>
-                      <div className='card-body'>
-                        <p className='card-text'>{entry.description}</p>
-                      </div>
-                      <div className='card-footer tw-text-black'>
-                        Date: {entry.date}
-                      </div>
-                    </div>
-                    <br />
-                  </React.Fragment>
-                ))}
-              </div>
-            </Card.Body>
-          </Card>
-        </div>
-      </div>
+    <div className='tw-flex tw-grow tw-flex-col'>
+      <MslForm items={fields} requireItems={requiredField} fn={onSubmit} />;
+ 
     </div>
   );
 }
