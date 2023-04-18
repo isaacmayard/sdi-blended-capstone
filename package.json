@@ -1,6 +1,11 @@
 {
   "dependencies": {
     "notepad": "^0.0.1",
-    "npx": "^10.2.2"
-  }
+    "npx": "^10.2.2",
+    "prettier": "^2.8.7"
+  },
+  "scripts": {
+  "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,html}\""
+
+}
 }

@@ -9,13 +9,14 @@ var authRouter = require('./routes/auth');
 var user_tasksRouter = require('./routes/user_tasks');
 var tasksRouter = require('./routes/tasks');
 const mslRouter = require('./routes/msl');
-var cors = require('cors');
 const { Sequelize } = require('sequelize');
 require('dotenv').config({ path: '../.env' });
+const auth = require('./routes/auth');
 
 var app = express();
 
-app.use(cors());
+
+app.use(cors(auth.corsOptions));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

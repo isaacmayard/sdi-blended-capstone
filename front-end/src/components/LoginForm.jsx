@@ -10,10 +10,8 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import DismissableAlert from './DismissableAlert';
-import Login from './Login';
-
 // eslint-disable-next-line import/named
+import DismissableAlert from './DismissableAlert';
 // eslint-disable-next-line import/extensions
 import { useSome } from '../utilities/MainContextProvider';
 
@@ -31,13 +29,13 @@ export default function LoginForm({ items, requireItems }) {
   const navigate = useNavigate();
 
   const handleLogin = (username, password) => {
-    const headers = new Headers();
-    headers.append('username', username);
-    headers.append('password', password);
-    fetch('http://localhost:8085/login', {
-      method: 'GET',
+    fetch('http://localhost:8085/auth/login', {
+      method: 'POST',
       credentials: 'include',
-      headers,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -54,13 +52,13 @@ export default function LoginForm({ items, requireItems }) {
   };
 
   const handleRegister = (username, password) => {
-    const headers = new Headers();
-    headers.append('username', username);
-    headers.append('password', password);
-    fetch('http://localhost:8085/register', {
+    fetch('http://localhost:8085/auth/register', {
       method: 'POST',
       credentials: 'include',
-      headers,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password }),
     })
       .then((response) => {
         if (!response.ok) {
@@ -84,14 +82,13 @@ export default function LoginForm({ items, requireItems }) {
   };
 
   const handleUpdatePassword = (username, password, newPassword) => {
-    const headers = new Headers();
-    headers.append('username', username);
-    headers.append('password', password);
-    headers.append('newPassword', newPassword);
-    fetch('http://localhost:8085/user/password', {
+    fetch('http://localhost:8085/auth/user/password', {
       method: 'PUT',
       credentials: 'include',
-      headers,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username, password, newPassword }),
     })
       .then((response) => response.json())
       .then((data) => {
