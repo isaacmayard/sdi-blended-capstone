@@ -159,9 +159,7 @@ export default function TaskList() {
       <Row>
         <Col></Col>
         <AddTask />
-        <Col>
-          <GiBulletBill style={{ color: 'white' }} />
-        </Col>
+        <Col></Col>
       </Row>
     </Container>
   );
