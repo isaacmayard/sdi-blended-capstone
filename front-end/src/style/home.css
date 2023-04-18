@@ -34,3 +34,7 @@ h4 {
   max-height: 975px;
   overflow-y: auto;
 }
+
+div[contenteditable] {
+  outline: none;
+}
