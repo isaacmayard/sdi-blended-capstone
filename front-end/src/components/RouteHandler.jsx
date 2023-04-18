@@ -1,16 +1,15 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
+import AwardsPage from './AwardsPage';
 import Home from './Home';
-
 import Login from './Login';
 import LoginForm from './LoginForm';
 import MslForm from './MslForm';
 import MslPage from './MslPage';
-import TaskList from './TaskList.tsx';
 import Section from './Section';
+import TaskList from './TaskList.tsx';
 import UnitDirectory from './UnitDirectory';
-import AwardsPage from './AwardsPage';
 
 export default function RouteHandler() {
   return (
