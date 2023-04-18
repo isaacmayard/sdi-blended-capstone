@@ -10,8 +10,7 @@ import MslPage from './MslPage';
 import TaskList from './TaskList.tsx';
 import Section from './Section';
 import UnitDirectory from './UnitDirectory';
-import Section from './Section';
-import UnitDirectory from './UnitDirectory';
+import AwardsPage from './AwardsPage';
 
 export default function RouteHandler() {
   return (
@@ -34,7 +33,6 @@ export default function RouteHandler() {
       <Route path='/tasks' element={<Home />} />
       <Route path='/login' element={<Login />} />
       <Route path='/awards' element={<AwardsPage />} />
-
       <Route path='/unit' element={<UnitDirectory />} />
 
       <Route
