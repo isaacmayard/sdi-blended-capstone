@@ -1,6 +1,7 @@
 /* eslint-disable import/order */
 
 import React, { useEffect, useState } from 'react';
+import Card from 'react-bootstrap/Card';
 import { useNavigate } from 'react-router-dom';
 import useFetch from '../utilities/useFetch';
 import { useAddMslEntry } from '../utilities/usePost';
