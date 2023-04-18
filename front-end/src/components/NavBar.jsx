@@ -43,7 +43,7 @@ export default function NavBar() {
             </ul>
             <ul>
               {currentUser.work_section && (
-                <li className='tw-overflow-scroll'>
+                <li className='tw-break-words'>
                   Section: {currentUser.work_section}{' '}
                 </li>
               )}
@@ -72,16 +72,16 @@ export default function NavBar() {
             <NavLink to='/calendar'>
               <CDBSidebarMenuItem icon='calendar'>CALENDAR</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink to='/taskadmin'>
+              <CDBSidebarMenuItem icon='key'>
+                TASK MANAGEMENT
+              </CDBSidebarMenuItem>
+            </NavLink>
             <NavLink to='/tasks'>
               <CDBSidebarMenuItem icon='tasks'>TASKS</CDBSidebarMenuItem>
             </NavLink>
             <NavLink to='/msl'>
               <CDBSidebarMenuItem icon='th-large'>MSL</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink to='/awards'>
-              <CDBSidebarMenuItem icon='award'>
-                BULLET SHAPER
-              </CDBSidebarMenuItem>
             </NavLink>
             <NavLink to='/unit'>
               <CDBSidebarMenuItem icon='book'>
