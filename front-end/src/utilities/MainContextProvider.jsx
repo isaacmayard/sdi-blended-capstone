@@ -17,11 +17,9 @@ export function MainContextProvider({ children }) {
   const [currentUser, setCurrentUser] = useState({
     id: 0,
     admin: false,
-    userName: 'Guess',
-    password: null,
-    loggedIn: null,
+    userName: 'Guest',
     rank: null,
-    firstName: 'Guess',
+    firstName: 'Guest',
     lastName: null,
     supervisor: null,
     contact_number: null,

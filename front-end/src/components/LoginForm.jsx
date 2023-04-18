@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable no-console */
@@ -7,10 +8,12 @@
 import Cookie from 'cookie';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
+
+import DismissableAlert from './DismissableAlert';
+import Login from './Login';
 
 // eslint-disable-next-line import/named
-import DismissableAlert from './DismissableAlert';
 // eslint-disable-next-line import/extensions
 import { useSome } from '../utilities/MainContextProvider';
 
@@ -127,7 +130,8 @@ export default function LoginForm({ items, requireItems }) {
   };
 
   return (
-    <div>
+    <div className='tw-flex tw-w-1/2 tw-flex-col '>
+      <Login />
       <form
         noValidate
         onSubmit={handleSubmit(onSubmit)}

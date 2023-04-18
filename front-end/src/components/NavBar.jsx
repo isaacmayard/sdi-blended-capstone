@@ -9,10 +9,12 @@ import React from 'react';
 import { NavItem } from 'react-bootstrap';
 import { Link, NavLink } from 'react-router-dom';
 
+import { useSome } from '../utilities/MainContextProvider';
 import useFetch from '../utilities/useFetch';
 
 export default function NavBar() {
   const { data: users, isLoading, isError } = useFetch('users');
+  const { currentUser, setCurrentUser, isLoggedIn, setIsLoggedIn } = useSome();
 
   if (isLoading) return 'Loading...';
   if (isError) return `An error has occurred: ${isError.message}`;
@@ -33,28 +35,36 @@ export default function NavBar() {
           <br />
           <br />
           <CDBSidebarMenuItem icon='user'>
-            {users[0].rank} {users[0].firstName} {users[0].lastName}
+            {currentUser.rank} {currentUser.firstName} {currentUser.lastName}
             <ul>
-              <li className='tw-flex-wrap'>Unit: {users[0].unit} </li>
+              {currentUser.unit && (
+                <li className='tw-flex-wrap'>Unit: {currentUser.unit} </li>
+              )}
             </ul>
             <ul>
-              <li className='tw-overflow-scroll'>
-                Section: {users[0].work_section}{' '}
-              </li>
+              {currentUser.work_section && (
+                <li className='tw-overflow-scroll'>
+                  Section: {currentUser.work_section}{' '}
+                </li>
+              )}
             </ul>
             <ul>
-              <li className='tw-flex-wrap'>{users[0].contact_number} </li>
+              {currentUser.contact_number && (
+                <li className='tw-flex-wrap'>{currentUser.contact_number} </li>
+              )}
             </ul>
           </CDBSidebarMenuItem>
           <CDBSidebarMenu>
             <NavLink to='/home'>
               <CDBSidebarMenuItem icon='home'>HOME</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink to='/troops'>
-              <CDBSidebarMenuItem icon='users'>TROOPS</CDBSidebarMenuItem>
+            <NavLink to='/section'>
+              <CDBSidebarMenuItem icon='users'>SECTION</CDBSidebarMenuItem>
             </NavLink>
             <NavLink to='/login'>
-              <CDBSidebarMenuItem icon='login'>LOGIN</CDBSidebarMenuItem>
+              {!isLoggedIn && (
+                <CDBSidebarMenuItem icon='user'>LOGIN</CDBSidebarMenuItem>
+              )}
             </NavLink>
             {/* <NavLink to='/troops' activeClassName='activeClicked'>
               <CDBSidebarMenuItem icon='users'>TROOPS</CDBSidebarMenuItem>
