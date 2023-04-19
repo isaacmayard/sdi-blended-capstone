@@ -12,6 +12,10 @@ function UnitDirectory() {
       .get('http://localhost:8085/users')
       .then((response) => setUsers(response.data))
       .catch((error) => console.log(error));
+    axios
+      .get('http://localhost:8085/users')
+      .then((response) => setUsers(response.data))
+      .catch((error) => console.log(error));
   }, []);
 
   return (

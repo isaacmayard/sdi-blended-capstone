@@ -3,7 +3,7 @@ const { faker } = require("@faker-js/faker");
 module.exports = {
   fakeTasks: function () {
     let rows = [];
-    for (let i = 1; i < 20; i++) {
+    for (let i = 1; i < 211; i++) {
       rows.push({
         userId: 1,
         title: faker.lorem.sentence(2),
@@ -12,10 +12,17 @@ module.exports = {
           "2023-01-01T00:00:00.000Z",
           "2023-07-01T00:00:00.000Z"
         ),
+        dueDate: faker.date.between(
+          "2023-01-01T00:00:00.000Z",
+          "2023-07-01T00:00:00.000Z"
+        ),
         completed: faker.datatype.boolean(),
         significant: false,
         createdAt: new Date(),
-        updatedAt: new Date(),
+        updatedAt: faker.date.between(
+          "2023-01-01T00:00:00.000Z",
+          "2023-07-01T00:00:00.000Z"
+        ),
       });
     }
     return rows;
@@ -39,12 +46,14 @@ module.exports = {
         admin: false,
         userName: faker.internet.userName(),
         password: faker.internet.password(),
+        userName: faker.internet.userName(),
+        password: faker.internet.password(),
         firstName: faker.name.firstName(),
         lastName: faker.name.lastName(),
         rank: faker.name.prefix(),
         supervisor: `${faker.name.prefix()} ${faker.name.firstName()} ${faker.name.lastName()}`,
         contact_number: faker.phone.number(),
-        work_section: `${faker.company.bsAdjective()} ${faker.company.catchPhraseAdjective()} ${faker.company.bsNoun()}`,
+        work_section: `${faker.company.bsNoun()}`,
         unit: faker.address.buildingNumber(),
         createdAt: new Date(),
         updatedAt: new Date(),
