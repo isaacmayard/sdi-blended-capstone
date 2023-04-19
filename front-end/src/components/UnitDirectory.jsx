@@ -16,6 +16,10 @@ function UnitDirectory() {
       .get('http://localhost:8085/users')
       .then((response) => setUsers(response.data))
       .catch((error) => console.log(error));
+    axios
+      .get('http://localhost:8085/users')
+      .then((response) => setUsers(response.data))
+      .catch((error) => console.log(error));
   }, []);
 
   return (
@@ -26,14 +30,14 @@ function UnitDirectory() {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        right: '35%',
+        right: '33%',
         height: '100vh',
       }}
     >
       <img
         src={sbd1}
         alt='USSF Logo'
-        style={{ position: 'absolute', top: '45px', left: '0', opacity: 0.2 }}
+        style={{ position: 'absolute', top: '45px', left: '0', opacity: 0.15 }}
       />
       <Table striped bordered hover variant='dark'>
         <thead>
