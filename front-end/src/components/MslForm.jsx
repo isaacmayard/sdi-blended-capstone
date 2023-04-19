@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable no-nested-ternary */
@@ -11,6 +12,7 @@ import { useSome } from '../utilities/MainContextProvider';
 export default function MslForm({
   className,
   items,
+  children,
   requireItems,
   fn = (data) => console.log('Form Submitted', data),
 }) {
@@ -32,7 +34,9 @@ export default function MslForm({
   // Component return
 
   return (
-    <div className='tw-flex tw-w-1/3 tw-flex-col tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white'>
+    <div
+      className={`  tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white ${className}`}
+    >
       <form
         noValidate
         onSubmit={handleSubmit(fn)}
@@ -47,10 +51,7 @@ export default function MslForm({
               </label>
               {requireItems?.includes(item) ? (
                 <textarea
-                  className={
-                    (item.match(/description/i) && className) ||
-                    'tw-h-40  tw-border-2  tw-text-black'
-                  }
+                  className='tw-h-40  tw-border-2  tw-text-black'
                   {...register(item, {
                     ...(item.match(/Description/i) && {
                       validate: {
@@ -164,6 +165,8 @@ export default function MslForm({
                       ? 'username'
                       : item.match(/significant/i)
                       ? 'boolean'
+                      : item.match(/tags/i)
+                      ? 'checkbox'
                       : item.match(/completed/i)
                       ? 'boolean'
                       : item.match(/dueDate/i)
@@ -179,9 +182,13 @@ export default function MslForm({
           ),
         )}
 
-        <button className='tw-m-2 tw-rounded-sm tw-border-2' type='submit'>
+        <button
+          className='tw-m-2 tw-w-32 tw-self-center tw-rounded-sm tw-border-2'
+          type='submit'
+        >
           {location.pathname ? 'Submit' : 'Login'}
         </button>
+        {children}
       </form>
       <DevTool control={control} />
     </div>

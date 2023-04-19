@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 
 import { useSome } from './MainContextProvider';
@@ -16,5 +16,11 @@ const postMsl = (data) => axios.post(`http://localhost:8085/msl`, data);
 const postTask = (data) => axios.post(`http://localhost:8085/tasks`, data);
 
 // create the custom hook to mutate (post, patch, delete) using the post function
-export const useAddMslEntry = () => useMutation(postMsl);
-export const useAddTaskEntry = () => useMutation(postTask);
+export const useAddMslEntry = () =>
+  useMutation({
+    mutationFn: postMsl,
+  });
+export const useAddTaskEntry = () =>
+  useMutation({
+    mutationFn: postTask,
+  });
