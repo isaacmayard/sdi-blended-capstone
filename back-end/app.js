@@ -9,6 +9,7 @@ var authRouter = require('./routes/auth');
 var user_tasksRouter = require('./routes/user_tasks');
 var tasksRouter = require('./routes/tasks');
 const mslRouter = require('./routes/msl');
+const tagsRouter = require('./routes/tags');
 var cors = require('cors');
 const { Sequelize } = require('sequelize');
 require('dotenv').config({ path: '../.env' });
@@ -27,6 +28,7 @@ app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/tasks', tasksRouter);
 app.use('/msl', mslRouter);
+app.use('/tags', tagsRouter);
 app.use('/user_tasks', user_tasksRouter);
 
 module.exports = app;
