@@ -91,7 +91,7 @@ export default function TaskList() {
     (task) => task.assignedTo === selectedUser?.userName,
   );
   return (
-    <Container className='tw-h-[100vh] tw-bg-[#080707]'>
+    <Container className='tw-h-[100vh]'>
       <Row className='task-nav mb-3'>
         <nav className='text-center text-light'>Task Management</nav>
       </Row>
