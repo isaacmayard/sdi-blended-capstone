@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import { GiBulletBill } from 'react-icons/gi';
 import tasks from '../../../back-end/routes/tasks';
 import '../style/TaskList.css';
 import AddTask from './AddTask';
@@ -23,6 +22,7 @@ export default function TaskList() {
   const [availableTasks, setAvailableTasks] = useState<Task[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [users, setUsers] = useState<User[]>([]);
+  const [refresh, setRefresh] = useState<number>(0);
   const [selectedUser, setSelectedUser] = useState<User | undefined>();
 
   //This function handles the beginning of the drag event
@@ -70,6 +70,7 @@ export default function TaskList() {
         },
       }).then((res) => alert('Tasks Assigned!'));
     }
+    setRefresh((prevRefresh) => prevRefresh + 1);
   }
   useEffect(() => {
     fetch('http://localhost:8085/users')
@@ -89,7 +90,7 @@ export default function TaskList() {
     (task) => task.assignedTo === selectedUser?.userName,
   );
   return (
-    <Container>
+    <Container className='tw-h-[100vh]'>
       <Row className='task-nav mb-3'>
         <nav className='text-center text-light'>Task Assignment</nav>
       </Row>
@@ -147,7 +148,7 @@ export default function TaskList() {
             <button
               type='submit'
               onClick={handleSubmit}
-              className='btn btn-outline-light'
+              className='btn btn-outline-light task'
             >
               Assign Tasks
             </button>

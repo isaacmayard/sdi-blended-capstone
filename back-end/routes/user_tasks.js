@@ -1,4 +1,6 @@
 var express = require("express");
+const { QueryTypes } = require("sequelize");
+const db = require("../sequelize/models");
 
 var router = express.Router();
 const { Task, User, user_tasks } = require("../sequelize/models");
@@ -11,20 +13,20 @@ router.get("/", function (req, res, next) {
 });
 
 // Get list of tasks of logged in user
-
 router.get("/:userId", function (req, res) {
-  // Replace with session key/cookies
-  if (true) {
-    Task.findAll({
-      where: {
-        userId: req.params.userId,
-      },
-    }).then((data) => {
+  // user_tasks.findAll({
+  //   where: {
+  //     userId: req.params.userId,
+  //   },
+  // });
+  db.sequelize
+    .query(
+      `SELECT * FROM "Tasks" JOIN user_tasks ON user_tasks."taskId" = "Tasks".id WHERE user_tasks."userId" = ${req.params.userId}`,
+      { type: QueryTypes.SELECT }
+    )
+    .then((data) => {
       res.status(200).send(data);
     });
-  } else {
-    res.sendStatus(404);
-  }
 });
 
 // Post a new task/user relationship

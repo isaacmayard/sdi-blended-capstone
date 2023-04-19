@@ -59,7 +59,7 @@
   overflow: hidden;
 }
 
-.btn.btn-outline-light {
+.btn.btn-outline-light.task {
   margin-top: 2%;
   margin-left: 17%;
 }

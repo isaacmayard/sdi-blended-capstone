@@ -26,7 +26,7 @@ export default function TextEditor() {
 
       <button
         type='button'
-        className='btn btn-outline-light'
+        className='btn btn-outline-light tw-ml-4 tw-mt-2'
         onClick={handleExport}
       >
         Export

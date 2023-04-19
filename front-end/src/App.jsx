@@ -7,7 +7,7 @@ import { MainContextProvider } from './utilities/MainContextProvider';
 function App() {
   return (
     <MainContextProvider>
-      <div className=' tw-flex tw-min-h-full tw-w-screen tw-bg-black'>
+      <div className=' tw-flex tw-min-h-[100vh] tw-w-screen tw-bg-black'>
         <NavBar />
         <RouteHandler />
       </div>
