@@ -43,6 +43,7 @@ export default function MslPage() {
     }
     setFormState(false);
   };
+
   return (
     <div className='tw-flex tw-grow'>
       {formState && !tagsLoading && (
@@ -50,7 +51,7 @@ export default function MslPage() {
           items={fields}
           requireItems={requiredField}
           fn={onSubmit}
-          className='tw-bg-opacity tw-absolute tw-inset-80 tw-flex tw-h-fit tw-flex-col tw-transition-all'
+          className='tw-bg-opacity tw-absolute tw-inset-80 tw-flex  tw-flex-col tw-transition-all'
         >
           <button
             onClick={() => setFormState(false)}
