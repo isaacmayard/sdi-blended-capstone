@@ -3,20 +3,18 @@ import React, { useEffect, useState } from 'react';
 import { Card } from 'react-bootstrap';
 
 import ussfLogo from '../../public/ussf_logo.png';
+import { useSome } from '../utilities/MainContextProvider';
 import useFetch from '../utilities/useFetch';
 
 export default function Section() {
-  const [currentUser, setCurrentUser] = useState({});
-  const { data: users } = useFetch('users', currentUser.section);
+  const { currentUser } = useSome();
 
-  useEffect(() => {
-    const fetchCurrentUser = async () => {
-      const res = await axios.get('http://localhost:8085/currentUser');
-      const { data } = res;
-      setCurrentUser(data);
-    };
-    fetchCurrentUser();
-  }, []);
+  const { data: allUsers, isLoading, isError } = useFetch('users');
+  const users = allUsers.filter((user) => user.section === currentUser.section);
+
+  if (currentUser.userName === 'Guest') {
+    return <p>I am a guest.</p>;
+  }
 
   return (
     <div>
