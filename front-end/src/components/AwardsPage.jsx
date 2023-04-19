@@ -4,7 +4,7 @@ import TextEditor from './TextEditor';
 
 export default function AwardsPage() {
   return (
-    <article>
+    <article className='tw-h-[100vh]'>
       <h1 className='tw-mt-3 tw-text-center tw-text-xl tw-font-bold tw-text-stone-100'>
         Bullet Builder
       </h1>
@@ -15,10 +15,15 @@ export default function AwardsPage() {
           src='https://af-vcd.github.io/pdf-bullets/'
         />
       </div>
+      <br />
+      <TextEditor />
       <Row>
+        <p className='tw-text-center tw-text-xl tw-font-extrabold tw-text-stone-100'>
+          Helpful Links
+        </p>
         <a
           href='https://www.eprbullets.com/'
-          className='tw-mt-3 tw-text-center tw-text-xl tw-font-bold tw-text-stone-100'
+          className='tw-text-l tw-mt-3 tw-text-center tw-font-medium tw-text-stone-100'
           onClick={(e) => {
             e.preventDefault();
             window.open('https://www.eprbullets.com/', '_blank');
@@ -26,8 +31,17 @@ export default function AwardsPage() {
         >
           EPR Bullet Bank
         </a>
+        <a
+          href='https://www.e-publishing.af.mil/'
+          className='tw-text-l tw-mt-3 tw-text-center tw-font-medium tw-text-stone-100'
+          onClick={(e) => {
+            e.preventDefault();
+            window.open('https://www.e-publishing.af.mil/', '_blank');
+          }}
+        >
+          AF E-Publishing
+        </a>
       </Row>
-      <TextEditor />
     </article>
   );
 }

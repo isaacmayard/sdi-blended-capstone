@@ -1,19 +1,12 @@
 hr {
   border: none;
   height: 2px;
-
-  /* Set the hr color */
   background-color: #8c8c8c; /* Modern Browsers */
 }
 
 .logo {
   margin: 20px;
 }
-
-/* .row {
-  background-color: black;
-  height: 100%;
-} */
 
 .card-box {
   background-color: #5c5c5c !important;

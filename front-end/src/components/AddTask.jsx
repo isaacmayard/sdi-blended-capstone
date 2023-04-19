@@ -1,5 +1,4 @@
-import { propTypes } from 'react-bootstrap/esm/Image';
-
+/* eslint-disable no-alert */
 import { useAddTaskEntry } from '../utilities/usePost';
 // eslint-disable-next-line import/order
 import MslForm from './MslForm';
@@ -18,6 +17,7 @@ export default function AddTask() {
   }) => {
     // passing the input data into the custom hook for posting a new task
     mutate({ title, description, dueDate, completed, significant });
+    alert('Task Created!');
   };
 
   return (

@@ -66,9 +66,6 @@ export default function NavBar() {
                 <CDBSidebarMenuItem icon='user'>LOGIN</CDBSidebarMenuItem>
               )}
             </NavLink>
-            {/* <NavLink to='/troops' activeClassName='activeClicked'>
-              <CDBSidebarMenuItem icon='users'>TROOPS</CDBSidebarMenuItem>
-            </NavLink> */}
             <NavLink to='/calendar'>
               <CDBSidebarMenuItem icon='calendar'>CALENDAR</CDBSidebarMenuItem>
             </NavLink>
