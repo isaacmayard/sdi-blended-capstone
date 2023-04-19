@@ -35,7 +35,7 @@ export default function MslForm({
 
   return (
     <div
-      className={`  tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white ${className}`}
+      className={`  tw-h-fit tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white ${className}`}
     >
       <form
         noValidate
@@ -108,7 +108,7 @@ export default function MslForm({
                       validate: {
                         // create multiple validation for that item
                         shortTitle: (fieldValue) =>
-                          fieldValue.length > 6 || `${item} too short`,
+                          fieldValue.length > 3 || `${item} too short`,
                         longTitle: (fieldValue) =>
                           fieldValue.length < 50 || 'Description too Long',
                       },
@@ -142,6 +142,10 @@ export default function MslForm({
                       ? 'username'
                       : item.match(/significant/i)
                       ? 'boolean'
+                      : item.match(/admin/i)
+                      ? 'checkbox'
+                      : item.match(/contact_number/i)
+                      ? 'tel'
                       : item.match(/completed/i)
                       ? 'boolean'
                       : item.match(/dueDate/i)
@@ -165,8 +169,10 @@ export default function MslForm({
                       ? 'username'
                       : item.match(/significant/i)
                       ? 'boolean'
-                      : item.match(/tags/i)
+                      : item.match(/admin/i)
                       ? 'checkbox'
+                      : item.match(/contact_number/i)
+                      ? 'tel'
                       : item.match(/completed/i)
                       ? 'boolean'
                       : item.match(/dueDate/i)
@@ -186,7 +192,11 @@ export default function MslForm({
           className='tw-m-2 tw-w-32 tw-self-center tw-rounded-sm tw-border-2'
           type='submit'
         >
-          {location.pathname ? 'Submit' : 'Login'}
+          {location.pathname.match(/login/i)
+            ? 'Login'
+            : location.pathname.match(/register/i)
+            ? 'Register'
+            : 'Submit'}
         </button>
         {children}
       </form>

@@ -38,6 +38,21 @@ export default function Login() {
   };
 
   return (
-    <MslForm items={fields} requireItems={requiredField} fn={testFuntion} />
+    <div>
+      <MslForm
+        items={fields}
+        requireItems={requiredField}
+        fn={testFuntion}
+        className='tw-bg-opacity tw-absolute tw-inset-80 tw-flex tw-w-auto tw-flex-col '
+      >
+        <button
+          onClick={() => navigate('/register')}
+          className='tw-m-2 tw-w-32 tw-self-center tw-rounded-sm tw-border-2'
+          type='button'
+        >
+          Register
+        </button>
+      </MslForm>
+    </div>
   );
 }
