@@ -24,6 +24,7 @@ export default function TaskList() {
   const [users, setUsers] = useState<User[]>([]);
   const [refresh, setRefresh] = useState<number>(0);
   const [selectedUser, setSelectedUser] = useState<User | undefined>();
+  const [formState, setFormState] = useState<boolean>(false);
 
   //This function handles the beginning of the drag event
   function handleOnDrag(e: React.DragEvent, taskType: string) {
@@ -84,15 +85,30 @@ export default function TaskList() {
       .then((res) => res.json())
       .then((tasks) => setAvailableTasks(tasks))
       .catch((err) => alert(err));
-  }, []);
+  }, [formState]);
 
   const userTasks = tasks.filter(
     (task) => task.assignedTo === selectedUser?.userName,
   );
   return (
-    <Container className='tw-h-[100vh]'>
+    <Container className='tw-h-[100vh] tw-bg-[#080707]'>
       <Row className='task-nav mb-3'>
-        <nav className='text-center text-light'>Task Assignment</nav>
+        <nav className='text-center text-light'>Task Management</nav>
+      </Row>
+      <Row className='text-center'>
+        <Col className='tw-min-h-36'>
+          {formState ? (
+            <div className='tw-h-10 tw-w-fit'></div> // empty div to preserve space
+          ) : (
+            <button
+              onClick={() => setFormState(true)}
+              className='tw-m-2 tw-w-32 tw-rounded-sm tw-border-2 tw-text-white'
+              type='submit'
+            >
+              Create Entry
+            </button>
+          )}
+        </Col>
       </Row>
       <Row
         className='assignable mb-5'
@@ -113,6 +129,7 @@ export default function TaskList() {
       <Row>
         <Col>
           <div className='user-column'>
+            <p className='assigned-troops'>Assigned Troops</p>
             {users.map((user, index) => (
               <div key={index} className='available-users'>
                 <button onClick={() => handleUserClick(user)}>
@@ -125,7 +142,9 @@ export default function TaskList() {
         <Col>
           {selectedUser && (
             <>
-              <span className='selected-user'>{selectedUser.userName}</span>
+              <p className='text-center selected-user tw-text-white'>
+                {selectedUser.userName}
+              </p>
               <form
                 className='assigned-tasks'
                 onDrop={handleOnDrop}
@@ -145,13 +164,22 @@ export default function TaskList() {
             </>
           )}
           {selectedUser ? (
-            <button
-              type='submit'
-              onClick={handleSubmit}
-              className='btn btn-outline-light task'
-            >
-              Assign Tasks
-            </button>
+            <div className='d-flex buttons'>
+              <button
+                type='submit'
+                onClick={handleSubmit}
+                className='btn btn-outline-light tw-mr-[5px] tw-h-fit tw-w-fit'
+              >
+                Assign Tasks
+              </button>
+              <button
+                type='submit'
+                className='btn btn-outline-light tw-h-fit tw-w-fit'
+                onClick={() => setSelectedUser(undefined)}
+              >
+                Close
+              </button>
+            </div>
           ) : (
             <></>
           )}
@@ -159,7 +187,7 @@ export default function TaskList() {
       </Row>
       <Row>
         <Col></Col>
-        <AddTask />
+        {formState && <AddTask setFormState={setFormState} />}
         <Col></Col>
       </Row>
     </Container>
