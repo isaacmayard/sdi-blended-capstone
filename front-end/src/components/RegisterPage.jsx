@@ -86,7 +86,7 @@ export default function RegisterPage() {
     return (
       <Alert
         key='danger'
-        className='tw-absolute tw-inset-80  tw-m-2 tw-h-fit tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white'
+        className='tw-absolute tw-inset-80  tw-m-2 tw-ml-[33vw] tw-h-fit tw-w-fit tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white'
         variant='danger'
       >
         <p className='tw-m-2'>Your Account has been created</p>
@@ -107,7 +107,8 @@ export default function RegisterPage() {
   if (userError) {
     return (
       <Alert
-        className='tw-absolute tw-inset-80  tw-m-2 tw-h-fit tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white'
+        className='tw-absolute tw-inset-80  tw-m-2 tw-ml-[35vw] tw-h-fit tw-w-60 tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center
+         tw-text-white'
         key='danger'
         variant='danger'
       >
