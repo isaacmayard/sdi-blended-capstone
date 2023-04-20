@@ -14,7 +14,6 @@ import { BsBarChartLine } from 'react-icons/bs';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useFetch from '../utilities/useFetch';
-import FullCalendar from './FullCalendar';
 import Metrics from './Metrics';
 // eslint-disable-next-line import/order
 import '../style/home.css';
@@ -22,8 +21,6 @@ import '../style/home.css';
 // eslint-disable-next-line import/order
 
 const testMsl = ['Title', 'Date', 'Tags', 'Description'];
-
-// import { useSome } from '../utilities/MainContextProvider';
 
 export default function Sidebar() {
   const monthNames = [
@@ -61,30 +58,38 @@ export default function Sidebar() {
     isError: isErrorTasks,
   } = useFetch('tasks');
 
-  const completedTasks = tasks
-    ? tasks.filter(
+  const filteredTasks = tasks?.filter((task) => {
+    const taskDate = new Date(task.dueDate);
+    return (
+      taskDate.getMonth() === monthNames.indexOf(currentMonth) &&
+      taskDate.getFullYear() === currentYear
+    );
+  });
+
+  const completedTasks = filteredTasks
+    ? filteredTasks.filter(
         (task) =>
-          task.completed === true &&
+          filteredTasks.completed === true &&
           new Date(task.dueDate) > new Date(task.updatedAt),
       )
     : 0;
-  const completedLateTasks = tasks
-    ? tasks.filter(
+  const completedLateTasks = filteredTasks
+    ? filteredTasks.filter(
         (task) =>
           task.completed === true &&
           new Date(task.dueDate) < new Date(task.updatedAt),
       )
     : 0;
-  const overdueTasks = tasks
-    ? tasks.filter(
+  const overdueTasks = filteredTasks
+    ? filteredTasks.filter(
         (task) =>
           task.completed === false &&
           new Date(task.dueDate) < new Date(task.updatedAt),
       )
     : 0;
 
-  const pendingTasks = tasks
-    ? tasks.filter(
+  const pendingTasks = filteredTasks
+    ? filteredTasks.filter(
         (task) =>
           task.completed === false &&
           new Date(task.dueDate) > new Date(task.updatedAt),
@@ -181,7 +186,7 @@ export default function Sidebar() {
                   />
                 </TabList>
 
-                <TabPanel>{renderTasks(tasks)};</TabPanel>
+                <TabPanel>{renderTasks(filteredTasks)};</TabPanel>
                 <TabPanel>{renderTasks(completedTasks)};</TabPanel>
                 <TabPanel>{renderTasks(completedLateTasks)};</TabPanel>
                 <TabPanel>{renderTasks(overdueTasks)};</TabPanel>
@@ -193,12 +198,7 @@ export default function Sidebar() {
 
         <nav className='nav__bar'>
           <ul className='menu'>
-            <li
-              className='menu__icon'
-              onClick={() => setShow((currentShow) => !currentShow)}
-            >
-              {show ? metricsContainer : null}
-            </li>
+            <li className='menu__icon'>{show ? metricsContainer : null}</li>
           </ul>
         </nav>
       </div>

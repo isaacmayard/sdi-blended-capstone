@@ -1,20 +1,8 @@
-import {
-  CDBCollapse,
-  CDBSidebar,
-  CDBSidebarContent,
-  CDBSidebarHeader,
-  CDBSidebarMenu,
-  CDBSidebarMenuItem,
-} from 'cdbreact';
 import React, { useState } from 'react';
 
 import useFetch from '../utilities/useFetch';
 
 export default function Metrics() {
-  const [rightOpen, setRightOpen] = useState(true);
-  const [rightCollapse1, setRightCollapse1] = useState(true);
-  const [rightCollapse2, setRightCollapse2] = useState(false);
-
   const {
     data: tasks,
     isLoading: isLoadingTasks,
