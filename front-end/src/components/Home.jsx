@@ -100,7 +100,7 @@ export default function Sidebar() {
   function renderTasks(subTasks) {
     return (
       <div className='tab-pane active' id='total' role='tabpanel'>
-        <div className='divide-y divide-slate-700 tw-h-[835px] tw-overflow-auto'>
+        <div className='divide-y divide-slate-700 tw-h-[912px] tw-overflow-auto tw-rounded-xl tw-border tw-p-2'>
           {subTasks.map((task) => (
             <>
               <div className='card text-center tw-bg-gray-200 tw-text-black '>
@@ -124,9 +124,9 @@ export default function Sidebar() {
   if (isErrorTasks) return `An error has occurred: ${isErrorTasks.message}`;
 
   const metricsContainer = (
-    <div className='col-3'>
-      <Card className='card-box m-3'>
-        <div className='divide-y divide-slate-700 tw-h-[100v] tw-overflow-auto'>
+    <div className='col-3 tw-ml-[10vw] tw-w-fit'>
+      <Card className='card-box m-3 tw-rounded-2xl'>
+        <div className='divide-y divide-slate-700 tw-h-[77vh] tw-w-[25vw]'>
           <Card.Body>
             <Metrics />
           </Card.Body>
@@ -136,75 +136,79 @@ export default function Sidebar() {
   );
 
   return (
-    <div className='tw-flex tw-h-[100vh] tw-grow tw-overflow-auto tw-bg-black'>
-      <div className=''>
-        <Card className='card-box m-3'>
-          <Card.Body>
-            <Tabs>
-              <TabList>
-                <Tab>All Tasks</Tab>
-                <Tab>Completed</Tab>
-                <Tab>Completed Late</Tab>
-                <Tab>Overdue</Tab>
-                <Tab>Pending</Tab>
-                <Tab disabled='true'>
-                  <SplitButton
-                    key='primary'
-                    id='dropdown-split-variants-Primary'
-                    variant='primary'
-                    title={currentMonth}
-                  >
-                    {monthNames.map((month, index) => (
-                      <Dropdown.Item
-                        eventKey={index + 1}
-                        onClick={(e) => setCurrentMonth(e.target.innerText)}
-                      >
-                        {month}
-                      </Dropdown.Item>
-                    ))}
-                  </SplitButton>
-                </Tab>
-                <Tab pullRight='true' disabled='true'>
-                  <SplitButton
-                    key='primary'
-                    id='dropdown-split-variants-Primary'
-                    variant='primary'
-                    title={currentYear}
-                  >
-                    {yearList.map((year, index) => (
-                      <Dropdown.Item
-                        eventKey={index + 1}
-                        onClick={(e) => setCurrentYear(e.target.innerText)}
-                      >
-                        {year}
-                      </Dropdown.Item>
-                    ))}
-                  </SplitButton>
-                </Tab>
-                <Tab disabled='true'>
-                  <Button
-                    variant='primary'
-                    onClick={() => setShow((currentShow) => !currentShow)}
-                    style={{ display: 'flex' }}
-                  >
-                    <BsBarChartLine style={{ marginRight: '5px' }} />
-                    Metrics
-                    <BsFillArrowRightCircleFill style={{ marginLeft: '5px' }} />
-                  </Button>
-                </Tab>
-              </TabList>
+    <div className='tw-flex tw-h-[100vh] tw-grow tw-overflow-auto'>
+      <div className='tw-flex tw-w-screen'>
+        <div className='tw-ml-[10vw] tw-h-[77vh]'>
+          <Card className='card-box m-3 tw-rounded-2xl'>
+            <Card.Body>
+              <Tabs>
+                <TabList>
+                  <Tab>All Tasks</Tab>
+                  <Tab>Completed</Tab>
+                  <Tab>Completed Late</Tab>
+                  <Tab>Overdue</Tab>
+                  <Tab>Pending</Tab>
+                  <Tab disabled='true'>
+                    <SplitButton
+                      key='primary'
+                      id='dropdown-split-variants-Primary'
+                      variant='primary'
+                      title={currentMonth}
+                    >
+                      {monthNames.map((month, index) => (
+                        <Dropdown.Item
+                          eventKey={index + 1}
+                          onClick={(e) => setCurrentMonth(e.target.innerText)}
+                        >
+                          {month}
+                        </Dropdown.Item>
+                      ))}
+                    </SplitButton>
+                  </Tab>
+                  <Tab pullRight='true' disabled='true'>
+                    <SplitButton
+                      key='primary'
+                      id='dropdown-split-variants-Primary'
+                      variant='primary'
+                      title={currentYear}
+                    >
+                      {yearList.map((year, index) => (
+                        <Dropdown.Item
+                          eventKey={index + 1}
+                          onClick={(e) => setCurrentYear(e.target.innerText)}
+                        >
+                          {year}
+                        </Dropdown.Item>
+                      ))}
+                    </SplitButton>
+                  </Tab>
+                  <Tab disabled='true'>
+                    <Button
+                      variant='primary'
+                      onClick={() => setShow((currentShow) => !currentShow)}
+                      style={{ display: 'flex' }}
+                    >
+                      <BsBarChartLine style={{ marginRight: '5px' }} />
+                      Metrics
+                      <BsFillArrowRightCircleFill
+                        style={{ marginLeft: '5px' }}
+                      />
+                    </Button>
+                  </Tab>
+                </TabList>
 
-              <TabPanel>{renderTasks(filteredTasks)};</TabPanel>
-              <TabPanel>{renderTasks(completedTasks)};</TabPanel>
-              <TabPanel>{renderTasks(completedLateTasks)};</TabPanel>
-              <TabPanel>{renderTasks(overdueTasks)};</TabPanel>
-              <TabPanel>{renderTasks(pendingTasks)};</TabPanel>
-            </Tabs>
-          </Card.Body>
-        </Card>
+                <TabPanel>{renderTasks(filteredTasks)};</TabPanel>
+                <TabPanel>{renderTasks(completedTasks)};</TabPanel>
+                <TabPanel>{renderTasks(completedLateTasks)};</TabPanel>
+                <TabPanel>{renderTasks(overdueTasks)};</TabPanel>
+                <TabPanel>{renderTasks(pendingTasks)};</TabPanel>
+              </Tabs>
+            </Card.Body>
+          </Card>
+        </div>
+
+        {show ? metricsContainer : null}
       </div>
-
-      {show ? metricsContainer : null}
     </div>
   );
 }

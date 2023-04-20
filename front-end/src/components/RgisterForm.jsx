@@ -35,7 +35,7 @@ export default function RgisterForm({
 
   return (
     <div
-      className={` tw-absolute tw-right-[25vw] tw-top-28 tw-h-fit tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white ${className}`}
+      className={` tw-absolute tw-right-[37vw] tw-top-28 tw-h-fit tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white ${className}`}
     >
       <form
         noValidate
@@ -70,7 +70,7 @@ export default function RgisterForm({
                     validate: {
                       // create multiple validation for that item
                       shortTitle: (fieldValue) =>
-                        fieldValue.length > 6 || `${item} too short`,
+                        fieldValue.length > 3 || `${item} too short`,
                       longTitle: (fieldValue) =>
                         fieldValue.length < 50 || 'Description too Long',
                       // special: (fieldValue) =>
@@ -151,7 +151,7 @@ export default function RgisterForm({
         </button>
         {children}
       </form>
-      <DevTool control={control} />
+      {/* <DevTool control={control} /> */}
     </div>
   );
 }

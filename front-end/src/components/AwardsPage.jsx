@@ -23,7 +23,7 @@ export default function AwardsPage() {
         </p>
         <a
           href='https://www.eprbullets.com/'
-          className='tw-text-l tw-mt-3 tw-text-center tw-font-medium tw-text-stone-100'
+          className='tw-text-l tw-mt-3 tw-text-center tw-font-medium tw-text-stone-100 hover:tw-text-black'
           onClick={(e) => {
             e.preventDefault();
             window.open('https://www.eprbullets.com/', '_blank');
@@ -33,13 +33,46 @@ export default function AwardsPage() {
         </a>
         <a
           href='https://www.e-publishing.af.mil/'
-          className='tw-text-l tw-mt-3 tw-text-center tw-font-medium tw-text-stone-100'
+          className='tw-text-l tw-mt-3 tw-text-center tw-font-medium tw-text-stone-100 hover:tw-text-black'
           onClick={(e) => {
             e.preventDefault();
             window.open('https://www.e-publishing.af.mil/', '_blank');
           }}
         >
           AF E-Publishing
+        </a>
+        <a
+          href='https://www.eprbulletsafsc.com/'
+          className='tw-text-l tw-mt-3 tw-text-center tw-font-medium tw-text-stone-100 hover:tw-text-black'
+          onClick={(e) => {
+            e.preventDefault();
+            window.open('https://www.eprbulletsafsc.com/', '_blank');
+          }}
+        >
+          Bullets By AFSC
+        </a>
+        <a
+          href='https://www.lightningwithinfive.com/'
+          className='tw-text-l tw-mt-3 tw-text-center tw-font-medium tw-text-stone-100 hover:tw-text-black'
+          onClick={(e) => {
+            e.preventDefault();
+            window.open('https://www.lightningwithinfive.com/', '_blank');
+          }}
+        >
+          Lightning Within Five
+        </a>
+        <a
+          href='https://www.airforcewriter.com/EPR/bullets/pri.shtml'
+          className='tw-text-l tw-mt-3 tw-text-center tw-font-medium tw-text-stone-100 hover:tw-text-black'
+          onClick={(e) => {
+            e.preventDefault();
+            window.open(
+              'https://www.airforcewriter.com/EPR/bullets/pri.shtml',
+              '_blank',
+            );
+          }}
+        >
+          Air Force Writer
         </a>
       </Row>
     </article>

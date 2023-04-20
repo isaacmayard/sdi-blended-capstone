@@ -6,8 +6,7 @@ import {
   CDBSidebarMenuItem,
 } from 'cdbreact';
 import React from 'react';
-import { NavItem } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { useSome } from '../utilities/MainContextProvider';
 import useFetch from '../utilities/useFetch';
@@ -32,31 +31,37 @@ export default function NavBar() {
           </a>
         </CDBSidebarHeader>
         <CDBSidebarContent className='sidebar-content'>
-          <CDBSidebarMenuItem icon='user'>
-            {(
-              <p>
-                <strong>{currentUser.rank}</strong> {currentUser.firstName}{' '}
-                {currentUser.lastName}
-              </p>
-            ) || <p>{currentUser.userName}</p>}
-            <ul>
-              {currentUser.unit && (
-                <li className='tw-flex-wrap'>Unit: {currentUser.unit} </li>
-              )}
-            </ul>
-            <ul>
-              {currentUser.work_section && (
-                <li className='tw-break-words'>
-                  Section: {currentUser.work_section}{' '}
-                </li>
-              )}
-            </ul>
-            <ul>
-              {currentUser.contact_number && (
-                <li className='tw-flex-wrap'>{currentUser.contact_number} </li>
-              )}
-            </ul>
-          </CDBSidebarMenuItem>
+          {isLoggedIn ? (
+            <CDBSidebarMenuItem icon='user'>
+              {(
+                <p>
+                  <strong>{currentUser.rank}</strong> {currentUser.firstName}{' '}
+                  {currentUser.lastName}
+                </p>
+              ) || <p>{currentUser.userName}</p>}
+              <ul>
+                {currentUser.unit && (
+                  <li className='tw-flex-wrap'>Unit: {currentUser.unit} </li>
+                )}
+              </ul>
+              <ul>
+                {currentUser.work_section && (
+                  <li className='tw-break-words'>
+                    Section: {currentUser.work_section}{' '}
+                  </li>
+                )}
+              </ul>
+              <ul>
+                {currentUser.contact_number && (
+                  <li className='tw-flex-wrap'>
+                    {currentUser.contact_number}{' '}
+                  </li>
+                )}
+              </ul>
+            </CDBSidebarMenuItem>
+          ) : (
+            <p className='tw-text-center'>Welcome</p>
+          )}
           <CDBSidebarMenu>
             <NavLink to='/home'>
               {isLoggedIn && (
@@ -95,6 +100,13 @@ export default function NavBar() {
             <NavLink to='/msl'>
               {isLoggedIn && (
                 <CDBSidebarMenuItem icon='th-large'>MSL</CDBSidebarMenuItem>
+              )}
+            </NavLink>
+            <NavLink to='/awards'>
+              {isLoggedIn && (
+                <CDBSidebarMenuItem icon='award'>
+                  BULLET SHAPER
+                </CDBSidebarMenuItem>
               )}
             </NavLink>
             <NavLink to='/unit'>

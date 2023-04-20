@@ -118,7 +118,7 @@ export default function MslForm({
                       validate: {
                         // create multiple validation for that item
                         shortTitle: (fieldValue) =>
-                          fieldValue.length > 8 || `${item} too short`,
+                          fieldValue.length > 3 || `${item} too short`,
                         longTitle: (fieldValue) =>
                           fieldValue.length < 50 || 'Description too Long',
                         // special: (fieldValue) =>
@@ -200,7 +200,7 @@ export default function MslForm({
         </button>
         {children}
       </form>
-      <DevTool control={control} />
+      {/* <DevTool control={control} /> */}
     </div>
   );
 }

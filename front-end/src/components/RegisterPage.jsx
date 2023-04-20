@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/order */
+import { useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -21,9 +22,17 @@ const fields = [
   'Section',
   'Unit',
 ];
-const requiredField = ['Username', 'Password'];
+const requiredField = [
+  'Username',
+  'Password',
+  'First Name',
+  'Last Name',
+  'Phone',
+];
 
 export default function RegisterPage() {
+  const queryClient = useQueryClient();
+
   // check user exist
   const [userError, setUserError] = useState(false);
   const [userCreated, setUserCreated] = useState(false);
@@ -58,18 +67,25 @@ export default function RegisterPage() {
     console.log(userExist);
 
     if (!userExist) {
-      mutate({
-        lastName,
-        userName,
-        password,
-        admin,
-        rank,
-        firstName,
-        supervisor,
-        contact_number,
-        work_section,
-        unit,
-      });
+      mutate(
+        {
+          lastName,
+          userName,
+          password,
+          admin,
+          rank,
+          firstName,
+          supervisor,
+          contact_number,
+          work_section,
+          unit,
+        },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries();
+          },
+        },
+      );
       setUserCreated(true);
     } else {
       setUserError(true);
@@ -80,7 +96,7 @@ export default function RegisterPage() {
     return (
       <Alert
         key='danger'
-        className='tw-absolute tw-inset-80  tw-m-2 tw-h-fit tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white'
+        className='tw-absolute tw-inset-80  tw-m-2 tw-ml-[33vw] tw-h-fit tw-w-fit tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white'
         variant='danger'
       >
         <p className='tw-m-2'>Your Account has been created</p>
@@ -101,11 +117,12 @@ export default function RegisterPage() {
   if (userError) {
     return (
       <Alert
-        className='tw-absolute tw-inset-80  tw-m-2 tw-h-fit tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white'
+        className='tw-absolute tw-inset-80  tw-m-2 tw-ml-[35vw] tw-h-fit tw-w-60 tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center
+         tw-text-white'
         key='danger'
         variant='danger'
       >
-        <p className='tw-m-2'>User Already exist</p>
+        <p className='tw-m-2'>User already exists</p>
         <button
           className='tw-m-2 tw-w-32 tw-self-center tw-rounded-full tw-border-2 tw-bg-red-500 tw-p-2 '
           onClick={() => {

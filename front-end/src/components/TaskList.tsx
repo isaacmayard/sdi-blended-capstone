@@ -146,7 +146,7 @@ export default function TaskList() {
                 {selectedUser.userName}
               </p>
               <form
-                className='assigned-tasks'
+                className='assigned-tasks tw-shadow-3xl'
                 onDrop={handleOnDrop}
                 onDragOver={handleDragOver}
               >

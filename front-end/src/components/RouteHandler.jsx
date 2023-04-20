@@ -1,14 +1,12 @@
 /* eslint-disable import/order */
 import React from 'react';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom';
 
 import { useSome } from '../utilities/MainContextProvider';
 import AwardsPage from './AwardsPage';
 import FullCalendar from './FullCalendar';
 import Home from './Home';
 import Login from './Login';
-import LoginForm from './LoginForm';
-import MslForm from './MslForm';
 import MslPage from './MslPage';
 import RegisterPage from './RegisterPage';
 import Section from './Section';
@@ -39,7 +37,10 @@ export default function RouteHandler() {
           <Route path='/unit' element={<UnitDirectory />} />{' '}
         </>
       ) : (
-        <Route path='/*' element={<Login />} />
+        <>
+          <Route path='/*' element={<Navigate to='/login' />} />
+          <Route path='/login' element={<Login />} />
+        </>
       )}
     </Routes>
   );
