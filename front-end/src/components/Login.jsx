@@ -1,8 +1,8 @@
 /* eslint-disable import/order */
 import React, { useState } from 'react';
+import { Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useSome } from '../utilities/MainContextProvider';
-import { Alert } from 'react-bootstrap';
 
 import useFetch from '../utilities/useFetch';
 import MslForm from './MslForm';
@@ -72,7 +72,7 @@ export default function Login() {
         items={fields}
         requireItems={requiredField}
         fn={testFuntion}
-        className='tw-bg-opacity tw-absolute tw-inset-80 tw-flex tw-w-auto tw-flex-col '
+        className=' -translate-x-1/2 tw-absolute tw-left-[45vw] tw-top-1/3 tw-h-fit  -tw-translate-y-1/2 tw-transform tw-justify-center '
       >
         <button
           onClick={() => navigate('/register')}

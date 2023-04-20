@@ -151,7 +151,7 @@ export default function RgisterForm({
         </button>
         {children}
       </form>
-      <DevTool control={control} />
+      {/* <DevTool control={control} /> */}
     </div>
   );
 }
