@@ -2,7 +2,7 @@ import React from 'react';
 
 import useFetch from '../utilities/useFetch';
 
-export default function MslListing({ formState, setFormState }) {
+export default function MslListing({ formState, setFormState, children }) {
   const { data: entries, isLoading, isError, isFetching } = useFetch('msl');
   const { data: users, isLoading: isLoadingUsers } = useFetch('users');
 
@@ -22,9 +22,21 @@ export default function MslListing({ formState, setFormState }) {
 
   return (
     <div className=' tw-flex tw-grow'>
+      {children}
       <div className=' tw-flex tw-grow tw-flex-col tw-p-7'>
         <div className=' tw-outside-base-style tw-p-4 tw-text-white'>
-          <div className=' tw-mb-2 tw-text-center'>MSL</div>
+          <div className=' tw-mb-2 tw-text-center'>
+            <p>MSL</p>
+            {!formState && (
+              <button
+                onClick={() => setFormState(true)}
+                className='tw-m-2 tw-w-32 tw-self-center tw-rounded-sm tw-border-2'
+                type='submit'
+              >
+                Create Entry
+              </button>
+            )}
+          </div>
           <div className=''>
             {entries
               .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
@@ -82,15 +94,6 @@ export default function MslListing({ formState, setFormState }) {
                 </div>
               ))}
           </div>
-          {!formState && (
-            <button
-              onClick={() => setFormState(true)}
-              className='tw-m-2 tw-w-32 tw-self-center tw-rounded-sm tw-border-2'
-              type='submit'
-            >
-              Create Entry
-            </button>
-          )}
         </div>
       </div>
     </div>
