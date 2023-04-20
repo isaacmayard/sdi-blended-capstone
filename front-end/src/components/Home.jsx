@@ -4,7 +4,7 @@
 
 import { useSome } from '../utilities/MainContextProvider';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';

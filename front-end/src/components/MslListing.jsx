@@ -35,7 +35,7 @@ export default function MslListing({ formState, setFormState }) {
       <div className=' tw-flex tw-grow tw-flex-col'>
         <div className=' tw-bg-[#5c5c5c]  tw-p-4 tw-text-white'>
           <div className=' tw-text-center'>MSL</div>
-          <div className=' tw-h-[1000px] tw-overflow-auto '>
+          <div className=' tw-h-[100vh]'>
             {entries
               .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
               .map((entry) => (
