@@ -10,6 +10,9 @@ export default {
   darkMode: 'class',
   theme: {
     extend: {
+      boxShadow: {
+        '3xl': '0 50px 60px -15px rgba(0, 0, 0, 0.5)',
+      },
       fontFamily: {
         inter: ['inter', 'serif'],
       },

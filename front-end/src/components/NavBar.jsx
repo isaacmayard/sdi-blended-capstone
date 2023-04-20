@@ -6,8 +6,7 @@ import {
   CDBSidebarMenuItem,
 } from 'cdbreact';
 import React from 'react';
-import { NavItem } from 'react-bootstrap';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import { useSome } from '../utilities/MainContextProvider';
 import useFetch from '../utilities/useFetch';
