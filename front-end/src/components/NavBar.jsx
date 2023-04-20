@@ -31,31 +31,37 @@ export default function NavBar() {
           </a>
         </CDBSidebarHeader>
         <CDBSidebarContent className='sidebar-content'>
-          <CDBSidebarMenuItem icon='user'>
-            {(
-              <p>
-                <strong>{currentUser.rank}</strong> {currentUser.firstName}{' '}
-                {currentUser.lastName}
-              </p>
-            ) || <p>{currentUser.userName}</p>}
-            <ul>
-              {currentUser.unit && (
-                <li className='tw-flex-wrap'>Unit: {currentUser.unit} </li>
-              )}
-            </ul>
-            <ul>
-              {currentUser.work_section && (
-                <li className='tw-break-words'>
-                  Section: {currentUser.work_section}{' '}
-                </li>
-              )}
-            </ul>
-            <ul>
-              {currentUser.contact_number && (
-                <li className='tw-flex-wrap'>{currentUser.contact_number} </li>
-              )}
-            </ul>
-          </CDBSidebarMenuItem>
+          {isLoggedIn ? (
+            <CDBSidebarMenuItem icon='user'>
+              {(
+                <p>
+                  <strong>{currentUser.rank}</strong> {currentUser.firstName}{' '}
+                  {currentUser.lastName}
+                </p>
+              ) || <p>{currentUser.userName}</p>}
+              <ul>
+                {currentUser.unit && (
+                  <li className='tw-flex-wrap'>Unit: {currentUser.unit} </li>
+                )}
+              </ul>
+              <ul>
+                {currentUser.work_section && (
+                  <li className='tw-break-words'>
+                    Section: {currentUser.work_section}{' '}
+                  </li>
+                )}
+              </ul>
+              <ul>
+                {currentUser.contact_number && (
+                  <li className='tw-flex-wrap'>
+                    {currentUser.contact_number}{' '}
+                  </li>
+                )}
+              </ul>
+            </CDBSidebarMenuItem>
+          ) : (
+            <p className='tw-text-center'>Welcome</p>
+          )}
           <CDBSidebarMenu>
             <NavLink to='/home'>
               {isLoggedIn && (

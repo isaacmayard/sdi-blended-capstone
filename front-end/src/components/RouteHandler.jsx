@@ -14,9 +14,10 @@ import TaskList from './TaskList.tsx';
 import UnitDirectory from './UnitDirectory';
 
 export default function RouteHandler() {
-  const location = useLocation();
   // check if user is logged in
   const { isLoggedIn } = useSome();
+
+  const location = useLocation();
 
   return (
     <Routes>

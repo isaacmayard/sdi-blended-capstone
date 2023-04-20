@@ -21,7 +21,13 @@ const fields = [
   'Section',
   'Unit',
 ];
-const requiredField = ['Username', 'Password'];
+const requiredField = [
+  'Username',
+  'Password',
+  'First Name',
+  'Last Name',
+  'Phone',
+];
 
 export default function RegisterPage() {
   // check user exist
@@ -105,7 +111,7 @@ export default function RegisterPage() {
         key='danger'
         variant='danger'
       >
-        <p className='tw-m-2'>User Already exist</p>
+        <p className='tw-m-2'>User already exists</p>
         <button
           className='tw-m-2 tw-w-32 tw-self-center tw-rounded-full tw-border-2 tw-bg-red-500 tw-p-2 '
           onClick={() => {
