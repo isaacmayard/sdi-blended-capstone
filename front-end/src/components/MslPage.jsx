@@ -35,12 +35,13 @@ export default function MslPage() {
   const onSubmit = ({ Title: title, Description: description }) => {
     const userId = currentUser.id;
     const data = { title, description, userId };
-    mutate(data);
+    mutate(data, {
+      onSuccess: () => {
+        queryClient.invalidateQueries();
+      },
+    });
     // console.log(data);
 
-    if (isSuccess) {
-      queryClient.invalidateQueries();
-    }
     setFormState(false);
   };
 

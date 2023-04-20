@@ -1,5 +1,6 @@
 /* eslint-disable camelcase */
 /* eslint-disable import/order */
+import { useQueryClient } from '@tanstack/react-query';
 import React, { useState } from 'react';
 import { Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
@@ -30,6 +31,8 @@ const requiredField = [
 ];
 
 export default function RegisterPage() {
+  const queryClient = useQueryClient();
+
   // check user exist
   const [userError, setUserError] = useState(false);
   const [userCreated, setUserCreated] = useState(false);
@@ -64,18 +67,25 @@ export default function RegisterPage() {
     console.log(userExist);
 
     if (!userExist) {
-      mutate({
-        lastName,
-        userName,
-        password,
-        admin,
-        rank,
-        firstName,
-        supervisor,
-        contact_number,
-        work_section,
-        unit,
-      });
+      mutate(
+        {
+          lastName,
+          userName,
+          password,
+          admin,
+          rank,
+          firstName,
+          supervisor,
+          contact_number,
+          work_section,
+          unit,
+        },
+        {
+          onSuccess: () => {
+            queryClient.invalidateQueries();
+          },
+        },
+      );
       setUserCreated(true);
     } else {
       setUserError(true);
