@@ -1,21 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import Card from 'react-bootstrap/Card';
+import React from 'react';
 
 import useFetch from '../utilities/useFetch';
 
 export default function MslListing({ formState, setFormState }) {
-  // const [entries, setEntries] = useState([]);
-
   const { data: entries, isLoading, isError, isFetching } = useFetch('msl');
   const { data: users, isLoading: isLoadingUsers } = useFetch('users');
 
-  // useEffect(() => {
-  //   fetch('http://localhost:8085/msl')
-  //     .then((res) => res.json())
-  //     .then((data) => setEntries(data));
-  // }, []);
-
-  // if (!entries) return 'Loading...';
   if (isLoading) {
     return <span>Loading...</span>;
   }
@@ -31,49 +21,61 @@ export default function MslListing({ formState, setFormState }) {
   }
 
   return (
-    <div className=' tw-flex tw-grow  tw-bg-black'>
-      <div className=' tw-flex tw-grow tw-flex-col'>
-        <div className=' tw-bg-[#5c5c5c]  tw-p-4 tw-text-white'>
-          <div className=' tw-text-center'>MSL</div>
-          <div className=' tw-h-[100vh]'>
+    <div className=' tw-flex tw-grow'>
+      <div className=' tw-flex tw-grow tw-flex-col tw-p-7'>
+        <div className=' tw-outside-base-style tw-p-4 tw-text-white'>
+          <div className=' tw-mb-2 tw-text-center'>MSL</div>
+          <div className=''>
             {entries
               .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
               .map((entry) => (
                 <div key={entry.id} className=''>
-                  <div className='tw-divide- tw-divide-y tw-divide-black  tw-bg-gray-200 tw-text-black '>
-                    <div className='tw-flex tw-justify-around tw-p-2 '>
-                      <div className=''>Title: {entry.title}</div>
+                  <div className='tw-divide- tw-map-element tw-divide-y  tw-divide-black tw-bg-gray-200 tw-text-black'>
+                    <div className='tw-rounded-2 tw-flex tw-justify-between tw-p-2'>
+                      <div>
+                        <span className='tw-map-element-header'>Title: </span>{' '}
+                        <span>{entry.title}</span>
+                      </div>
                       <div className=''>
-                        Created by:{' '}
-                        {users.findIndex((obj) => obj.id === entry.userId) !==
-                        -1
-                          ? `${
-                              users[
-                                users.findIndex(
-                                  (obj) => obj.id === entry.userId,
-                                )
-                              ].rank
-                            } ${
-                              users[
-                                users.findIndex(
-                                  (obj) => obj.id === entry.userId,
-                                )
-                              ].lastName
-                            }, ${
-                              users[
-                                users.findIndex(
-                                  (obj) => obj.id === entry.userId,
-                                )
-                              ].firstName
-                            }`
-                          : 'Guess'}
+                        <span className='tw-map-element-header'>
+                          Created by:{' '}
+                        </span>
+                        <span>
+                          {users.findIndex((obj) => obj.id === entry.userId) !==
+                          -1
+                            ? `${
+                                users[
+                                  users.findIndex(
+                                    (obj) => obj.id === entry.userId,
+                                  )
+                                ].rank
+                              } ${
+                                users[
+                                  users.findIndex(
+                                    (obj) => obj.id === entry.userId,
+                                  )
+                                ].lastName
+                              }, ${
+                                users[
+                                  users.findIndex(
+                                    (obj) => obj.id === entry.userId,
+                                  )
+                                ].firstName
+                              }`
+                            : 'Guest'}
+                        </span>
                       </div>
                     </div>
                     <p className='tw-flex tw-min-h-[80px] tw-grow tw-p-2'>
-                      Description: {entry.description}
+                      {entry.description}
                     </p>
                     <div className='tw-flex tw-justify-between tw-align-baseline'>
-                      <span className='  '>Created on: {entry.createdAt}</span>
+                      <span className='  '>
+                        <span className='tw-map-element-header'>
+                          Created on:
+                        </span>
+                        <span> {entry.createdAt.slice(0, 10)}</span>
+                      </span>
                     </div>
                   </div>
                   <br />

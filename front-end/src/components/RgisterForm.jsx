@@ -35,7 +35,7 @@ export default function RgisterForm({
 
   return (
     <div
-      className={` tw-absolute tw-right-[25vw] tw-top-28 tw-h-fit tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white ${className}`}
+      className={` tw-absolute tw-right-[37vw] tw-top-28 tw-h-fit tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white ${className}`}
     >
       <form
         noValidate

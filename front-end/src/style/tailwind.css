@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.tw-outside-base-style {
+  @apply tw-rounded-2xl tw-border-2 tw-p-2;
+}
+
+.tw-map-element {
+  @apply tw-rounded-lg tw-border-2 tw-p-2 tw-shadow-3xl;
+}
+
+.tw-map-element-header {
+  @apply tw-text-lg tw-font-medium;
+}

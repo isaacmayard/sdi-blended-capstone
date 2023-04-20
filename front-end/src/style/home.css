@@ -9,9 +9,10 @@ hr {
 }
 
 .card-box {
-  background-color: #5c5c5c !important;
+  background-color: #7c0707 !important;
   color: white;
   opacity: 0.9;
+  height: 77vh;
 }
 
 .card-box li {

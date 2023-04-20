@@ -98,7 +98,7 @@ export default function Sidebar() {
   function renderTasks(subTasks) {
     return (
       <div className='tab-pane active' id='total' role='tabpanel'>
-        <div className='divide-y divide-slate-700 tw-h-[835px] tw-overflow-auto'>
+        <div className='divide-y divide-slate-700 tw-h-[912px] tw-overflow-auto tw-rounded-xl tw-border tw-p-2'>
           {subTasks.map((task) => (
             <>
               <div className='card text-center tw-bg-gray-200 tw-text-black '>
@@ -122,9 +122,9 @@ export default function Sidebar() {
   if (isErrorTasks) return `An error has occurred: ${isErrorTasks.message}`;
 
   const metricsContainer = (
-    <div className='col-3'>
-      <Card className='card-box m-3'>
-        <div className='divide-y divide-slate-700 tw-h-[900px] tw-overflow-auto'>
+    <div className='col-3 tw-ml-[10vw] tw-w-fit'>
+      <Card className='card-box m-3 tw-rounded-2xl'>
+        <div className='divide-y divide-slate-700 tw-h-[77vh] tw-w-[25vw]'>
           <Card.Body>
             <Metrics />
           </Card.Body>
@@ -134,10 +134,10 @@ export default function Sidebar() {
   );
 
   return (
-    <div className='tw-flex tw-h-[100vh] tw-grow tw-overflow-auto tw-bg-black'>
-      <div className=' tw-flex tw-w-screen'>
-        <div className=''>
-          <Card className='card-box m-3'>
+    <div className='tw-flex tw-h-[100vh] tw-grow tw-overflow-auto'>
+      <div className='tw-flex tw-w-screen'>
+        <div className='tw-ml-[10vw] tw-h-[77vh]'>
+          <Card className='card-box m-3 tw-rounded-2xl'>
             <Card.Body>
               <Tabs>
                 <TabList>
@@ -183,11 +183,11 @@ export default function Sidebar() {
                   />
                 </TabList>
 
-                <TabPanel>{renderTasks(filteredTasks)};</TabPanel>
-                <TabPanel>{renderTasks(completedTasks)};</TabPanel>
-                <TabPanel>{renderTasks(completedLateTasks)};</TabPanel>
-                <TabPanel>{renderTasks(overdueTasks)};</TabPanel>
-                <TabPanel>{renderTasks(pendingTasks)};</TabPanel>
+                <TabPanel>{renderTasks(filteredTasks)}</TabPanel>
+                <TabPanel>{renderTasks(completedTasks)}</TabPanel>
+                <TabPanel>{renderTasks(completedLateTasks)}</TabPanel>
+                <TabPanel>{renderTasks(overdueTasks)}</TabPanel>
+                <TabPanel>{renderTasks(pendingTasks)}</TabPanel>
               </Tabs>
             </Card.Body>
           </Card>

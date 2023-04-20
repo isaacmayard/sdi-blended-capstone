@@ -17,9 +17,8 @@ export default function Section() {
   }
 
   return (
-    <div>
-      <h1>{currentUser.section}</h1>
-      <div className='d-flex flex-wrap'>
+    <div className='tw-flex tw-w-[100vw] tw-justify-center tw-p-5'>
+      <div className='tw-flex tw-h-fit tw-flex-wrap'>
         {users &&
           users.map((user) => (
             <Card
@@ -28,6 +27,7 @@ export default function Section() {
                 width: '18rem',
                 margin: '10px',
                 backgroundImage: `url(${ussfLogo})`,
+                backgroundColor: 'gray',
               }}
             >
               <Card.Body>
