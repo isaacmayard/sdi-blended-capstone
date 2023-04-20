@@ -10,6 +10,7 @@ import NavBar from './NavBar';
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
 import SplitButton from 'react-bootstrap/SplitButton';
+import { BsBarChartLine } from 'react-icons/bs';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useFetch from '../utilities/useFetch';
@@ -25,6 +26,29 @@ const testMsl = ['Title', 'Date', 'Tags', 'Description'];
 // import { useSome } from '../utilities/MainContextProvider';
 
 export default function Sidebar() {
+  const monthNames = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  const yearList = [2022, 2023, 2024];
+
+  const [show, setShow] = useState(false);
+  const [currentMonth, setCurrentMonth] = useState(
+    monthNames[new Date().getMonth()],
+  );
+  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
+
   const {
     data: users,
     isLoading: isLoadingUsers,
@@ -95,20 +119,17 @@ export default function Sidebar() {
   if (isLoadingUsers) return 'Loading...';
   if (isErrorUsers) return `An error has occurred: ${isErrorUsers.message}`;
 
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  const metricsContainer = (
+    <div className='col-3'>
+      <Card className='card-box m-3'>
+        <div className='divide-y divide-slate-700 tw-h-[900px] tw-overflow-auto'>
+          <Card.Body>
+            <Metrics />
+          </Card.Body>
+        </div>
+      </Card>
+    </div>
+  );
 
   return (
     <div className='tw-flex tw-grow tw-overflow-auto tw-bg-black'>
@@ -127,31 +148,37 @@ export default function Sidebar() {
                     key='primary'
                     id='dropdown-split-variants-Primary'
                     variant='primary'
-                    title='Month'
+                    title={currentMonth}
                   >
-                    <Dropdown.Item eventKey='1'>Action</Dropdown.Item>
-                    <Dropdown.Item eventKey='2'>Another action</Dropdown.Item>
-                    <Dropdown.Item eventKey='3' active>
-                      Active Item
-                    </Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item eventKey='4'>Separated link</Dropdown.Item>
+                    {monthNames.map((month, index) => (
+                      <Dropdown.Item
+                        eventKey={index + 1}
+                        onClick={(e) => setCurrentMonth(e.target.innerText)}
+                      >
+                        {month}
+                      </Dropdown.Item>
+                    ))}
                   </SplitButton>
 
                   <SplitButton
                     key='primary'
                     id='dropdown-split-variants-Primary'
                     variant='primary'
-                    title='Year'
+                    title={currentYear}
                   >
-                    <Dropdown.Item eventKey='1'>Action</Dropdown.Item>
-                    <Dropdown.Item eventKey='2'>Another action</Dropdown.Item>
-                    <Dropdown.Item eventKey='3' active>
-                      Active Item
-                    </Dropdown.Item>
-                    <Dropdown.Divider />
-                    <Dropdown.Item eventKey='4'>Separated link</Dropdown.Item>
+                    {yearList.map((year, index) => (
+                      <Dropdown.Item
+                        eventKey={index + 1}
+                        onClick={(e) => setCurrentYear(e.target.innerText)}
+                      >
+                        {year}
+                      </Dropdown.Item>
+                    ))}
                   </SplitButton>
+                  <BsBarChartLine
+                    size={48}
+                    onClick={() => setShow((currentShow) => !currentShow)}
+                  />
                 </TabList>
 
                 <TabPanel>{renderTasks(tasks)};</TabPanel>
@@ -163,15 +190,17 @@ export default function Sidebar() {
             </Card.Body>
           </Card>
         </div>
-        <div className='col-3'>
-          <Card className='card-box m-3'>
-            <div className='divide-y divide-slate-700 tw-h-[900px] tw-overflow-auto'>
-              <Card.Body>
-                <Metrics />
-              </Card.Body>
-            </div>
-          </Card>
-        </div>
+
+        <nav className='nav__bar'>
+          <ul className='menu'>
+            <li
+              className='menu__icon'
+              onClick={() => setShow((currentShow) => !currentShow)}
+            >
+              {show ? metricsContainer : null}
+            </li>
+          </ul>
+        </nav>
       </div>
     </div>
   );
