@@ -33,7 +33,12 @@ export default function NavBar() {
         </CDBSidebarHeader>
         <CDBSidebarContent className='sidebar-content'>
           <CDBSidebarMenuItem icon='user'>
-            {currentUser.rank} {currentUser.firstName} {currentUser.lastName}
+            {(
+              <p>
+                <strong>{currentUser.rank}</strong> {currentUser.firstName}{' '}
+                {currentUser.lastName}
+              </p>
+            ) || <p>{currentUser.userName}</p>}
             <ul>
               {currentUser.unit && (
                 <li className='tw-flex-wrap'>Unit: {currentUser.unit} </li>
@@ -54,37 +59,50 @@ export default function NavBar() {
           </CDBSidebarMenuItem>
           <CDBSidebarMenu>
             <NavLink to='/home'>
-              <CDBSidebarMenuItem icon='home'>HOME</CDBSidebarMenuItem>
+              {isLoggedIn && (
+                <CDBSidebarMenuItem icon='home'>HOME</CDBSidebarMenuItem>
+              )}
             </NavLink>
             <NavLink to='/section'>
-              <CDBSidebarMenuItem icon='users'>SECTION</CDBSidebarMenuItem>
+              {isLoggedIn && (
+                <CDBSidebarMenuItem icon='users'>SECTION</CDBSidebarMenuItem>
+              )}
             </NavLink>
             <NavLink to='/login'>
               {!isLoggedIn && (
                 <CDBSidebarMenuItem icon='user'>LOGIN</CDBSidebarMenuItem>
               )}
             </NavLink>
-            {/* <NavLink to='/troops' activeClassName='activeClicked'>
-              <CDBSidebarMenuItem icon='users'>TROOPS</CDBSidebarMenuItem>
-            </NavLink> */}
             <NavLink to='/calendar'>
-              <CDBSidebarMenuItem icon='calendar'>CALENDAR</CDBSidebarMenuItem>
+              {isLoggedIn && (
+                <CDBSidebarMenuItem icon='calendar'>
+                  CALENDAR
+                </CDBSidebarMenuItem>
+              )}
             </NavLink>
             <NavLink to='/taskadmin'>
-              <CDBSidebarMenuItem icon='key'>
-                TASK MANAGEMENT
-              </CDBSidebarMenuItem>
+              {isLoggedIn && currentUser.admin && (
+                <CDBSidebarMenuItem icon='key'>
+                  TASK MANAGEMENT
+                </CDBSidebarMenuItem>
+              )}
             </NavLink>
             <NavLink to='/tasks'>
-              <CDBSidebarMenuItem icon='tasks'>TASKS</CDBSidebarMenuItem>
+              {isLoggedIn && (
+                <CDBSidebarMenuItem icon='tasks'>TASKS</CDBSidebarMenuItem>
+              )}
             </NavLink>
             <NavLink to='/msl'>
-              <CDBSidebarMenuItem icon='th-large'>MSL</CDBSidebarMenuItem>
+              {isLoggedIn && (
+                <CDBSidebarMenuItem icon='th-large'>MSL</CDBSidebarMenuItem>
+              )}
             </NavLink>
             <NavLink to='/unit'>
-              <CDBSidebarMenuItem icon='book'>
-                UNIT DIRECTORY
-              </CDBSidebarMenuItem>
+              {isLoggedIn && (
+                <CDBSidebarMenuItem icon='book'>
+                  UNIT DIRECTORY
+                </CDBSidebarMenuItem>
+              )}
             </NavLink>
           </CDBSidebarMenu>
 

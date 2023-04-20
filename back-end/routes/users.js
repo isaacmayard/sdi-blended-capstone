@@ -10,6 +10,17 @@ router.get("/", function (req, res, next) {
   });
 });
 
+/* POST user */
 
+router.post("/", async function (req, res, next) {
+  const newUser = req.body;
+  try {
+    await User.create(newUser);
+    res.status(201).json(newUser);
+    console.log(`${newUser} created`);
+  } catch (err) {
+    console.error(err);
+  }
+});
 
 module.exports = router;

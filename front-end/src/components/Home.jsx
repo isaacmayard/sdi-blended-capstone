@@ -2,10 +2,9 @@
 /* eslint-disable import/order */
 /* eslint-disable import/no-unresolved */
 
-import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import react, { useEffect, useState } from 'react';
-import NavBar from './NavBar';
+import { useSome } from '../utilities/MainContextProvider';
+
+import React, { useEffect, useState } from 'react';
 
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
@@ -19,8 +18,6 @@ import Metrics from './Metrics';
 import '../style/home.css';
 
 // eslint-disable-next-line import/order
-
-const testMsl = ['Title', 'Date', 'Tags', 'Description'];
 
 export default function Sidebar() {
   const monthNames = [
@@ -46,17 +43,19 @@ export default function Sidebar() {
   );
   const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
 
-  const {
-    data: users,
-    isLoading: isLoadingUsers,
-    isError: isErrorUsers,
-  } = useFetch('users');
+  const { currentUser } = useSome();
+  // const {
+  //   data: users,
+  //   isLoading: isLoadingUsers,
+  //   isError: isErrorUsers,
+  // } = useFetch('users');
 
+  // this is grabbing the currently logged in users tasks assigned to them.
   const {
     data: tasks,
     isLoading: isLoadingTasks,
     isError: isErrorTasks,
-  } = useFetch('tasks');
+  } = useFetch(`user_tasks/${currentUser.id}`);
 
   const filteredTasks = tasks?.filter((task) => {
     const taskDate = new Date(task.dueDate);
@@ -121,8 +120,6 @@ export default function Sidebar() {
 
   if (isLoadingTasks) return 'Loading...';
   if (isErrorTasks) return `An error has occurred: ${isErrorTasks.message}`;
-  if (isLoadingUsers) return 'Loading...';
-  if (isErrorUsers) return `An error has occurred: ${isErrorUsers.message}`;
 
   const metricsContainer = (
     <div className='col-3'>
@@ -137,7 +134,7 @@ export default function Sidebar() {
   );
 
   return (
-    <div className='tw-flex tw-grow tw-overflow-auto tw-bg-black'>
+    <div className='tw-flex tw-h-[100vh] tw-grow tw-overflow-auto tw-bg-black'>
       <div className=' tw-flex tw-w-screen'>
         <div className=''>
           <Card className='card-box m-3'>
@@ -181,7 +178,7 @@ export default function Sidebar() {
                     ))}
                   </SplitButton>
                   <BsBarChartLine
-                    size={48}
+                    size={24}
                     onClick={() => setShow((currentShow) => !currentShow)}
                   />
                 </TabList>

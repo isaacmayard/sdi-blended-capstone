@@ -123,13 +123,6 @@ export default function Metrics() {
       <script src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js' />
       <script src='//code.jquery.com/jquery-1.11.1.min.js' />
 
-      <a
-        href='/'
-        className='text-decoration-none tw-hover:ring-2'
-        style={{ color: 'inherit' }}
-      >
-        TASK METRICS
-      </a>
       <div className='container-fluid'>
         <div className='row row-md-12'>
           <div className='panel-group' id='accordion'>
@@ -163,6 +156,7 @@ export default function Metrics() {
                   <li className='list-group-item'>
                     <span className='badge'>{pendingTasks}</span> Pending
                   </li>
+                  last month
                 </ul>
               </div>
             </div>
@@ -170,10 +164,10 @@ export default function Metrics() {
         </div>
         <div className='col col-md-13'>
           <div className='row'>
-            <div className='row row-md-12'>
+            <div className='row row-md-5'>
               <h4>{monthNames[currentDate.getMonth()]} Task Rates</h4>
-
-              <span className='pull-right strong'>{`Incomplete Rate: ${Math.round(
+              Incomplete Rate
+              <span className='pull-right strong'>{`${Math.round(
                 (currentOverdueTasks /
                   (currentTotalTasks - currentPendingTasks)) *
                   100,
@@ -193,7 +187,8 @@ export default function Metrics() {
                   {currentOverdueTasks}
                 </div>
               </div>
-              <span className='pull-right strong'>{`On-Time Rate: ${Math.round(
+              On-Time Rate
+              <span className='pull-right strong'>{`${Math.round(
                 (currentCompletedTasks /
                   (currentTotalTasks - currentPendingTasks)) *
                   100,
@@ -213,7 +208,8 @@ export default function Metrics() {
                   {currentCompletedTasks}
                 </div>
               </div>
-              <span className='pull-right strong'>{`Overdue Completion Rate: ${Math.round(
+              Overdue Completion Rate
+              <span className='pull-right strong'>{`${Math.round(
                 (currentCompletedLateTasks /
                   (currentTotalTasks - currentPendingTasks)) *
                   100,
@@ -233,8 +229,8 @@ export default function Metrics() {
                   {currentCompletedLateTasks}
                 </div>
               </div>
-
-              <span className='pull-right strong'>{`Pending Task Rate: ${Math.round(
+              Pending Task Rate
+              <span className='pull-right strong'>{`${Math.round(
                 (currentPendingTasks / currentTotalTasks) * 100,
                 2,
               )}%`}</span>
@@ -251,10 +247,10 @@ export default function Metrics() {
               </div>
             </div>
 
-            <div className='row row-md-12'>
+            <div className='row row-md-5'>
               <h4>{monthNames[currentDate.getMonth() - 1]} Task Rates</h4>
-
-              <span className='pull-right strong'>{`Incomplete Rate: ${Math.round(
+              Incomplete Rate
+              <span className='pull-right strong'>{`${Math.round(
                 (prevOverdueTasks / (prevTotalTasks - prevPendingTasks)) * 100,
                 2,
               )}%`}</span>
@@ -271,8 +267,8 @@ export default function Metrics() {
                   {prevOverdueTasks}
                 </div>
               </div>
-
-              <span className='pull-right strong'>{`On-Time Rate: ${Math.round(
+              On-Time Rate
+              <span className='pull-right strong'>{`${Math.round(
                 (prevCompletedTasks / (prevTotalTasks - prevPendingTasks)) *
                   100,
                 2,
@@ -291,8 +287,8 @@ export default function Metrics() {
                   {prevCompletedTasks}
                 </div>
               </div>
-
-              <span className='pull-right strong'>{`Overdue Completion Rate: ${Math.round(
+              Overdue Completion Rate
+              <span className='pull-right strong'>{`${Math.round(
                 (prevCompletedLateTasks / (prevTotalTasks - prevPendingTasks)) *
                   100,
                 2,
@@ -311,8 +307,8 @@ export default function Metrics() {
                   {prevCompletedLateTasks}
                 </div>
               </div>
-
-              <span className='pull-right strong'>{`Pending Task Rate: ${Math.round(
+              Pending Task Rate
+              <span className='pull-right strong'>{`${Math.round(
                 (prevPendingTasks / prevTotalTasks) * 100,
                 2,
               )}%`}</span>
@@ -320,9 +316,7 @@ export default function Metrics() {
                 <div
                   className='progress-bar'
                   role='progressbar'
-                  style={{
-                    width: (prevPendingTasks / prevTotalTasks) * 250,
-                  }}
+                  style={{ width: (prevPendingTasks / prevTotalTasks) * 250 }}
                 >
                   {prevPendingTasks}
                 </div>

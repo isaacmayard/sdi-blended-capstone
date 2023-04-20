@@ -11,8 +11,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 3%;
-  background-color: #8c8c8c;
+  margin-top: 1%;
   padding-top: 1%;
   border-radius: 8px;
 }
@@ -37,31 +36,38 @@
 }
 
 .available-users {
-  background-color: green;
-  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 35%;
+  margin-top: 15px;
+  margin-bottom: 20px;
   border-radius: 8px;
   text-align: center;
-  width: 25%;
+  width: 30%;
   color: white;
+  background-color: black;
+  font-size: large;
 }
 
 .selected-user {
-  margin-left: 20%;
-  color: white;
+  margin-top: 5px;
   font-size: x-large;
 }
 
 .assigned-tasks {
-  background-color: cornflowerblue;
-  border: 1px solid black;
+  text-align: center;
+  margin-left: 26.5%;
+  margin-top: 5px;
+  border: 3px solid black;
+  border-radius: 5px;
   width: 300px;
   height: 300px;
-  overflow: hidden;
 }
 
-.btn.btn-outline-light {
-  margin-top: 2%;
-  margin-left: 17%;
+.d-flex.buttons {
+  display: flex;
+  justify-content: center;
 }
 
 .dropped-task {
@@ -71,4 +77,14 @@
   color: white;
   text-align: center;
   width: 280px;
+}
+
+.user-column {
+  text-align: center;
+  display: contents;
+}
+
+.assigned-troops {
+  color: white;
+  font-size: xx-large;
 }
