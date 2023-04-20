@@ -185,7 +185,7 @@ export default function Sidebar() {
                   <Button
                     variant='primary'
                     onClick={() => setShow((currentShow) => !currentShow)}
-                    style={{ display: 'flex', alignItems: 'center' }}
+                    style={{ display: 'flex' }}
                   >
                     <BsBarChartLine style={{ marginRight: '5px' }} />
                     Metrics

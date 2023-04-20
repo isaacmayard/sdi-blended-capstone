@@ -160,98 +160,125 @@ export default function Metrics() {
             </div>
           </div>
         </div>
+
         <div className='col col-md-13'>
           <div className='row'>
-            <div className='row row-md-15'>
-              <h4>{monthNames[currentDate.getMonth()]} Task Rates</h4>
-              Incomplete Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (currentOverdueTasks /
-                  (currentTotalTasks - currentPendingTasks)) *
-                  100,
-                2,
-              )}%`}</span>
-              <div className='progress'>
-                <div
-                  className='progress-bar progress-bar-danger'
-                  role='progressbar'
-                  style={{
-                    width:
-                      (currentOverdueTasks /
-                        (currentTotalTasks - currentPendingTasks)) *
-                      250,
-                  }}
-                >
-                  {currentOverdueTasks}
+            <h4>{monthNames[currentDate.getMonth()]} Task Rates</h4>
+            <div>
+              <div className='task-rate'>
+                <span className='rate-category'>Incomplete Rate</span>
+                <span className='rate-percentage pull-right strong'>
+                  {`${Math.round(
+                    (currentOverdueTasks /
+                      (currentTotalTasks - currentPendingTasks)) *
+                      100,
+                    2,
+                  )}%`}
+                </span>
+                <div className='progress'>
+                  <div
+                    className='progress-bar progress-bar-danger'
+                    role='progressbar'
+                    style={{
+                      width: `${
+                        (currentOverdueTasks /
+                          (currentTotalTasks - currentPendingTasks)) *
+                        250
+                      }px`,
+                    }}
+                  >
+                    {currentOverdueTasks}
+                  </div>
                 </div>
               </div>
-              On-Time Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (currentCompletedTasks /
-                  (currentTotalTasks - currentPendingTasks)) *
-                  100,
-                2,
-              )}%`}</span>
-              <div className='progress'>
-                <div
-                  className='progress-bar progress-bar-success'
-                  role='progressbar'
-                  style={{
-                    width:
-                      (currentCompletedTasks /
-                        (currentTotalTasks - currentPendingTasks)) *
-                      250,
-                  }}
-                >
-                  {currentCompletedTasks}
+              <div className='task-rate'>
+                <span className='rate-category'>On-Time Rate</span>
+                <span className='rate-percentage pull-right strong'>
+                  {`${Math.round(
+                    (currentCompletedTasks /
+                      (currentTotalTasks - currentPendingTasks)) *
+                      100,
+                    2,
+                  )}%`}
+                </span>
+                <div className='progress'>
+                  <div
+                    className='progress-bar progress-bar-success'
+                    role='progressbar'
+                    style={{
+                      width: `${
+                        (currentCompletedTasks /
+                          (currentTotalTasks - currentPendingTasks)) *
+                        250
+                      }px`,
+                    }}
+                  >
+                    {currentCompletedTasks}
+                  </div>
                 </div>
               </div>
-              Overdue Completion Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (currentCompletedLateTasks /
-                  (currentTotalTasks - currentPendingTasks)) *
-                  100,
-                2,
-              )}%`}</span>
-              <div className='progress'>
-                <div
-                  className='progress-bar progress-bar-warning'
-                  role='progressbar'
-                  style={{
-                    width:
-                      (currentCompletedLateTasks /
-                        (currentTotalTasks - currentPendingTasks)) *
-                      250,
-                  }}
-                >
-                  {currentCompletedLateTasks}
+
+              <div className='task-rate'>
+                <span className='rate-category'>Overdue Completion Rate</span>
+                <span className='rate-percentage pull-right strong'>
+                  {`${Math.round(
+                    (currentCompletedLateTasks /
+                      (currentTotalTasks - currentPendingTasks)) *
+                      100,
+                    2,
+                  )}%`}
+                </span>
+                <div className='progress'>
+                  <div
+                    className='progress-bar progress-bar-warning'
+                    role='progressbar'
+                    style={{
+                      width: `${
+                        (currentCompletedLateTasks /
+                          (currentTotalTasks - currentPendingTasks)) *
+                        250
+                      }px`,
+                    }}
+                  >
+                    {currentCompletedLateTasks}
+                  </div>
                 </div>
               </div>
-              Pending Task Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (currentPendingTasks / currentTotalTasks) * 100,
-                2,
-              )}%`}</span>
-              <div className='progress'>
-                <div
-                  className='progress-bar'
-                  role='progressbar'
-                  style={{
-                    width: (currentPendingTasks / currentTotalTasks) * 250,
-                  }}
-                >
-                  {currentPendingTasks}
+
+              <div className='task-rate'>
+                <span className='rate-category'>Pending Task Rate</span>
+                <span className='rate-percentage pull-right strong'>
+                  {`${Math.round(
+                    (currentPendingTasks / currentTotalTasks) * 100,
+                    2,
+                  )}%`}
+                </span>
+                <div className='progress'>
+                  <div
+                    className='progress-bar'
+                    role='progressbar'
+                    style={{
+                      width: `${
+                        (currentPendingTasks / currentTotalTasks) * 250
+                      }px`,
+                    }}
+                  >
+                    {currentPendingTasks}
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className='row row-md-5'>
+            <div className='row-md-5'>
               <h4>{monthNames[currentDate.getMonth() - 1]} Task Rates</h4>
-              Incomplete Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (prevOverdueTasks / (prevTotalTasks - prevPendingTasks)) * 100,
-                2,
-              )}%`}</span>
+              <div className='d-flex justify-content-between align-items-center'>
+                <span>Incomplete Rate</span>
+                <span className='pull-right strong'>{`${Math.round(
+                  (prevOverdueTasks / (prevTotalTasks - prevPendingTasks)) *
+                    100,
+                  2,
+                )}%`}</span>
+              </div>
               <div className='progress'>
                 <div
                   className='progress-bar progress-bar-danger'
@@ -265,12 +292,14 @@ export default function Metrics() {
                   {prevOverdueTasks}
                 </div>
               </div>
-              On-Time Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (prevCompletedTasks / (prevTotalTasks - prevPendingTasks)) *
-                  100,
-                2,
-              )}%`}</span>
+              <div className='d-flex justify-content-between align-items-center'>
+                <span>On-Time Rate</span>
+                <span className='pull-right strong'>{`${Math.round(
+                  (prevCompletedTasks / (prevTotalTasks - prevPendingTasks)) *
+                    100,
+                  2,
+                )}%`}</span>
+              </div>
               <div className='progress'>
                 <div
                   className='progress-bar progress-bar-success'
@@ -285,12 +314,15 @@ export default function Metrics() {
                   {prevCompletedTasks}
                 </div>
               </div>
-              Overdue Completion Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (prevCompletedLateTasks / (prevTotalTasks - prevPendingTasks)) *
-                  100,
-                2,
-              )}%`}</span>
+              <div className='d-flex justify-content-between align-items-center'>
+                <span>Overdue Completion Rate</span>
+                <span className='pull-right strong'>{`${Math.round(
+                  (prevCompletedLateTasks /
+                    (prevTotalTasks - prevPendingTasks)) *
+                    100,
+                  2,
+                )}%`}</span>
+              </div>
               <div className='progress'>
                 <div
                   className='progress-bar progress-bar-warning'
@@ -305,11 +337,13 @@ export default function Metrics() {
                   {prevCompletedLateTasks}
                 </div>
               </div>
-              Pending Task Rate
-              <span className='pull-right strong'>{`${Math.round(
-                (prevPendingTasks / prevTotalTasks) * 100,
-                2,
-              )}%`}</span>
+              <div className='d-flex justify-content-between align-items-center'>
+                <span>Pending Task Rate</span>
+                <span className='pull-right strong'>{`${Math.round(
+                  (prevPendingTasks / prevTotalTasks) * 100,
+                  2,
+                )}%`}</span>
+              </div>
               <div className='progress'>
                 <div
                   className='progress-bar'
