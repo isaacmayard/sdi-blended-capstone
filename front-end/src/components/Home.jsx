@@ -6,10 +6,12 @@ import { useSome } from '../utilities/MainContextProvider';
 
 import React, { useEffect, useState } from 'react';
 
+import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import SplitButton from 'react-bootstrap/SplitButton';
-import { BsBarChartLine } from 'react-icons/bs';
+import { BsBarChartLine, BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useFetch from '../utilities/useFetch';
@@ -124,7 +126,7 @@ export default function Sidebar() {
   const metricsContainer = (
     <div className='col-3'>
       <Card className='card-box m-3'>
-        <div className='divide-y divide-slate-700 tw-h-[900px] tw-overflow-auto'>
+        <div className='divide-y divide-slate-700 tw-h-[100v] tw-overflow-auto'>
           <Card.Body>
             <Metrics />
           </Card.Body>
@@ -135,17 +137,17 @@ export default function Sidebar() {
 
   return (
     <div className='tw-flex tw-h-[100vh] tw-grow tw-overflow-auto tw-bg-black'>
-      <div className=' tw-flex tw-w-screen'>
-        <div className=''>
-          <Card className='card-box m-3'>
-            <Card.Body>
-              <Tabs>
-                <TabList>
-                  <Tab>All Tasks</Tab>
-                  <Tab>Completed</Tab>
-                  <Tab>Completed Late</Tab>
-                  <Tab>Overdue</Tab>
-                  <Tab>Pending</Tab>
+      <div className=''>
+        <Card className='card-box m-3'>
+          <Card.Body>
+            <Tabs>
+              <TabList>
+                <Tab>All Tasks</Tab>
+                <Tab>Completed</Tab>
+                <Tab>Completed Late</Tab>
+                <Tab>Overdue</Tab>
+                <Tab>Pending</Tab>
+                <Tab disabled='true'>
                   <SplitButton
                     key='primary'
                     id='dropdown-split-variants-Primary'
@@ -161,7 +163,8 @@ export default function Sidebar() {
                       </Dropdown.Item>
                     ))}
                   </SplitButton>
-
+                </Tab>
+                <Tab pullRight='true' disabled='true'>
                   <SplitButton
                     key='primary'
                     id='dropdown-split-variants-Primary'
@@ -177,28 +180,31 @@ export default function Sidebar() {
                       </Dropdown.Item>
                     ))}
                   </SplitButton>
-                  <BsBarChartLine
-                    size={24}
+                </Tab>
+                <Tab disabled='true'>
+                  <Button
+                    variant='primary'
                     onClick={() => setShow((currentShow) => !currentShow)}
-                  />
-                </TabList>
+                    style={{ display: 'flex', alignItems: 'center' }}
+                  >
+                    <BsBarChartLine style={{ marginRight: '5px' }} />
+                    Metrics
+                    <BsFillArrowRightCircleFill style={{ marginLeft: '5px' }} />
+                  </Button>
+                </Tab>
+              </TabList>
 
-                <TabPanel>{renderTasks(filteredTasks)};</TabPanel>
-                <TabPanel>{renderTasks(completedTasks)};</TabPanel>
-                <TabPanel>{renderTasks(completedLateTasks)};</TabPanel>
-                <TabPanel>{renderTasks(overdueTasks)};</TabPanel>
-                <TabPanel>{renderTasks(pendingTasks)};</TabPanel>
-              </Tabs>
-            </Card.Body>
-          </Card>
-        </div>
-
-        <nav className='nav__bar'>
-          <ul className='menu'>
-            <li className='menu__icon'>{show ? metricsContainer : null}</li>
-          </ul>
-        </nav>
+              <TabPanel>{renderTasks(filteredTasks)};</TabPanel>
+              <TabPanel>{renderTasks(completedTasks)};</TabPanel>
+              <TabPanel>{renderTasks(completedLateTasks)};</TabPanel>
+              <TabPanel>{renderTasks(overdueTasks)};</TabPanel>
+              <TabPanel>{renderTasks(pendingTasks)};</TabPanel>
+            </Tabs>
+          </Card.Body>
+        </Card>
       </div>
+
+      {show ? metricsContainer : null}
     </div>
   );
 }
