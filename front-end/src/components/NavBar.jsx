@@ -99,6 +99,13 @@ export default function NavBar() {
                 <CDBSidebarMenuItem icon='th-large'>MSL</CDBSidebarMenuItem>
               )}
             </NavLink>
+            <NavLink to='/awards'>
+              {isLoggedIn && (
+                <CDBSidebarMenuItem icon='award'>
+                  BULLET SHAPER
+                </CDBSidebarMenuItem>
+              )}
+            </NavLink>
             <NavLink to='/unit'>
               {isLoggedIn && (
                 <CDBSidebarMenuItem icon='book'>

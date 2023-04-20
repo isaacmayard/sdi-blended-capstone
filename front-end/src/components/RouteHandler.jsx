@@ -1,6 +1,6 @@
 /* eslint-disable import/order */
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 import { useSome } from '../utilities/MainContextProvider';
 import AwardsPage from './AwardsPage';
@@ -16,12 +16,13 @@ import TaskList from './TaskList.tsx';
 import UnitDirectory from './UnitDirectory';
 
 export default function RouteHandler() {
+  const location = useLocation();
   // check if user is logged in
   const { isLoggedIn } = useSome();
 
   return (
     <Routes>
-      {isLoggedIn ? (
+      {isLoggedIn || location.pathname.match(/register/i) ? (
         <>
           {' '}
           <Route path='/' element={<Home />} />
