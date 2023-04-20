@@ -70,7 +70,7 @@ export default function RgisterForm({
                     validate: {
                       // create multiple validation for that item
                       shortTitle: (fieldValue) =>
-                        fieldValue.length > 6 || `${item} too short`,
+                        fieldValue.length > 3 || `${item} too short`,
                       longTitle: (fieldValue) =>
                         fieldValue.length < 50 || 'Description too Long',
                       // special: (fieldValue) =>

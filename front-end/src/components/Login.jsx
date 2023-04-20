@@ -1,7 +1,8 @@
 /* eslint-disable import/order */
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSome } from '../utilities/MainContextProvider';
+import { Alert } from 'react-bootstrap';
 
 import useFetch from '../utilities/useFetch';
 import MslForm from './MslForm';
@@ -10,6 +11,10 @@ const fields = ['Username', 'Password'];
 const requiredField = ['Username', 'Password'];
 
 export default function Login() {
+  // check user exist
+  const [userError, setUserError] = useState(false);
+  const [userCreated, setUserCreated] = useState(false);
+
   // navigate
   const navigate = useNavigate();
 
@@ -30,12 +35,36 @@ export default function Login() {
       setIsLoggedIn(true);
       navigate('/home');
     } else {
+      setUserError(true);
       console.log('Wrong password');
     }
 
     // console.log(!!result.length);
     // console.log('data', data, 'users', users);
   };
+
+  // Error alert
+  if (userError) {
+    return (
+      <Alert
+        className='tw-absolute tw-inset-80  tw-m-2 tw-h-fit tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white'
+        key='danger'
+        variant='danger'
+      >
+        <p className='tw-m-2'>Wrong password</p>
+        <button
+          className='tw-m-2 tw-w-32 tw-self-center tw-rounded-full tw-border-2 tw-bg-red-500 tw-p-2 '
+          onClick={() => {
+            setUserError(false);
+            // navigate('/register');
+          }}
+          type='button'
+        >
+          Try again!
+        </button>
+      </Alert>
+    );
+  }
 
   return (
     <div>
