@@ -1,15 +1,13 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Card } from 'react-bootstrap';
 
-import ussfLogo from '../../public/ussf_logo.png';
 import { useSome } from '../utilities/MainContextProvider';
 import useFetch from '../utilities/useFetch';
 
 export default function Section() {
   const { currentUser } = useSome();
 
-  const { data: allUsers, isLoading, isError } = useFetch('users');
+  const { data: allUsers } = useFetch('users');
   const users = allUsers.filter((user) => user.section === currentUser.section);
 
   if (currentUser.userName === 'Guest') {
@@ -26,8 +24,7 @@ export default function Section() {
               style={{
                 width: '18rem',
                 margin: '10px',
-                backgroundImage: `url(${ussfLogo})`,
-                backgroundColor: 'gray',
+                backgroundColor: 'azure',
               }}
             >
               <Card.Body>
