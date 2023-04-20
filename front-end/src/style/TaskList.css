@@ -59,10 +59,11 @@
   text-align: center;
   margin-left: 26.5%;
   margin-top: 5px;
-  border: 3px solid black;
+  border: 2px solid black;
   border-radius: 5px;
   width: 300px;
   height: 300px;
+  box-shadow: 0, 35px, 60px, 0;
 }
 
 .d-flex.buttons {

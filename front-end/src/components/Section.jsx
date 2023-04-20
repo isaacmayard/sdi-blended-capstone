@@ -20,6 +20,7 @@ export default function Section() {
         {users &&
           users.map((user) => (
             <Card
+              className='tw-shadow-3xl'
               key={user.id}
               style={{
                 width: '18rem',

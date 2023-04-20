@@ -51,14 +51,14 @@ export default function MslPage() {
           items={fields}
           requireItems={requiredField}
           fn={onSubmit}
-          className='tw-bg-opacity tw-absolute tw-inset-80 tw-flex  tw-flex-col tw-transition-all'
+          className='tw-bg-opacity tw-absolute tw-right-[33vw] tw-top-[25vh] tw-flex tw-w-[25vw] tw-flex-col tw-transition-all'
         >
           <button
             onClick={() => setFormState(false)}
             className='tw-m-2 tw-w-32 tw-self-center tw-rounded-sm tw-border-2 '
             type='submit'
           >
-            close
+            Close
           </button>
         </MslForm>
       )}

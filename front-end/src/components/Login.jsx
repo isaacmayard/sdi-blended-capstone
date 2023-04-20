@@ -47,7 +47,7 @@ export default function Login() {
   if (userError) {
     return (
       <Alert
-        className='tw-absolute tw-inset-80  tw-m-2 tw-h-fit tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white'
+        className='tw-absolute tw-inset-80  tw-m-2 tw-ml-[34vw] tw-h-fit tw-w-60 tw-justify-center tw-rounded-lg tw-bg-[#5c5c5c] tw-text-center tw-text-white'
         key='danger'
         variant='danger'
       >
