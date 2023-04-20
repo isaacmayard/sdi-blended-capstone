@@ -20,6 +20,8 @@ export default function RouteHandler() {
   // check if user is logged in
   const { isLoggedIn } = useSome();
 
+  const location = useLocation();
+
   return (
     <Routes>
       {isLoggedIn || location.pathname.match(/register/i) ? (

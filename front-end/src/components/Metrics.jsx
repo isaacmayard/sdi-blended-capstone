@@ -1,3 +1,5 @@
+import React, { useState } from 'react';
+
 import useFetch from '../utilities/useFetch';
 
 export default function Metrics() {
@@ -122,7 +124,7 @@ export default function Metrics() {
       <script src='//code.jquery.com/jquery-1.11.1.min.js' />
 
       <div className='container-fluid'>
-        <div className='col col-md-3'>
+        <div className='row row-md-12'>
           <div className='panel-group' id='accordion'>
             <div className='panel panel-default'>
               <div className='panel-heading'>
@@ -160,9 +162,9 @@ export default function Metrics() {
             </div>
           </div>
         </div>
-        <div className='col col-md-9'>
+        <div className='col col-md-13'>
           <div className='row'>
-            <div className='col col-md-5'>
+            <div className='row row-md-5'>
               <h4>{monthNames[currentDate.getMonth()]} Task Rates</h4>
               Incomplete Rate
               <span className='pull-right strong'>{`${Math.round(
@@ -245,7 +247,7 @@ export default function Metrics() {
               </div>
             </div>
 
-            <div className='col col-md-5'>
+            <div className='row row-md-5'>
               <h4>{monthNames[currentDate.getMonth() - 1]} Task Rates</h4>
               Incomplete Rate
               <span className='pull-right strong'>{`${Math.round(
