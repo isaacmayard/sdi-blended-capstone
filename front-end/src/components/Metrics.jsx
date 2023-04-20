@@ -125,46 +125,44 @@ export default function Metrics() {
 
       <div className='container-fluid'>
         <div className='row row-md-12'>
-          <div className='panel-group' id='accordion'>
-            <div className='panel panel-default'>
-              <div className='panel-heading'>
-                <h4 className='panel-title'>
-                  <a
-                    data-toggle='collapse'
-                    data-parent='#accordion'
-                    href='#collapse1'
-                  >
-                    Total Tasks
-                  </a>
-                </h4>
-              </div>
-              <div id='collapse1' className='panel-collapse collapse in'>
-                <ul className='list-group'>
-                  <li className='list-group-item'>
-                    <span className='badge'>{totalTasks}</span> Total
-                  </li>
-                  <li className='list-group-item'>
-                    <span className='badge'>{completedTasks}</span> Completed
-                  </li>
-                  <li className='list-group-item'>
-                    <span className='badge'>{completedLateTasks}</span>
-                    Completed Late
-                  </li>
-                  <li className='list-group-item'>
-                    <span className='badge'>{overdueTasks}</span> Overdue
-                  </li>
-                  <li className='list-group-item'>
-                    <span className='badge'>{pendingTasks}</span> Pending
-                  </li>
-                  last month
-                </ul>
-              </div>
+          <div className='panel panel-default'>
+            <div className='panel-heading'>
+              <h4 className='panel-title'>
+                <a
+                  data-toggle='collapse'
+                  data-parent='#accordion'
+                  href='#collapse1'
+                >
+                  Total Tasks
+                </a>
+              </h4>
+            </div>
+            <div id='collapse1' className='panel-collapse collapse in'>
+              <ul className='list-group'>
+                <li className='list-group-item'>
+                  <span className='badge'>{totalTasks}</span> Total
+                </li>
+                <li className='list-group-item'>
+                  <span className='badge'>{completedTasks}</span> Completed
+                </li>
+                <li className='list-group-item'>
+                  <span className='badge'>{completedLateTasks}</span>
+                  Completed Late
+                </li>
+                <li className='list-group-item'>
+                  <span className='badge'>{overdueTasks}</span> Overdue
+                </li>
+                <li className='list-group-item'>
+                  <span className='badge'>{pendingTasks}</span> Pending
+                </li>
+                last month
+              </ul>
             </div>
           </div>
         </div>
         <div className='col col-md-13'>
           <div className='row'>
-            <div className='row row-md-5'>
+            <div className='row row-md-15'>
               <h4>{monthNames[currentDate.getMonth()]} Task Rates</h4>
               Incomplete Rate
               <span className='pull-right strong'>{`${Math.round(
