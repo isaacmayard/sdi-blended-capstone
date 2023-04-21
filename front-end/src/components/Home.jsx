@@ -4,12 +4,14 @@
 
 import { useSome } from '../utilities/MainContextProvider';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
+import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 import SplitButton from 'react-bootstrap/SplitButton';
-import { BsBarChartLine } from 'react-icons/bs';
+import { BsBarChartLine, BsFillArrowRightCircleFill } from 'react-icons/bs';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import useFetch from '../utilities/useFetch';
@@ -146,58 +148,66 @@ export default function Sidebar() {
                   <Tab>Completed Late</Tab>
                   <Tab>Overdue</Tab>
                   <Tab>Pending</Tab>
-                  <SplitButton
-                    key='primary'
-                    id='dropdown-split-variants-Primary'
-                    variant='primary'
-                    title={currentMonth}
-                  >
-                    {monthNames.map((month, index) => (
-                      <Dropdown.Item
-                        eventKey={index + 1}
-                        onClick={(e) => setCurrentMonth(e.target.innerText)}
-                      >
-                        {month}
-                      </Dropdown.Item>
-                    ))}
-                  </SplitButton>
-
-                  <SplitButton
-                    key='primary'
-                    id='dropdown-split-variants-Primary'
-                    variant='primary'
-                    title={currentYear}
-                  >
-                    {yearList.map((year, index) => (
-                      <Dropdown.Item
-                        eventKey={index + 1}
-                        onClick={(e) => setCurrentYear(e.target.innerText)}
-                      >
-                        {year}
-                      </Dropdown.Item>
-                    ))}
-                  </SplitButton>
-                  <BsBarChartLine
-                    size={24}
-                    onClick={() => setShow((currentShow) => !currentShow)}
-                  />
+                  <Tab disabled='true'>
+                    <SplitButton
+                      key='primary'
+                      id='dropdown-split-variants-Primary'
+                      variant='primary'
+                      title={currentMonth}
+                    >
+                      {monthNames.map((month, index) => (
+                        <Dropdown.Item
+                          eventKey={index + 1}
+                          onClick={(e) => setCurrentMonth(e.target.innerText)}
+                        >
+                          {month}
+                        </Dropdown.Item>
+                      ))}
+                    </SplitButton>
+                  </Tab>
+                  <Tab pullRight='true' disabled='true'>
+                    <SplitButton
+                      key='primary'
+                      id='dropdown-split-variants-Primary'
+                      variant='primary'
+                      title={currentYear}
+                    >
+                      {yearList.map((year, index) => (
+                        <Dropdown.Item
+                          eventKey={index + 1}
+                          onClick={(e) => setCurrentYear(e.target.innerText)}
+                        >
+                          {year}
+                        </Dropdown.Item>
+                      ))}
+                    </SplitButton>
+                  </Tab>
+                  <Tab disabled='true'>
+                    <Button
+                      variant='primary'
+                      onClick={() => setShow((currentShow) => !currentShow)}
+                      style={{ display: 'flex' }}
+                    >
+                      <BsBarChartLine style={{ marginRight: '5px' }} />
+                      Metrics
+                      <BsFillArrowRightCircleFill
+                        style={{ marginLeft: '5px' }}
+                      />
+                    </Button>
+                  </Tab>
                 </TabList>
 
-                <TabPanel>{renderTasks(filteredTasks)}</TabPanel>
-                <TabPanel>{renderTasks(completedTasks)}</TabPanel>
-                <TabPanel>{renderTasks(completedLateTasks)}</TabPanel>
-                <TabPanel>{renderTasks(overdueTasks)}</TabPanel>
-                <TabPanel>{renderTasks(pendingTasks)}</TabPanel>
+                <TabPanel>{renderTasks(filteredTasks)};</TabPanel>
+                <TabPanel>{renderTasks(completedTasks)};</TabPanel>
+                <TabPanel>{renderTasks(completedLateTasks)};</TabPanel>
+                <TabPanel>{renderTasks(overdueTasks)};</TabPanel>
+                <TabPanel>{renderTasks(pendingTasks)};</TabPanel>
               </Tabs>
             </Card.Body>
           </Card>
         </div>
 
-        <nav className='nav__bar'>
-          <ul className='menu'>
-            <li className='menu__icon'>{show ? metricsContainer : null}</li>
-          </ul>
-        </nav>
+        {show ? metricsContainer : null}
       </div>
     </div>
   );
