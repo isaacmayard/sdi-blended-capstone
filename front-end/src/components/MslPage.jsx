@@ -52,7 +52,7 @@ export default function MslPage() {
           items={fields}
           requireItems={requiredField}
           fn={onSubmit}
-          className='tw-bg-opacity tw-absolute tw-right-[33vw] tw-top-[25vh] tw-flex tw-w-[25vw] tw-flex-col tw-transition-all'
+          className='tw-absolute tw-right-[33vw] tw-top-[25vh] tw-flex tw-w-[25vw] tw-flex-col tw-bg-opacity-80 tw-shadow-3xl tw-transition-all'
         >
           <button
             onClick={() => setFormState(false)}
