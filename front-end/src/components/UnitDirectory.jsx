@@ -29,7 +29,7 @@ function UnitDirectory() {
       <img
         src={sbd1}
         alt='USSF Logo'
-        style={{ position: 'absolute', top: '45px', left: '0', opacity: 0.15 }}
+        style={{ position: 'absolute', top: '130px', left: '0', opacity: 0.15 }}
       />
       <Table striped bordered hover variant='dark'>
         <thead>

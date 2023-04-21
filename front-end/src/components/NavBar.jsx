@@ -34,7 +34,7 @@ export default function NavBar() {
           {isLoggedIn ? (
             <CDBSidebarMenuItem icon='user'>
               {(
-                <p>
+                <p className='tw-pt-3'>
                   <strong>{currentUser.rank}</strong> {currentUser.firstName}{' '}
                   {currentUser.lastName}
                 </p>
@@ -48,13 +48,6 @@ export default function NavBar() {
                 {currentUser.work_section && (
                   <li className='tw-break-words'>
                     Section: {currentUser.work_section}{' '}
-                  </li>
-                )}
-              </ul>
-              <ul>
-                {currentUser.contact_number && (
-                  <li className='tw-flex-wrap'>
-                    {currentUser.contact_number}{' '}
                   </li>
                 )}
               </ul>

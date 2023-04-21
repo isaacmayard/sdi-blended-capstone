@@ -186,7 +186,7 @@ export default function Metrics() {
                       width: `${
                         (currentOverdueTasks /
                           (currentTotalTasks - currentPendingTasks)) *
-                        250
+                        600
                       }px`,
                     }}
                   >
@@ -212,7 +212,7 @@ export default function Metrics() {
                       width: `${
                         (currentCompletedTasks /
                           (currentTotalTasks - currentPendingTasks)) *
-                        250
+                        630
                       }px`,
                     }}
                   >
@@ -239,7 +239,7 @@ export default function Metrics() {
                       width: `${
                         (currentCompletedLateTasks /
                           (currentTotalTasks - currentPendingTasks)) *
-                        250
+                        650
                       }px`,
                     }}
                   >
@@ -262,7 +262,7 @@ export default function Metrics() {
                     role='progressbar'
                     style={{
                       width: `${
-                        (currentPendingTasks / currentTotalTasks) * 250
+                        (currentPendingTasks / currentTotalTasks) * 650
                       }px`,
                     }}
                   >
@@ -289,7 +289,7 @@ export default function Metrics() {
                   style={{
                     width:
                       (prevOverdueTasks / (prevTotalTasks - prevPendingTasks)) *
-                      250,
+                      650,
                   }}
                 >
                   {prevOverdueTasks}
@@ -311,7 +311,7 @@ export default function Metrics() {
                     width:
                       (prevCompletedTasks /
                         (prevTotalTasks - prevPendingTasks)) *
-                      250,
+                      650,
                   }}
                 >
                   {prevCompletedTasks}
@@ -334,7 +334,7 @@ export default function Metrics() {
                     width:
                       (prevCompletedLateTasks /
                         (prevTotalTasks - prevPendingTasks)) *
-                      250,
+                      650,
                   }}
                 >
                   {prevCompletedLateTasks}
@@ -351,7 +351,7 @@ export default function Metrics() {
                 <div
                   className='progress-bar'
                   role='progressbar'
-                  style={{ width: (prevPendingTasks / prevTotalTasks) * 250 }}
+                  style={{ width: (prevPendingTasks / prevTotalTasks) * 650 }}
                 >
                   {prevPendingTasks}
                 </div>
