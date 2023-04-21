@@ -8,7 +8,9 @@ export default function Section() {
   const { currentUser } = useSome();
 
   const { data: allUsers } = useFetch('users');
-  const users = allUsers.filter((user) => user.section === currentUser.section);
+  const users = allUsers.filter(
+    (user) => user.work_section === currentUser.work_section,
+  );
 
   if (currentUser.userName === 'Guest') {
     return <p>I am a guest.</p>;

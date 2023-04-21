@@ -13,6 +13,9 @@
   align-items: center;
   margin-top: 1%;
   padding-top: 1%;
+  max-height: 350px;
+  overflow: scroll;
+  overflow-x: hidden;
   border-radius: 8px;
 }
 
@@ -83,6 +86,13 @@
 .user-column {
   text-align: center;
   display: contents;
+  border: 1px solid black;
+}
+
+.border-test {
+  text-align: center;
+  max-height: 255px;
+  overflow: auto;
 }
 
 .assigned-troops {

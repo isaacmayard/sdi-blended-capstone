@@ -42,7 +42,7 @@ export default function FullCalendar() {
 
   return (
     <div className='tw-flex tw-h-screen tw-w-screen'>
-      <Card className='card-box m-3 tw-flex tw-grow tw-overflow-auto tw-bg-black'>
+      <Card className='m-3 tw-flex tw-h-[98vh] tw-grow tw-overflow-auto tw-bg-gray-500'>
         <div className='divide-y divide-slate-700 tw-h-full tw-w-full tw-overflow-auto'>
           <Card.Body>
             <Card.Title className='tw-text-center'>TASK CALENDAR</Card.Title>

@@ -111,7 +111,7 @@ export default function TaskList() {
         </Col>
       </Row>
       <Row
-        className='assignable mb-5'
+        className='assignable mb-5 tw-shadow-2xl'
         onDrop={handleOnDrop}
         onDragOver={handleDragOver}
       >
@@ -130,13 +130,15 @@ export default function TaskList() {
         <Col>
           <div className='user-column'>
             <p className='assigned-troops'>Assigned Troops</p>
-            {users.map((user, index) => (
-              <div key={index} className='available-users'>
-                <button onClick={() => handleUserClick(user)}>
-                  {user.userName}
-                </button>
-              </div>
-            ))}
+            <div className='border-test tw-shadow-2xl'>
+              {users.map((user, index) => (
+                <div key={index} className='available-users'>
+                  <button onClick={() => handleUserClick(user)}>
+                    {user.userName}
+                  </button>
+                </div>
+              ))}
+            </div>
           </div>
         </Col>
         <Col>
@@ -146,7 +148,7 @@ export default function TaskList() {
                 {selectedUser.userName}
               </p>
               <form
-                className='assigned-tasks tw-shadow-3xl'
+                className='assigned-tasks mb-2'
                 onDrop={handleOnDrop}
                 onDragOver={handleDragOver}
               >

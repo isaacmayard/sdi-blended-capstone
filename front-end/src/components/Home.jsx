@@ -39,7 +39,7 @@ export default function Sidebar() {
 
   const yearList = [2022, 2023, 2024];
 
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(true);
   const [currentMonth, setCurrentMonth] = useState(
     monthNames[new Date().getMonth()],
   );
@@ -124,7 +124,7 @@ export default function Sidebar() {
   if (isErrorTasks) return `An error has occurred: ${isErrorTasks.message}`;
 
   const metricsContainer = (
-    <div className='col-3 tw-ml-[10vw] tw-w-fit'>
+    <div className='col-3 tw-ml-[7vw] tw-w-fit'>
       <Card className='card-box m-3 tw-rounded-2xl'>
         <div className='divide-y divide-slate-700 tw-h-[77vh] tw-w-[25vw]'>
           <Card.Body>
@@ -136,10 +136,10 @@ export default function Sidebar() {
   );
 
   return (
-    <div className='tw-flex tw-h-[100vh] tw-grow tw-overflow-auto'>
-      <div className='tw-flex tw-w-screen'>
-        <div className='tw-ml-[10vw] tw-h-[77vh]'>
-          <Card className='card-box m-3 tw-rounded-2xl'>
+    <div className='tw-flex tw-h-[97vh] tw-grow tw-overflow-auto'>
+      <div className='tw-flex'>
+        <div className='tw-ml-[10vw]'>
+          <Card className='card-box tw-mt-5 tw-h-fit tw-w-fit tw-rounded-2xl'>
             <Card.Body>
               <Tabs>
                 <TabList>
@@ -197,11 +197,11 @@ export default function Sidebar() {
                   </Tab>
                 </TabList>
 
-                <TabPanel>{renderTasks(filteredTasks)};</TabPanel>
-                <TabPanel>{renderTasks(completedTasks)};</TabPanel>
-                <TabPanel>{renderTasks(completedLateTasks)};</TabPanel>
-                <TabPanel>{renderTasks(overdueTasks)};</TabPanel>
-                <TabPanel>{renderTasks(pendingTasks)};</TabPanel>
+                <TabPanel>{renderTasks(filteredTasks)}</TabPanel>
+                <TabPanel>{renderTasks(completedTasks)}</TabPanel>
+                <TabPanel>{renderTasks(completedLateTasks)}</TabPanel>
+                <TabPanel>{renderTasks(overdueTasks)}</TabPanel>
+                <TabPanel>{renderTasks(pendingTasks)}</TabPanel>
               </Tabs>
             </Card.Body>
           </Card>
