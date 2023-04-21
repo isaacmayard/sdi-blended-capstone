@@ -92,11 +92,6 @@ export default function NavBar() {
                 </CDBSidebarMenuItem>
               )}
             </NavLink>
-            <NavLink to='/tasks'>
-              {isLoggedIn && (
-                <CDBSidebarMenuItem icon='tasks'>TASKS</CDBSidebarMenuItem>
-              )}
-            </NavLink>
             <NavLink to='/msl'>
               {isLoggedIn && (
                 <CDBSidebarMenuItem icon='th-large'>MSL</CDBSidebarMenuItem>

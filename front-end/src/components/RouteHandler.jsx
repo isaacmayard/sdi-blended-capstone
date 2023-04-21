@@ -30,7 +30,6 @@ export default function RouteHandler() {
           <Route path='/home' element={<Home />} />
           <Route path='/section' element={<Section />} />
           <Route path='/calendar' element={<FullCalendar />} />
-          <Route path='/tasks' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/awards' element={<AwardsPage />} />

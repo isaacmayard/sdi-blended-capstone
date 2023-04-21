@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 
+import { useSome } from '../utilities/MainContextProvider';
 import useFetch from '../utilities/useFetch';
 
 export default function Metrics() {
+  const { currentUser } = useSome();
+
   const {
     data: tasks,
     isLoading: isLoadingTasks,
     isError: isErrorTasks,
-  } = useFetch('tasks');
+  } = useFetch(`tasks`);
 
   // Calculate metrics based on tasks data
   const totalTasks = tasks ? tasks.length : 0;
